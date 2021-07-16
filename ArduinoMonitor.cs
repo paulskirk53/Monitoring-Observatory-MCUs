@@ -221,7 +221,7 @@ namespace Monitoring
             }
             else
             {
-                lblStatus.BackColor = Color.Green;
+                lblStatus.BackColor = Color.Green;  //green?
             }
 
             lblStatus.Text = StepperReplyCounter;
