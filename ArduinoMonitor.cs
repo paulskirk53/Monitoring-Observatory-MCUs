@@ -39,6 +39,8 @@ namespace Monitoring
         ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
         ASCOM.Utilities.Serial EncoderPort = new ASCOM.Utilities.Serial();
 
+        DateTime Now = DateTime.Now;                                       // guess what - this is the system date and time
+
         private void ArduinoMonitor_Load(object sender, System.EventArgs e)
         {
             //       populate the combo box with port names
