@@ -73,6 +73,7 @@ namespace Monitoring
                 lblStepper.BackColor = Color.Green ;
                 tmrStepperRequests.Enabled = true;
                 btnConnectToStepper.Enabled = false;
+                btnDisconnectStepper.Enabled = true;
             }
             catch (Exception )
             {
