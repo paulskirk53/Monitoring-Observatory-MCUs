@@ -106,7 +106,7 @@ namespace Monitoring
                 btnConnectToEncoder.Enabled = false;   // once connected disable this button
                 btnDisconnectEncoder.Enabled = true;   // once connected enable the disconnect button
                 BTNCamon.Enabled = true;
-                BTNCamoff.Enabled = true;
+                //BTNCamoff.Enabled = true;
             }
             catch (Exception )
             {
@@ -220,8 +220,8 @@ namespace Monitoring
              StepperReplyCounter = EncoderPort.ReceiveTerminated("#");
              StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
 
-            cameraPowerStatus = EncoderPort.ReceiveTerminated("#");
-            cameraPowerStatus = cameraPowerStatus.Replace("#", "");
+           cameraPowerStatus = EncoderPort.ReceiveTerminated("#");
+           cameraPowerStatus = cameraPowerStatus.Replace("#", "");
 
 
             lblAzimuthValue.Text = Azimuth;                        //display the azimuth on the label
@@ -246,12 +246,12 @@ namespace Monitoring
             if (cameraPowerStatus == "ON")
             {
                 // set label text to on
-                lblCamerapowerstatus.Text = "Power On";
+                lblCamerapowerstatus.Text = "Power XXOn";
             }
             else
             {
                 //set the label text to OFF
-                lblCamerapowerstatus.Text = "Power Off";
+                lblCamerapowerstatus.Text = "Power XXOff";
             }
 
         }
@@ -271,6 +271,8 @@ namespace Monitoring
         private void BTNCamon_Click(object sender, EventArgs e)
         {
             EncoderPort.Transmit("CAMON#");
+            BTNCamoff.Enabled = true;
+            BTNCamon.Enabled = false;
         }
 
         private void BTNCamoff_Click(object sender, EventArgs e)
@@ -279,7 +281,8 @@ namespace Monitoring
             //section in this code
             
             EncoderPort.Transmit("CAMOFF#");
-
+            BTNCamoff.Enabled = false;
+            BTNCamon.Enabled = true;
 
         }
     }
