@@ -45,11 +45,11 @@
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.gpboxEncoder = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblAzimuthValue = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lbl9 = new System.Windows.Forms.Label();
             this.lbl8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnConnectToStepper = new System.Windows.Forms.Button();
             this.btnDisconnectStepper = new System.Windows.Forms.Button();
             this.btnConnectToEncoder = new System.Windows.Forms.Button();
@@ -62,8 +62,12 @@
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BTNCamoff = new System.Windows.Forms.Button();
+            this.BTNCamon = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.gpboxEncoder.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpboxStepper
@@ -230,15 +234,6 @@
             this.gpboxEncoder.TabStop = false;
             this.gpboxEncoder.Text = "Encoder MCU";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(329, 341);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Connection Status";
-            // 
             // lblAzimuthValue
             // 
             this.lblAzimuthValue.AutoSize = true;
@@ -275,6 +270,15 @@
             this.lbl8.Size = new System.Drawing.Size(136, 13);
             this.lbl8.TabIndex = 0;
             this.lbl8.Text = "Comms Status with Stepper";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(329, 341);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Connection Status";
             // 
             // btnConnectToStepper
             // 
@@ -371,11 +375,43 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Connection Status";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BTNCamoff);
+            this.groupBox1.Controls.Add(this.BTNCamon);
+            this.groupBox1.Location = new System.Drawing.Point(26, 384);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(262, 56);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Camera Power";
+            // 
+            // BTNCamoff
+            // 
+            this.BTNCamoff.Location = new System.Drawing.Point(157, 26);
+            this.BTNCamoff.Name = "BTNCamoff";
+            this.BTNCamoff.Size = new System.Drawing.Size(40, 20);
+            this.BTNCamoff.TabIndex = 1;
+            this.BTNCamoff.Text = "OFF";
+            this.BTNCamoff.UseVisualStyleBackColor = true;
+            this.BTNCamoff.Click += new System.EventHandler(this.BTNCamoff_Click);
+            // 
+            // BTNCamon
+            // 
+            this.BTNCamon.Location = new System.Drawing.Point(28, 26);
+            this.BTNCamon.Name = "BTNCamon";
+            this.BTNCamon.Size = new System.Drawing.Size(34, 20);
+            this.BTNCamon.TabIndex = 0;
+            this.BTNCamon.Text = "ON";
+            this.BTNCamon.UseVisualStyleBackColor = true;
+            this.BTNCamon.Click += new System.EventHandler(this.BTNCamon_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(466, 477);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -395,6 +431,7 @@
             this.gpboxStepper.PerformLayout();
             this.gpboxEncoder.ResumeLayout(false);
             this.gpboxEncoder.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,6 +472,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button BTNCamoff;
+        private System.Windows.Forms.Button BTNCamon;
     }
 }
 

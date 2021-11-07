@@ -30,9 +30,11 @@ namespace Monitoring
             InitializeComponent();
             //   string[] ports = SerialPort.GetPortNames();
             //   MessageBox.Show("Test" + ports[0]);
-            cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+            cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
             lblCommsEncoderValue.BackColor = Color.Red;
-           // lblStatus.BackColor = Color.Red;
+            // lblStatus.BackColor = Color.Red;
+            BTNCamoff.Enabled = false;    // these work
+            BTNCamon.Enabled = false;
 
         }
 
@@ -45,8 +47,9 @@ namespace Monitoring
         {
             //       populate the combo box with port names
             cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
-           // string[] ports = SerialPort.GetPortNames();
+            // string[] ports = SerialPort.GetPortNames();
             //MessageBox.Show("Test" + ports[0]);
+           
         }
 
 
@@ -102,6 +105,8 @@ namespace Monitoring
                 tmrEncoderRequests.Enabled = true;
                 btnConnectToEncoder.Enabled = false;   // once connected disable this button
                 btnDisconnectEncoder.Enabled = true;   // once connected enable the disconnect button
+                BTNCamon.Enabled = true;
+                BTNCamoff.Enabled = true;
             }
             catch (Exception )
             {
@@ -128,6 +133,8 @@ namespace Monitoring
             lblEncoder.BackColor = Color.Black;
             btnConnectToEncoder.Enabled = true;
             btnDisconnectEncoder.Enabled = false;
+            BTNCamoff.Enabled = false;
+            BTNCamon.Enabled = false;
         }
 
         private void tmrStepperRequests_Tick(object sender, EventArgs e)
@@ -137,13 +144,13 @@ namespace Monitoring
             //StepperPort.Transmit("Ping#");
             try
             {
-                //read individual items, check each one and assign to the correct label
+                //
                 // or read items until 'START' item is reached, then read six and assign
                 // this approach needs the MCU to send 'START#'
                 string ReceivedItem = "";
                 
                 
-                while (ReceivedItem != "START#")
+                while (ReceivedItem != "START#")                         // wait until start sequence is received
                 {
                     ReceivedItem = StepperPort.ReceiveTerminated("#");
                 }
@@ -199,17 +206,18 @@ namespace Monitoring
 
         private void tmrEncoderRequests_Tick(object sender, EventArgs e)
         {
+            
             string Azimuth = "";
             String StepperReplyCounter = "";
 
             // send the interrogation protocol....there are two pieces of data to be received, each terminated with #
-            EncoderPort .Transmit("EncoderRequest#");
+             EncoderPort .Transmit("EncoderRequest#");
 
              Azimuth = EncoderPort.ReceiveTerminated("#");
-            Azimuth = Azimuth.Replace("#", "");
+             Azimuth = Azimuth.Replace("#", "");
 
              StepperReplyCounter = EncoderPort.ReceiveTerminated("#");
-            StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
+             StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
 
             
             lblAzimuthValue.Text = Azimuth;
@@ -241,6 +249,16 @@ namespace Monitoring
             StepperPort.Dispose();
             StepperPort = null;
 
+        }
+
+        private void BTNCamon_Click(object sender, EventArgs e)
+        {
+            EncoderPort.Transmit("CAMON#");
+        }
+
+        private void BTNCamoff_Click(object sender, EventArgs e)
+        {
+            EncoderPort.Transmit("CAMOFF#");
         }
     }
 }
