@@ -207,8 +207,9 @@ namespace Monitoring
         private void tmrEncoderRequests_Tick(object sender, EventArgs e)
         {
             
-            string Azimuth = "";
+            String Azimuth             = "";
             String StepperReplyCounter = "";
+            String cameraPowerStatus   = "";
 
             // send the interrogation protocol....there are two pieces of data to be received, each terminated with #
              EncoderPort .Transmit("EncoderRequest#");
@@ -219,8 +220,11 @@ namespace Monitoring
              StepperReplyCounter = EncoderPort.ReceiveTerminated("#");
              StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
 
-            
-            lblAzimuthValue.Text = Azimuth;
+            cameraPowerStatus = EncoderPort.ReceiveTerminated("#");
+            cameraPowerStatus = cameraPowerStatus.Replace("#", "");
+
+
+            lblAzimuthValue.Text = Azimuth;                        //display the azimuth on the label
 
             // check if the last two counter values are the same, if they are comms between the encoder and stepper MCUs has failed.
 
@@ -235,7 +239,20 @@ namespace Monitoring
                 lblStatus.BackColor = Color.Green;  //green?
             }
 
-            lblStatus.Text = StepperReplyCounter;
+            lblStatus.Text = StepperReplyCounter;          //display the count on the label
+
+            //now check the status of the camera power and set the labels accordinly
+
+            if (cameraPowerStatus == "ON")
+            {
+                // set label text to on
+                lblCamerapowerstatus.Text = "Power On";
+            }
+            else
+            {
+                //set the label text to OFF
+                lblCamerapowerstatus.Text = "Power Off";
+            }
 
         }
 
@@ -258,7 +275,12 @@ namespace Monitoring
 
         private void BTNCamoff_Click(object sender, EventArgs e)
         {
+            //perhaps a the best approcah here is to just send the action and then in the encoder mcu code monitor a status flag and return data into the encoder timer
+            //section in this code
+            
             EncoderPort.Transmit("CAMOFF#");
+
+
         }
     }
 }

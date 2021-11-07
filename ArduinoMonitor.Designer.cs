@@ -65,6 +65,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BTNCamoff = new System.Windows.Forms.Button();
             this.BTNCamon = new System.Windows.Forms.Button();
+            this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.gpboxStepper.SuspendLayout();
             this.gpboxEncoder.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -406,11 +407,21 @@
             this.BTNCamon.UseVisualStyleBackColor = true;
             this.BTNCamon.Click += new System.EventHandler(this.BTNCamon_Click);
             // 
+            // lblCamerapowerstatus
+            // 
+            this.lblCamerapowerstatus.AutoSize = true;
+            this.lblCamerapowerstatus.Location = new System.Drawing.Point(322, 400);
+            this.lblCamerapowerstatus.Name = "lblCamerapowerstatus";
+            this.lblCamerapowerstatus.Size = new System.Drawing.Size(107, 13);
+            this.lblCamerapowerstatus.TabIndex = 17;
+            this.lblCamerapowerstatus.Text = "Camera Power State ";
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(466, 477);
+            this.Controls.Add(this.lblCamerapowerstatus);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -475,6 +486,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BTNCamoff;
         private System.Windows.Forms.Button BTNCamon;
+        private System.Windows.Forms.Label lblCamerapowerstatus;
     }
 }
 
