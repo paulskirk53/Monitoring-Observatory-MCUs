@@ -33,15 +33,18 @@
             this.lblStatusValue = new System.Windows.Forms.Label();
             this.lbl7 = new System.Windows.Forms.Label();
             this.lblCommsEncoderValue = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
             this.lblDirection = new System.Windows.Forms.Label();
             this.lblAzimuth = new System.Windows.Forms.Label();
             this.lblDistance = new System.Windows.Forms.Label();
+            this.lblStepper = new System.Windows.Forms.Label();
             this.lblMoving = new System.Windows.Forms.Label();
             this.lblTarget = new System.Windows.Forms.Label();
             this.lbl5 = new System.Windows.Forms.Label();
             this.lbl4 = new System.Windows.Forms.Label();
             this.lbl3 = new System.Windows.Forms.Label();
+            this.btnConnectToStepper = new System.Windows.Forms.Button();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.gpboxEncoder = new System.Windows.Forms.GroupBox();
@@ -49,26 +52,27 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.lbl9 = new System.Windows.Forms.Label();
             this.lbl8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnConnectToStepper = new System.Windows.Forms.Button();
-            this.btnDisconnectStepper = new System.Windows.Forms.Button();
             this.btnConnectToEncoder = new System.Windows.Forms.Button();
-            this.btnDisconnectEncoder = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmbPickStepperPort = new System.Windows.Forms.ComboBox();
-            this.lblStepper = new System.Windows.Forms.Label();
             this.lblEncoder = new System.Windows.Forms.Label();
             this.tmrStepperRequests = new System.Windows.Forms.Timer(this.components);
             this.tmrEncoderRequests = new System.Windows.Forms.Timer(this.components);
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnpowerActivate = new System.Windows.Forms.Button();
             this.BTNCamoff = new System.Windows.Forms.Button();
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnresetStepper = new System.Windows.Forms.Button();
+            this.btnresetEncoder = new System.Windows.Forms.Button();
+            this.btnactivate = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.gpboxEncoder.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpboxStepper
@@ -76,20 +80,23 @@
             this.gpboxStepper.Controls.Add(this.lblStatusValue);
             this.gpboxStepper.Controls.Add(this.lbl7);
             this.gpboxStepper.Controls.Add(this.lblCommsEncoderValue);
+            this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
             this.gpboxStepper.Controls.Add(this.lblDirection);
             this.gpboxStepper.Controls.Add(this.lblAzimuth);
             this.gpboxStepper.Controls.Add(this.lblDistance);
+            this.gpboxStepper.Controls.Add(this.lblStepper);
             this.gpboxStepper.Controls.Add(this.lblMoving);
             this.gpboxStepper.Controls.Add(this.lblTarget);
             this.gpboxStepper.Controls.Add(this.lbl5);
             this.gpboxStepper.Controls.Add(this.lbl4);
             this.gpboxStepper.Controls.Add(this.lbl3);
+            this.gpboxStepper.Controls.Add(this.btnConnectToStepper);
             this.gpboxStepper.Controls.Add(this.lbl2);
             this.gpboxStepper.Controls.Add(this.lbl1);
             this.gpboxStepper.Location = new System.Drawing.Point(21, 31);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(268, 188);
+            this.gpboxStepper.Size = new System.Drawing.Size(433, 188);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Stepper MCU";
@@ -122,6 +129,15 @@
             this.lblCommsEncoderValue.Text = "............";
             this.toolTipPK.SetToolTip(this.lblCommsEncoderValue, "This is the comms state between the two Arduino MCUs");
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(303, 121);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Connection Status";
+            // 
             // lbl6
             // 
             this.lbl6.AutoSize = true;
@@ -145,18 +161,27 @@
             this.lblAzimuth.AutoSize = true;
             this.lblAzimuth.Location = new System.Drawing.Point(159, 113);
             this.lblAzimuth.Name = "lblAzimuth";
-            this.lblAzimuth.Size = new System.Drawing.Size(40, 13);
+            this.lblAzimuth.Size = new System.Drawing.Size(25, 13);
             this.lblAzimuth.TabIndex = 8;
-            this.lblAzimuth.Text = "999.99";
+            this.lblAzimuth.Text = "999";
             // 
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
             this.lblDistance.Location = new System.Drawing.Point(159, 92);
             this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(57, 13);
+            this.lblDistance.Size = new System.Drawing.Size(58, 13);
             this.lblDistance.TabIndex = 7;
-            this.lblDistance.Text = "In degrees";
+            this.lblDistance.Text = "Achieved?";
+            // 
+            // lblStepper
+            // 
+            this.lblStepper.BackColor = System.Drawing.Color.Red;
+            this.lblStepper.Location = new System.Drawing.Point(317, 134);
+            this.lblStepper.Name = "lblStepper";
+            this.lblStepper.Size = new System.Drawing.Size(80, 23);
+            this.lblStepper.TabIndex = 7;
+            this.lblStepper.Text = "Stepper Connection";
             // 
             // lblMoving
             // 
@@ -172,9 +197,9 @@
             this.lblTarget.AutoSize = true;
             this.lblTarget.Location = new System.Drawing.Point(159, 29);
             this.lblTarget.Name = "lblTarget";
-            this.lblTarget.Size = new System.Drawing.Size(40, 13);
+            this.lblTarget.Size = new System.Drawing.Size(25, 13);
             this.lblTarget.TabIndex = 5;
-            this.lblTarget.Text = "999.99";
+            this.lblTarget.Text = "999";
             // 
             // lbl5
             // 
@@ -182,9 +207,9 @@
             this.lbl5.AutoSize = true;
             this.lbl5.Location = new System.Drawing.Point(16, 113);
             this.lbl5.Name = "lbl5";
-            this.lbl5.Size = new System.Drawing.Size(91, 13);
+            this.lbl5.Size = new System.Drawing.Size(89, 13);
             this.lbl5.TabIndex = 4;
-            this.lbl5.Text = "Distance to target";
+            this.lbl5.Text = "Degrees to target";
             // 
             // lbl4
             // 
@@ -203,6 +228,16 @@
             this.lbl3.Size = new System.Drawing.Size(90, 13);
             this.lbl3.TabIndex = 2;
             this.lbl3.Text = "Movement Status";
+            // 
+            // btnConnectToStepper
+            // 
+            this.btnConnectToStepper.Location = new System.Drawing.Point(280, 22);
+            this.btnConnectToStepper.Name = "btnConnectToStepper";
+            this.btnConnectToStepper.Size = new System.Drawing.Size(117, 62);
+            this.btnConnectToStepper.TabIndex = 2;
+            this.btnConnectToStepper.Text = "Connect";
+            this.btnConnectToStepper.UseVisualStyleBackColor = true;
+            this.btnConnectToStepper.Click += new System.EventHandler(this.btnConnectToStepper_Click);
             // 
             // lbl2
             // 
@@ -228,9 +263,10 @@
             this.gpboxEncoder.Controls.Add(this.lblStatus);
             this.gpboxEncoder.Controls.Add(this.lbl9);
             this.gpboxEncoder.Controls.Add(this.lbl8);
-            this.gpboxEncoder.Location = new System.Drawing.Point(24, 260);
+            this.gpboxEncoder.Controls.Add(this.btnConnectToEncoder);
+            this.gpboxEncoder.Location = new System.Drawing.Point(24, 236);
             this.gpboxEncoder.Name = "gpboxEncoder";
-            this.gpboxEncoder.Size = new System.Drawing.Size(265, 94);
+            this.gpboxEncoder.Size = new System.Drawing.Size(420, 139);
             this.gpboxEncoder.TabIndex = 1;
             this.gpboxEncoder.TabStop = false;
             this.gpboxEncoder.Text = "Encoder MCU";
@@ -240,9 +276,9 @@
             this.lblAzimuthValue.AutoSize = true;
             this.lblAzimuthValue.Location = new System.Drawing.Point(190, 59);
             this.lblAzimuthValue.Name = "lblAzimuthValue";
-            this.lblAzimuthValue.Size = new System.Drawing.Size(40, 13);
+            this.lblAzimuthValue.Size = new System.Drawing.Size(25, 13);
             this.lblAzimuthValue.TabIndex = 7;
-            this.lblAzimuthValue.Text = "999.99";
+            this.lblAzimuthValue.Text = "999";
             // 
             // lblStatus
             // 
@@ -272,78 +308,39 @@
             this.lbl8.TabIndex = 0;
             this.lbl8.Text = "Comms Status with Stepper";
             // 
+            // btnConnectToEncoder
+            // 
+            this.btnConnectToEncoder.Location = new System.Drawing.Point(282, 14);
+            this.btnConnectToEncoder.Name = "btnConnectToEncoder";
+            this.btnConnectToEncoder.Size = new System.Drawing.Size(117, 58);
+            this.btnConnectToEncoder.TabIndex = 4;
+            this.btnConnectToEncoder.Text = "Connect";
+            this.btnConnectToEncoder.UseVisualStyleBackColor = true;
+            this.btnConnectToEncoder.Click += new System.EventHandler(this.btnConnectToEncoder_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(329, 341);
+            this.label1.Location = new System.Drawing.Point(329, 333);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Connection Status";
             // 
-            // btnConnectToStepper
-            // 
-            this.btnConnectToStepper.Location = new System.Drawing.Point(306, 105);
-            this.btnConnectToStepper.Name = "btnConnectToStepper";
-            this.btnConnectToStepper.Size = new System.Drawing.Size(117, 26);
-            this.btnConnectToStepper.TabIndex = 2;
-            this.btnConnectToStepper.Text = "Connect to Stepper";
-            this.btnConnectToStepper.UseVisualStyleBackColor = true;
-            this.btnConnectToStepper.Click += new System.EventHandler(this.btnConnectToStepper_Click);
-            // 
-            // btnDisconnectStepper
-            // 
-            this.btnDisconnectStepper.Location = new System.Drawing.Point(306, 137);
-            this.btnDisconnectStepper.Name = "btnDisconnectStepper";
-            this.btnDisconnectStepper.Size = new System.Drawing.Size(117, 26);
-            this.btnDisconnectStepper.TabIndex = 3;
-            this.btnDisconnectStepper.Text = "Disconnect";
-            this.btnDisconnectStepper.UseVisualStyleBackColor = true;
-            this.btnDisconnectStepper.Click += new System.EventHandler(this.btnDisconnectStepper_Click);
-            // 
-            // btnConnectToEncoder
-            // 
-            this.btnConnectToEncoder.Location = new System.Drawing.Point(306, 260);
-            this.btnConnectToEncoder.Name = "btnConnectToEncoder";
-            this.btnConnectToEncoder.Size = new System.Drawing.Size(117, 26);
-            this.btnConnectToEncoder.TabIndex = 4;
-            this.btnConnectToEncoder.Text = "Connect to encoder";
-            this.btnConnectToEncoder.UseVisualStyleBackColor = true;
-            this.btnConnectToEncoder.Click += new System.EventHandler(this.btnConnectToEncoder_Click);
-            // 
-            // btnDisconnectEncoder
-            // 
-            this.btnDisconnectEncoder.Location = new System.Drawing.Point(306, 292);
-            this.btnDisconnectEncoder.Name = "btnDisconnectEncoder";
-            this.btnDisconnectEncoder.Size = new System.Drawing.Size(117, 26);
-            this.btnDisconnectEncoder.TabIndex = 5;
-            this.btnDisconnectEncoder.Text = "Disconnect";
-            this.btnDisconnectEncoder.UseVisualStyleBackColor = true;
-            this.btnDisconnectEncoder.Click += new System.EventHandler(this.btnDisconnectEncoder_Click);
-            // 
             // cmbPickStepperPort
             // 
             this.cmbPickStepperPort.FormattingEnabled = true;
-            this.cmbPickStepperPort.Location = new System.Drawing.Point(306, 52);
+            this.cmbPickStepperPort.Location = new System.Drawing.Point(306, 9);
             this.cmbPickStepperPort.Name = "cmbPickStepperPort";
             this.cmbPickStepperPort.Size = new System.Drawing.Size(138, 21);
             this.cmbPickStepperPort.TabIndex = 6;
             this.cmbPickStepperPort.Text = "Port chooser";
             this.toolTipPK.SetToolTip(this.cmbPickStepperPort, "Pick the stepper port and connect, then pick the encoder port and connect");
             // 
-            // lblStepper
-            // 
-            this.lblStepper.BackColor = System.Drawing.Color.Red;
-            this.lblStepper.Location = new System.Drawing.Point(340, 196);
-            this.lblStepper.Name = "lblStepper";
-            this.lblStepper.Size = new System.Drawing.Size(80, 23);
-            this.lblStepper.TabIndex = 7;
-            this.lblStepper.Text = "Stepper Connection";
-            // 
             // lblEncoder
             // 
             this.lblEncoder.BackColor = System.Drawing.Color.Red;
-            this.lblEncoder.Location = new System.Drawing.Point(340, 354);
+            this.lblEncoder.Location = new System.Drawing.Point(340, 346);
             this.lblEncoder.Name = "lblEncoder";
             this.lblEncoder.Size = new System.Drawing.Size(83, 22);
             this.lblEncoder.TabIndex = 8;
@@ -361,35 +358,38 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 15);
+            this.label2.Location = new System.Drawing.Point(105, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 13);
+            this.label2.Size = new System.Drawing.Size(159, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Pick each port and connect in turn";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(326, 183);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Connection Status";
+            this.label2.Text = "Pick a port before connecting....";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnpowerActivate);
             this.groupBox1.Controls.Add(this.BTNCamoff);
             this.groupBox1.Controls.Add(this.BTNCamon);
-            this.groupBox1.Location = new System.Drawing.Point(26, 384);
+            this.groupBox1.Location = new System.Drawing.Point(24, 381);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(262, 56);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Camera Power";
+            this.groupBox1.Text = "Camera and Rotator Power";
+            // 
+            // btnpowerActivate
+            // 
+            this.btnpowerActivate.Location = new System.Drawing.Point(22, 25);
+            this.btnpowerActivate.Name = "btnpowerActivate";
+            this.btnpowerActivate.Size = new System.Drawing.Size(114, 23);
+            this.btnpowerActivate.TabIndex = 3;
+            this.btnpowerActivate.Text = "Toggle";
+            this.btnpowerActivate.UseVisualStyleBackColor = true;
+            this.btnpowerActivate.Click += new System.EventHandler(this.btnpowerActivate_Click);
             // 
             // BTNCamoff
             // 
-            this.BTNCamoff.Location = new System.Drawing.Point(157, 26);
+            this.BTNCamoff.Enabled = false;
+            this.BTNCamoff.Location = new System.Drawing.Point(209, 26);
             this.BTNCamoff.Name = "BTNCamoff";
             this.BTNCamoff.Size = new System.Drawing.Size(40, 20);
             this.BTNCamoff.TabIndex = 1;
@@ -399,7 +399,8 @@
             // 
             // BTNCamon
             // 
-            this.BTNCamon.Location = new System.Drawing.Point(28, 26);
+            this.BTNCamon.Enabled = false;
+            this.BTNCamon.Location = new System.Drawing.Point(156, 26);
             this.BTNCamon.Name = "BTNCamon";
             this.BTNCamon.Size = new System.Drawing.Size(34, 20);
             this.BTNCamon.TabIndex = 0;
@@ -416,23 +417,62 @@
             this.lblCamerapowerstatus.TabIndex = 17;
             this.lblCamerapowerstatus.Text = "Camera Power State ";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnresetStepper);
+            this.groupBox2.Controls.Add(this.btnresetEncoder);
+            this.groupBox2.Controls.Add(this.btnactivate);
+            this.groupBox2.Location = new System.Drawing.Point(34, 443);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(385, 53);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Resets";
+            // 
+            // btnresetStepper
+            // 
+            this.btnresetStepper.Enabled = false;
+            this.btnresetStepper.Location = new System.Drawing.Point(267, 18);
+            this.btnresetStepper.Name = "btnresetStepper";
+            this.btnresetStepper.Size = new System.Drawing.Size(87, 25);
+            this.btnresetStepper.TabIndex = 2;
+            this.btnresetStepper.Text = "Reset Stepper";
+            this.btnresetStepper.UseVisualStyleBackColor = true;
+            this.btnresetStepper.Click += new System.EventHandler(this.btnresetStepper_Click);
+            // 
+            // btnresetEncoder
+            // 
+            this.btnresetEncoder.Enabled = false;
+            this.btnresetEncoder.Location = new System.Drawing.Point(155, 16);
+            this.btnresetEncoder.Name = "btnresetEncoder";
+            this.btnresetEncoder.Size = new System.Drawing.Size(87, 25);
+            this.btnresetEncoder.TabIndex = 1;
+            this.btnresetEncoder.Text = "Reset Encoder";
+            this.btnresetEncoder.UseVisualStyleBackColor = true;
+            this.btnresetEncoder.Click += new System.EventHandler(this.btnresetEncoder_Click);
+            // 
+            // btnactivate
+            // 
+            this.btnactivate.Location = new System.Drawing.Point(15, 19);
+            this.btnactivate.Name = "btnactivate";
+            this.btnactivate.Size = new System.Drawing.Size(114, 23);
+            this.btnactivate.TabIndex = 0;
+            this.btnactivate.Text = "Toggle";
+            this.btnactivate.UseVisualStyleBackColor = true;
+            this.btnactivate.Click += new System.EventHandler(this.btnactivate_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 477);
+            this.ClientSize = new System.Drawing.Size(466, 501);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblCamerapowerstatus);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblEncoder);
-            this.Controls.Add(this.lblStepper);
             this.Controls.Add(this.cmbPickStepperPort);
-            this.Controls.Add(this.btnDisconnectEncoder);
-            this.Controls.Add(this.btnConnectToEncoder);
-            this.Controls.Add(this.btnDisconnectStepper);
-            this.Controls.Add(this.btnConnectToStepper);
             this.Controls.Add(this.gpboxEncoder);
             this.Controls.Add(this.gpboxStepper);
             this.Name = "ArduinoMonitor";
@@ -443,6 +483,7 @@
             this.gpboxEncoder.ResumeLayout(false);
             this.gpboxEncoder.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,9 +494,7 @@
         private System.Windows.Forms.GroupBox gpboxStepper;
         private System.Windows.Forms.GroupBox gpboxEncoder;
         private System.Windows.Forms.Button btnConnectToStepper;
-        private System.Windows.Forms.Button btnDisconnectStepper;
         private System.Windows.Forms.Button btnConnectToEncoder;
-        private System.Windows.Forms.Button btnDisconnectEncoder;
         private System.Windows.Forms.ComboBox cmbPickStepperPort;
         private System.Windows.Forms.Label lblStepper;
         private System.Windows.Forms.Label lblEncoder;
@@ -487,6 +526,11 @@
         private System.Windows.Forms.Button BTNCamoff;
         private System.Windows.Forms.Button BTNCamon;
         private System.Windows.Forms.Label lblCamerapowerstatus;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnresetStepper;
+        private System.Windows.Forms.Button btnresetEncoder;
+        private System.Windows.Forms.Button btnactivate;
+        private System.Windows.Forms.Button btnpowerActivate;
     }
 }
 

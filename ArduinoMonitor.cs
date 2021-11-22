@@ -55,86 +55,115 @@ namespace Monitoring
 
         private void btnConnectToStepper_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // MessageBox.Show("Test 1" + cmbPickStepperPort.SelectedItem);
-                //  MessageBox.Show("Test 2" + cmbPickStepperPort.SelectedText);
-                //  MessageBox.Show("Test 3" + cmbPickStepperPort.SelectedValue);
-                //  MessageBox.Show("Test 4" + cmbPickStepperPort.SelectedIndex);
-                //ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();
+            if (btnConnectToStepper.Text == "Connect")
+            { 
+                try
+                {
+                    // MessageBox.Show("Test 1" + cmbPickStepperPort.SelectedItem);
+                    //  MessageBox.Show("Test 2" + cmbPickStepperPort.SelectedText);
+                    //  MessageBox.Show("Test 3" + cmbPickStepperPort.SelectedValue);
+                    //  MessageBox.Show("Test 4" + cmbPickStepperPort.SelectedIndex);
+                    //ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();
 
-               
-                StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;            //"COM6";
-           
-                StepperPort.DTREnable = false;
-                StepperPort.RTSEnable = false;
-                StepperPort.ReceiveTimeout = 10000;
 
-                StepperPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-                StepperPort.Connected = true;
-                StepperPort.ClearBuffers();
-                lblStepper.BackColor = Color.Green ;
-                tmrStepperRequests.Enabled = true;
-                btnConnectToStepper.Enabled = false;
-                btnDisconnectStepper.Enabled = true;
-            }
-            catch (Exception )
-            {
-                MessageBox.Show("Stepper connection didn't work...Pick a port first....");      //+ Stepper.ToString());
+                    StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;            //"COM6";
+
+                    StepperPort.DTREnable = false;
+                    StepperPort.RTSEnable = false;
+                    StepperPort.ReceiveTimeout = 10000;
+
+                    StepperPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+                    StepperPort.Connected = true;
+                    StepperPort.ClearBuffers();
+                    lblStepper.BackColor = Color.Green;
+                    tmrStepperRequests.Enabled = true;
+                    //btnConnectToStepper.Enabled = false;
+                    
+                    btnConnectToStepper.Text = "Disconnect";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Stepper connection didn't work...Pick a port first....");      //+ Stepper.ToString());
+                }
+          }
+          else
+          {
+                //it's disconnect
+                tmrStepperRequests.Enabled = false;
+                StepperPort.Connected = false;
+
+                lblStepper.BackColor = Color.Black;
+                btnConnectToStepper.Enabled = true;
+                
+                btnConnectToStepper.Text = "Connect";
             }
         }
 
         private void btnConnectToEncoder_Click(object sender, EventArgs e)
         {
-    
 
-            try
+            if (btnConnectToEncoder.Text == "Connect")    //connect to the encoder MCU
             {
-                
-                EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;
-                EncoderPort.DTREnable = false;
-                EncoderPort.RTSEnable = false;
-                EncoderPort.ReceiveTimeout = 10000;
+                try
+                {
 
-                EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-                EncoderPort.Connected = true;
-                EncoderPort.ClearBuffers();
-                lblEncoder.BackColor = Color.Green;
-                lblEncoder.Text = "Active";
-                // ADD THE TIMER START HERE
-                tmrEncoderRequests.Enabled = true;
-                btnConnectToEncoder.Enabled = false;   // once connected disable this button
-                btnDisconnectEncoder.Enabled = true;   // once connected enable the disconnect button
-                BTNCamon.Enabled = true;
-                //BTNCamoff.Enabled = true;
+                    EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;
+                    EncoderPort.DTREnable = false;
+                    EncoderPort.RTSEnable = false;
+                    EncoderPort.ReceiveTimeout = 10000;
+
+                    EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+                    EncoderPort.Connected = true;
+                    EncoderPort.ClearBuffers();
+                    lblEncoder.BackColor = Color.Green;
+                    lblEncoder.Text = "Active";
+                    // ADD THE TIMER START HERE
+                    tmrEncoderRequests.Enabled = true;
+                    
+                    btnConnectToEncoder.Text = "Disconnect";
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Encoder connection didn't work...Pick a port first....");
+                }
             }
-            catch (Exception )
+            else          // it's disconnect from the encoder MCU
             {
-                MessageBox.Show("Encoder connection didn't work...Pick a port first....");      
+                tmrEncoderRequests.Enabled = false;
+                EncoderPort.Connected = false;
+
+                lblEncoder.BackColor = Color.Black;
+                btnConnectToEncoder.Enabled = true;
+
+                BTNCamoff.Enabled = false;
+                BTNCamon.Enabled = false;
+                btnConnectToEncoder.Text = "Connect";
+
+
             }
         }
 
         private void btnDisconnectStepper_Click(object sender, EventArgs e)
         {
-            tmrStepperRequests.Enabled = false;
-            StepperPort.Connected = false;
+           // tmrStepperRequests.Enabled = false;
+           // StepperPort.Connected = false;
           
-            lblStepper.BackColor = Color.Black;
-            btnConnectToStepper.Enabled = true;
-            btnDisconnectStepper.Enabled = false;
+            //lblStepper.BackColor = Color.Black;
+            //btnConnectToStepper.Enabled = true;
+            //btnDisconnectStepper.Enabled = false;
         }
 
         private void btnDisconnectEncoder_Click(object sender, EventArgs e)
         {
-            tmrEncoderRequests.Enabled = false;
-            EncoderPort.Connected = false;
-           // EncoderPort.Dispose();
-        //    EncoderPort = null;
-            lblEncoder.BackColor = Color.Black;
-            btnConnectToEncoder.Enabled = true;
-            btnDisconnectEncoder.Enabled = false;
-            BTNCamoff.Enabled = false;
-            BTNCamon.Enabled = false;
+          //  tmrEncoderRequests.Enabled = false;
+          //  EncoderPort.Connected = false;
+       
+          //  lblEncoder.BackColor = Color.Black;
+          //  btnConnectToEncoder.Enabled = true;
+       
+         //   BTNCamoff.Enabled = false;
+         //   BTNCamon.Enabled = false;
         }
 
         private void tmrStepperRequests_Tick(object sender, EventArgs e)
@@ -246,12 +275,12 @@ namespace Monitoring
             if (cameraPowerStatus == "ON")
             {
                 // set label text to on
-                lblCamerapowerstatus.Text = "Power XXOn";
+                lblCamerapowerstatus.Text = "Power On";
             }
             else
             {
                 //set the label text to OFF
-                lblCamerapowerstatus.Text = "Power XXOff";
+                lblCamerapowerstatus.Text = "Power Off";
             }
 
         }
@@ -284,6 +313,66 @@ namespace Monitoring
             BTNCamoff.Enabled = false;
             BTNCamon.Enabled = true;
 
+        }
+
+        private void btnactivate_Click(object sender, EventArgs e)
+        {
+            if (btnresetEncoder.Enabled)
+            {
+                btnresetEncoder.Enabled = false;
+            }
+            else
+            {
+                btnresetEncoder.Enabled = true;
+            }
+
+            if(btnresetStepper.Enabled)
+            {
+                btnresetStepper.Enabled = false;
+            }
+            else
+            {
+                btnresetStepper.Enabled = true;
+            }
+
+            
+        }
+
+        private void btnresetStepper_Click(object sender, EventArgs e)
+        {
+            if (StepperPort.Connected)
+            {
+                StepperPort.Transmit("reset");
+            }
+        }
+
+        private void btnresetEncoder_Click(object sender, EventArgs e)
+        {
+            if (EncoderPort.Connected)
+            {
+                EncoderPort.Transmit("reset");
+            }
+        }
+
+        private void btnpowerActivate_Click(object sender, EventArgs e)
+        {
+            if (BTNCamon.Enabled )
+            {
+                BTNCamon.Enabled = false;
+            }
+            else
+            {
+                BTNCamon.Enabled = true;
+            }
+
+            if (BTNCamoff.Enabled)
+            {
+                BTNCamoff.Enabled = false;
+            }
+            else
+            {
+                BTNCamoff.Enabled = true;
+            }
         }
     }
 }
