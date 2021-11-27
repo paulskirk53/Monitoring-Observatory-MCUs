@@ -31,9 +31,9 @@ namespace Monitoring
             //   string[] ports = SerialPort.GetPortNames();
             //   MessageBox.Show("Test" + ports[0]);
             cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
-            lblCommsEncoderValue.BackColor = Color.Red;
-            // lblStatus.BackColor = Color.Red;
-            BTNCamoff.Enabled = false;    // these work
+            lblCommsEncoderValue.BackColor = Color.Black;
+            lblStatus.BackColor = Color.Black;
+          //  BTNCamoff.Enabled = false;    // these work
             BTNCamon.Enabled = false;
 
         }
@@ -46,7 +46,7 @@ namespace Monitoring
         private void ArduinoMonitor_Load(object sender, System.EventArgs e)
         {
             //       populate the combo box with port names
-            cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
+            
             // string[] ports = SerialPort.GetPortNames();
             //MessageBox.Show("Test" + ports[0]);
            
@@ -66,7 +66,7 @@ namespace Monitoring
                     //ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();
 
 
-                    StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;            //"COM6";
+                    StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;      
 
                     StepperPort.DTREnable = false;
                     StepperPort.RTSEnable = false;
@@ -74,6 +74,7 @@ namespace Monitoring
 
                     StepperPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
                     StepperPort.Connected = true;
+                    lblStepper.Text = "Connected on " + StepperPort.PortName;
                     StepperPort.ClearBuffers();
                     lblStepper.BackColor = Color.Green;
                     tmrStepperRequests.Enabled = true;
@@ -96,6 +97,8 @@ namespace Monitoring
                 btnConnectToStepper.Enabled = true;
                 
                 btnConnectToStepper.Text = "Connect";
+                lblCommsEncoderValue.Text = "unknown";
+                lblCommsEncoderValue.BackColor = Color.Black;
             }
         }
 
@@ -113,14 +116,18 @@ namespace Monitoring
                     EncoderPort.ReceiveTimeout = 10000;
 
                     EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+               //     MessageBox.Show("Encoder PORT name...." + EncoderPort.PortName + "  " + EncoderPort.Speed);
                     EncoderPort.Connected = true;
+                    lblEncoder.Text = "Connected on " + EncoderPort.PortName;
                     EncoderPort.ClearBuffers();
                     lblEncoder.BackColor = Color.Green;
-                    lblEncoder.Text = "Active";
+                    // lblEncoder.Text = "Active";
                     // ADD THE TIMER START HERE
                     tmrEncoderRequests.Enabled = true;
                     
                     btnConnectToEncoder.Text = "Disconnect";
+                    btnpowerActivate.Enabled = true;
+                    
 
                 }
                 catch (Exception)
@@ -136,35 +143,18 @@ namespace Monitoring
                 lblEncoder.BackColor = Color.Black;
                 btnConnectToEncoder.Enabled = true;
 
-                BTNCamoff.Enabled = false;
                 BTNCamon.Enabled = false;
                 btnConnectToEncoder.Text = "Connect";
+                lblStatus.Text = "unknown";
+                lblStatus.BackColor = Color.Black;
+                btnpowerActivate.Enabled = false;
+                btnactivate.Enabled = false;      // disable the reset toggle button
 
 
             }
         }
 
-        private void btnDisconnectStepper_Click(object sender, EventArgs e)
-        {
-           // tmrStepperRequests.Enabled = false;
-           // StepperPort.Connected = false;
-          
-            //lblStepper.BackColor = Color.Black;
-            //btnConnectToStepper.Enabled = true;
-            //btnDisconnectStepper.Enabled = false;
-        }
 
-        private void btnDisconnectEncoder_Click(object sender, EventArgs e)
-        {
-          //  tmrEncoderRequests.Enabled = false;
-          //  EncoderPort.Connected = false;
-       
-          //  lblEncoder.BackColor = Color.Black;
-          //  btnConnectToEncoder.Enabled = true;
-       
-         //   BTNCamoff.Enabled = false;
-         //   BTNCamon.Enabled = false;
-        }
 
         private void tmrStepperRequests_Tick(object sender, EventArgs e)
         {
@@ -211,7 +201,7 @@ namespace Monitoring
 
                 //if the value of EncoderReplyCounter is changing, set the colour property of lblcommsencodervalue to green. If its not green, its red
                 // e.g. compare the strings and if equal then set colour to red (comms fail), if different set to green
-                bool equal = String.Equals(EncoderReplyCounter, lblStatusValue.Text, StringComparison.InvariantCulture);
+                bool equal = String.Equals(EncoderReplyCounter, lblCommsEncoderValue.Text, StringComparison.InvariantCulture);
                 if (equal)
                 {
                     lblCommsEncoderValue.BackColor = Color.DimGray;     // comms between Stepper MCU and Encoder MCU has failed
@@ -222,8 +212,9 @@ namespace Monitoring
 
                 }
 
-                lblStatusValue.Text = EncoderReplyCounter;   // July '21 looks like this may not be needed as the if stmt above gives status
+                lblCommsEncoderValue.Text = EncoderReplyCounter;   // July '21 looks like this may not be needed as the if stmt above gives status
 
+                
             }
             catch (Exception)
             {
@@ -299,9 +290,17 @@ namespace Monitoring
 
         private void BTNCamon_Click(object sender, EventArgs e)
         {
-            EncoderPort.Transmit("CAMON#");
-            BTNCamoff.Enabled = true;
-            BTNCamon.Enabled = false;
+            if (BTNCamon.Text == "Turn On")
+            {
+                EncoderPort.Transmit("CAMON#");
+                BTNCamon.Text = "Turn Off";
+            }
+            else
+            {
+                // switch power off
+                EncoderPort.Transmit("CAMOFF#");
+                BTNCamon.Text = "Turn On";
+            }
         }
 
         private void BTNCamoff_Click(object sender, EventArgs e)
@@ -309,9 +308,9 @@ namespace Monitoring
             //perhaps a the best approcah here is to just send the action and then in the encoder mcu code monitor a status flag and return data into the encoder timer
             //section in this code
             
-            EncoderPort.Transmit("CAMOFF#");
-            BTNCamoff.Enabled = false;
-            BTNCamon.Enabled = true;
+          //  EncoderPort.Transmit("CAMOFF#");
+          //  BTNCamoff.Enabled = false;
+          //  BTNCamon.Enabled = true;
 
         }
 
@@ -342,7 +341,9 @@ namespace Monitoring
         {
             if (StepperPort.Connected)
             {
-                StepperPort.Transmit("reset");
+                tmrStepperRequests.Enabled = false;     // stop the requests to the Stepper MCU
+                StepperPort.Transmit("reset");          // request the reset
+                StepperPort.Connected = false;          // disconnect from the Port
             }
         }
 
@@ -350,7 +351,10 @@ namespace Monitoring
         {
             if (EncoderPort.Connected)
             {
-                EncoderPort.Transmit("reset");
+                tmrEncoderRequests.Enabled = false;    // stop the requests to the encoder MCU
+                EncoderPort.Transmit("reset");         // request the reset
+                EncoderPort.Connected = false;         // disconnect from the Port
+                btnConnectToEncoder.Text = "Connect";
             }
         }
 
@@ -365,14 +369,7 @@ namespace Monitoring
                 BTNCamon.Enabled = true;
             }
 
-            if (BTNCamoff.Enabled)
-            {
-                BTNCamoff.Enabled = false;
-            }
-            else
-            {
-                BTNCamoff.Enabled = true;
-            }
+           
         }
     }
 }

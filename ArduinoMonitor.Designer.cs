@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
-            this.lblStatusValue = new System.Windows.Forms.Label();
-            this.lbl7 = new System.Windows.Forms.Label();
             this.lblCommsEncoderValue = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
@@ -62,7 +60,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnpowerActivate = new System.Windows.Forms.Button();
-            this.BTNCamoff = new System.Windows.Forms.Button();
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -77,8 +74,6 @@
             // 
             // gpboxStepper
             // 
-            this.gpboxStepper.Controls.Add(this.lblStatusValue);
-            this.gpboxStepper.Controls.Add(this.lbl7);
             this.gpboxStepper.Controls.Add(this.lblCommsEncoderValue);
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
@@ -94,34 +89,17 @@
             this.gpboxStepper.Controls.Add(this.btnConnectToStepper);
             this.gpboxStepper.Controls.Add(this.lbl2);
             this.gpboxStepper.Controls.Add(this.lbl1);
-            this.gpboxStepper.Location = new System.Drawing.Point(21, 31);
+            this.gpboxStepper.Location = new System.Drawing.Point(21, 50);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(433, 188);
+            this.gpboxStepper.Size = new System.Drawing.Size(433, 176);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Stepper MCU";
             // 
-            // lblStatusValue
-            // 
-            this.lblStatusValue.AutoSize = true;
-            this.lblStatusValue.Location = new System.Drawing.Point(159, 154);
-            this.lblStatusValue.Name = "lblStatusValue";
-            this.lblStatusValue.Size = new System.Drawing.Size(25, 13);
-            this.lblStatusValue.TabIndex = 13;
-            this.lblStatusValue.Text = "999";
-            // 
-            // lbl7
-            // 
-            this.lbl7.AutoSize = true;
-            this.lbl7.Location = new System.Drawing.Point(17, 154);
-            this.lbl7.Name = "lbl7";
-            this.lbl7.Size = new System.Drawing.Size(125, 13);
-            this.lbl7.TabIndex = 12;
-            this.lbl7.Text = "Exchanges with Encoder";
-            // 
             // lblCommsEncoderValue
             // 
             this.lblCommsEncoderValue.AutoSize = true;
+            this.lblCommsEncoderValue.ForeColor = System.Drawing.SystemColors.Info;
             this.lblCommsEncoderValue.Location = new System.Drawing.Point(159, 134);
             this.lblCommsEncoderValue.Name = "lblCommsEncoderValue";
             this.lblCommsEncoderValue.Size = new System.Drawing.Size(43, 13);
@@ -132,11 +110,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(303, 121);
+            this.label3.Location = new System.Drawing.Point(291, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Connection Status";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbl6
             // 
@@ -176,12 +155,14 @@
             // 
             // lblStepper
             // 
-            this.lblStepper.BackColor = System.Drawing.Color.Red;
-            this.lblStepper.Location = new System.Drawing.Point(317, 134);
+            this.lblStepper.BackColor = System.Drawing.Color.Black;
+            this.lblStepper.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblStepper.Location = new System.Drawing.Point(280, 134);
             this.lblStepper.Name = "lblStepper";
-            this.lblStepper.Size = new System.Drawing.Size(80, 23);
+            this.lblStepper.Size = new System.Drawing.Size(117, 23);
             this.lblStepper.TabIndex = 7;
-            this.lblStepper.Text = "Stepper Connection";
+            this.lblStepper.Text = "Not Connected COM5";
+            this.lblStepper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMoving
             // 
@@ -274,7 +255,7 @@
             // lblAzimuthValue
             // 
             this.lblAzimuthValue.AutoSize = true;
-            this.lblAzimuthValue.Location = new System.Drawing.Point(190, 59);
+            this.lblAzimuthValue.Location = new System.Drawing.Point(156, 59);
             this.lblAzimuthValue.Name = "lblAzimuthValue";
             this.lblAzimuthValue.Size = new System.Drawing.Size(25, 13);
             this.lblAzimuthValue.TabIndex = 7;
@@ -283,7 +264,8 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(189, 27);
+            this.lblStatus.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblStatus.Location = new System.Drawing.Point(162, 27);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 6;
@@ -321,29 +303,34 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(329, 333);
+            this.label1.Location = new System.Drawing.Point(317, 328);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Connection Status";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cmbPickStepperPort
             // 
+            this.cmbPickStepperPort.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPickStepperPort.FormattingEnabled = true;
             this.cmbPickStepperPort.Location = new System.Drawing.Point(306, 9);
             this.cmbPickStepperPort.Name = "cmbPickStepperPort";
-            this.cmbPickStepperPort.Size = new System.Drawing.Size(138, 21);
+            this.cmbPickStepperPort.Size = new System.Drawing.Size(138, 24);
             this.cmbPickStepperPort.TabIndex = 6;
             this.cmbPickStepperPort.Text = "Port chooser";
             this.toolTipPK.SetToolTip(this.cmbPickStepperPort, "Pick the stepper port and connect, then pick the encoder port and connect");
             // 
             // lblEncoder
             // 
-            this.lblEncoder.BackColor = System.Drawing.Color.Red;
-            this.lblEncoder.Location = new System.Drawing.Point(340, 346);
+            this.lblEncoder.BackColor = System.Drawing.Color.Black;
+            this.lblEncoder.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblEncoder.Location = new System.Drawing.Point(301, 346);
             this.lblEncoder.Name = "lblEncoder";
-            this.lblEncoder.Size = new System.Drawing.Size(83, 22);
+            this.lblEncoder.Size = new System.Drawing.Size(122, 22);
             this.lblEncoder.TabIndex = 8;
+            this.lblEncoder.Text = "Not Connected COM6";
+            this.lblEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tmrStepperRequests
             // 
@@ -358,16 +345,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(105, 9);
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(105, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 13);
+            this.label2.Size = new System.Drawing.Size(193, 16);
             this.label2.TabIndex = 9;
             this.label2.Text = "Pick a port before connecting....";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnpowerActivate);
-            this.groupBox1.Controls.Add(this.BTNCamoff);
             this.groupBox1.Controls.Add(this.BTNCamon);
             this.groupBox1.Location = new System.Drawing.Point(24, 381);
             this.groupBox1.Name = "groupBox1";
@@ -378,6 +366,7 @@
             // 
             // btnpowerActivate
             // 
+            this.btnpowerActivate.Enabled = false;
             this.btnpowerActivate.Location = new System.Drawing.Point(22, 25);
             this.btnpowerActivate.Name = "btnpowerActivate";
             this.btnpowerActivate.Size = new System.Drawing.Size(114, 23);
@@ -386,36 +375,26 @@
             this.btnpowerActivate.UseVisualStyleBackColor = true;
             this.btnpowerActivate.Click += new System.EventHandler(this.btnpowerActivate_Click);
             // 
-            // BTNCamoff
-            // 
-            this.BTNCamoff.Enabled = false;
-            this.BTNCamoff.Location = new System.Drawing.Point(209, 26);
-            this.BTNCamoff.Name = "BTNCamoff";
-            this.BTNCamoff.Size = new System.Drawing.Size(40, 20);
-            this.BTNCamoff.TabIndex = 1;
-            this.BTNCamoff.Text = "OFF";
-            this.BTNCamoff.UseVisualStyleBackColor = true;
-            this.BTNCamoff.Click += new System.EventHandler(this.BTNCamoff_Click);
-            // 
             // BTNCamon
             // 
             this.BTNCamon.Enabled = false;
             this.BTNCamon.Location = new System.Drawing.Point(156, 26);
             this.BTNCamon.Name = "BTNCamon";
-            this.BTNCamon.Size = new System.Drawing.Size(34, 20);
+            this.BTNCamon.Size = new System.Drawing.Size(96, 20);
             this.BTNCamon.TabIndex = 0;
-            this.BTNCamon.Text = "ON";
+            this.BTNCamon.Text = "Turn On";
             this.BTNCamon.UseVisualStyleBackColor = true;
             this.BTNCamon.Click += new System.EventHandler(this.BTNCamon_Click);
             // 
             // lblCamerapowerstatus
             // 
             this.lblCamerapowerstatus.AutoSize = true;
-            this.lblCamerapowerstatus.Location = new System.Drawing.Point(322, 400);
+            this.lblCamerapowerstatus.Location = new System.Drawing.Point(317, 411);
             this.lblCamerapowerstatus.Name = "lblCamerapowerstatus";
             this.lblCamerapowerstatus.Size = new System.Drawing.Size(107, 13);
             this.lblCamerapowerstatus.TabIndex = 17;
             this.lblCamerapowerstatus.Text = "Camera Power State ";
+            this.lblCamerapowerstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
@@ -515,15 +494,12 @@
         private System.Windows.Forms.Label lblCommsEncoderValue;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Timer tmrStepperRequests;
-        private System.Windows.Forms.Label lblStatusValue;
-        private System.Windows.Forms.Label lbl7;
         private System.Windows.Forms.Timer tmrEncoderRequests;
         private System.Windows.Forms.ToolTip toolTipPK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button BTNCamoff;
         private System.Windows.Forms.Button BTNCamon;
         private System.Windows.Forms.Label lblCamerapowerstatus;
         private System.Windows.Forms.GroupBox groupBox2;
