@@ -21,6 +21,24 @@ using System.Windows.Forms;
 
 namespace Monitoring
 {
+    //new below for custom exception when connecting to the port send Query and await for reply Stepper
+    // if (!Stepper i.e. wrong port) throw new wrongPortException();
+    // in catch stmt put catch (wrongPortException one)
+    // in catch block put:
+    // MessageBox.Show(one.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
+    // disconnect - need MCU ports to respond to Query what happens if they timeout?
+    public class wrongPortException : Exception
+    {                                             //use like this throw new wrongPortException
+        public override string Message
+        {
+            get
+            {
+                return "My error message here";
+            }
+        }
+    }
+
+    // end new custom exception
 
     public partial class ArduinoMonitor : Form
     {
@@ -81,10 +99,12 @@ namespace Monitoring
                     //btnConnectToStepper.Enabled = false;
                     
                     btnConnectToStepper.Text = "Disconnect";
+                  //  throw new wrongPortException();
                 }
-                catch (Exception)
+                catch (Exception)              //substitute wrongPortException ex when we get to testing the data from the port
                 {
-                    MessageBox.Show("Stepper connection didn't work...Pick a port first....");      //+ Stepper.ToString());
+                    // substitute this when you get to it MessageBox.Show(ex.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
+                    MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
                 }
           }
           else
@@ -132,7 +152,7 @@ namespace Monitoring
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Encoder connection didn't work...Pick a port first....");
+                    MessageBox.Show("Encoder connection failed. Check the MCUs are on, connected, and in receive mode.");
                 }
             }
             else          // it's disconnect from the encoder MCU
