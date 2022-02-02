@@ -131,9 +131,9 @@
             this.lblDirection.AutoSize = true;
             this.lblDirection.Location = new System.Drawing.Point(159, 51);
             this.lblDirection.Name = "lblDirection";
-            this.lblDirection.Size = new System.Drawing.Size(67, 13);
+            this.lblDirection.Size = new System.Drawing.Size(74, 13);
             this.lblDirection.TabIndex = 9;
-            this.lblDirection.Text = "Clock or Anti";
+            this.lblDirection.Text = "Awaiting  data";
             // 
             // lblAzimuth
             // 
@@ -149,9 +149,9 @@
             this.lblDistance.AutoSize = true;
             this.lblDistance.Location = new System.Drawing.Point(159, 92);
             this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(58, 13);
+            this.lblDistance.Size = new System.Drawing.Size(74, 13);
             this.lblDistance.TabIndex = 7;
-            this.lblDistance.Text = "Achieved?";
+            this.lblDistance.Text = "Awaiting  data";
             // 
             // lblStepper
             // 
@@ -171,7 +171,7 @@
             this.lblMoving.Name = "lblMoving";
             this.lblMoving.Size = new System.Drawing.Size(74, 13);
             this.lblMoving.TabIndex = 6;
-            this.lblMoving.Text = "Moving or Not";
+            this.lblMoving.Text = "Awaiting  data";
             // 
             // lblTarget
             // 
@@ -329,7 +329,7 @@
             this.lblEncoder.Name = "lblEncoder";
             this.lblEncoder.Size = new System.Drawing.Size(122, 22);
             this.lblEncoder.TabIndex = 8;
-            this.lblEncoder.Text = "Not Connected COM6";
+            this.lblEncoder.Text = "Not Connected COM4";
             this.lblEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tmrStepperRequests

@@ -125,7 +125,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArduinoMonitor.cs" />
+    <Compile Include="ArduinoMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ArduinoMonitor.Designer.cs">
       <DependentUpon>ArduinoMonitor.cs</DependentUpon>
     </Compile>

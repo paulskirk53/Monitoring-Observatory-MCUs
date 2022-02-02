@@ -21,25 +21,7 @@ using System.Windows.Forms;
 
 namespace Monitoring
 {
-    //new below for custom exception when connecting to the port send Query and await for reply Stepper
-    // if (!Stepper i.e. wrong port) throw new wrongPortException();
-    // in catch stmt put catch (wrongPortException one)
-    // in catch block put:
-    // MessageBox.Show(one.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
-    // disconnect - need MCU ports to respond to Query what happens if they timeout?
-    public class wrongPortException : Exception
-    {                                             //use like this throw new wrongPortException
-        public override string Message
-        {
-            get
-            {
-                return "My error message here";
-            }
-        }
-    }
-
-    // end new custom exception
-
+    
     public partial class ArduinoMonitor : Form
     {
 
@@ -110,15 +92,7 @@ namespace Monitoring
           else
           {
                 //it's disconnect
-                tmrStepperRequests.Enabled = false;
-                StepperPort.Connected = false;
-
-                lblStepper.BackColor = Color.Black;
-                btnConnectToStepper.Enabled = true;
-                
-                btnConnectToStepper.Text = "Connect";
-                lblCommsEncoderValue.Text = "unknown";
-                lblCommsEncoderValue.BackColor = Color.Black;
+                stepperDisconnect();
             }
         }
 
@@ -177,69 +151,75 @@ namespace Monitoring
 
 
         private void tmrStepperRequests_Tick(object sender, EventArgs e)
-        {
+        {                                              //THE TIMER INTERVAL MIGHT BE INCREASED NOW THAT  the while loop is not used, note the previous value here though
             int misscount = 0;
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
-            //StepperPort.Transmit("Ping#");
+            
             try
             {
-                //
-                // or read items until 'START' item is reached, then read six and assign
-                // this approach needs the MCU to send 'START#'
+               // MessageBox.Show("in stepper timer try ");
                 string ReceivedItem = "";
-                
-                
-                while (ReceivedItem != "START#")                         // wait until start sequence is received
+
+                /* 
+                 while (ReceivedItem != "START#")                         // wait until start sequence is received
+                 {
+                     ReceivedItem = StepperPort.ReceiveTerminated("#");
+                    // MessageBox.Show("Received " + ReceivedItem);
+
+
+                 }
+                 */
+                ReceivedItem = StepperPort.ReceiveTerminated("#");     //REMOVE THIS LINE IF THE CODE IS REVERTED to use the while loop
+                if (ReceivedItem == "START#")                          //remove this if stmt and its braces if reverting back to the while loop
                 {
-                    ReceivedItem = StepperPort.ReceiveTerminated("#");
+
+                    string TargetAzimuth = StepperPort.ReceiveTerminated("#");
+                    TargetAzimuth = TargetAzimuth.Replace("#", "");
+
+                    string MovementState = StepperPort.ReceiveTerminated("#");
+                    MovementState = MovementState.Replace("#", "");
+
+                    string QueryDir = StepperPort.ReceiveTerminated("#");
+                    QueryDir = QueryDir.Replace("#", "");
+
+                    string TargetMessage = StepperPort.ReceiveTerminated("#");
+                    TargetMessage = TargetMessage.Replace("#", "");           //the MCU creates a string which shows distance to target and then changes to Target Achieved
+
+                    string AngleMod360 = StepperPort.ReceiveTerminated("#");
+                    AngleMod360 = AngleMod360.Replace("#", "");               //This is the Azimuth the stepper receives from the encoder
+
+                    string EncoderReplyCounter = StepperPort.ReceiveTerminated("#");
+                    EncoderReplyCounter = EncoderReplyCounter.Replace("#", "");
+
+                    // now set the form labels to the values received from the MCUs
+                    lblTarget.Text = TargetAzimuth;
+                    lblDirection.Text = QueryDir;
+                    lblMoving.Text = MovementState;
+                    lblDistance.Text = TargetMessage;
+                    lblAzimuth.Text = AngleMod360;
+
+                    //if the value of EncoderReplyCounter is changing, set the colour property of lblcommsencodervalue to green. If its not green, its red
+                    // e.g. compare the strings and if equal then set colour to red (comms fail), if different set to green
+                    bool equal = String.Equals(EncoderReplyCounter, lblCommsEncoderValue.Text, StringComparison.InvariantCulture);
+                    if (equal)
+                    {
+                        lblCommsEncoderValue.BackColor = Color.DimGray;     // comms between Stepper MCU and Encoder MCU has failed
+                    }
+                    else
+                    {
+                        lblCommsEncoderValue.BackColor = Color.Green;
+
+                    }
+
+                    lblCommsEncoderValue.Text = EncoderReplyCounter;   // July '21 looks like this may not be needed as the if stmt above gives status
+
                 }
-               
-                string TargetAzimuth = StepperPort.ReceiveTerminated("#");
-                TargetAzimuth = TargetAzimuth.Replace("#", "");
-
-                string MovementState = StepperPort.ReceiveTerminated("#");
-                MovementState = MovementState.Replace("#", "");
-
-                string QueryDir = StepperPort.ReceiveTerminated("#");
-                QueryDir = QueryDir.Replace("#", "");
-
-                string TargetMessage = StepperPort.ReceiveTerminated("#");
-                TargetMessage = TargetMessage.Replace("#", "");           //the MCU creates a string which shows distance to target and then changes to Target Achieved
-
-                string AngleMod360 = StepperPort.ReceiveTerminated("#");
-                AngleMod360 = AngleMod360.Replace("#", "");               //This is the Azimuth the stepper receives from the encoder
-
-                string EncoderReplyCounter = StepperPort.ReceiveTerminated("#");
-                EncoderReplyCounter = EncoderReplyCounter.Replace("#", "");
-
-                // now set the form labels to the values received from the MCUs
-                lblTarget.Text = TargetAzimuth;
-                lblDirection.Text = QueryDir;
-                lblMoving.Text = MovementState;
-                lblDistance.Text = TargetMessage;
-                lblAzimuth.Text = AngleMod360;
-
-                //if the value of EncoderReplyCounter is changing, set the colour property of lblcommsencodervalue to green. If its not green, its red
-                // e.g. compare the strings and if equal then set colour to red (comms fail), if different set to green
-                bool equal = String.Equals(EncoderReplyCounter, lblCommsEncoderValue.Text, StringComparison.InvariantCulture);
-                if (equal)
-                {
-                    lblCommsEncoderValue.BackColor = Color.DimGray;     // comms between Stepper MCU and Encoder MCU has failed
-                }
-                else
-                {
-                    lblCommsEncoderValue.BackColor = Color.Green;
-
-                }
-
-                lblCommsEncoderValue.Text = EncoderReplyCounter;   // July '21 looks like this may not be needed as the if stmt above gives status
-
-                
             }
             catch (Exception)
             {
 
                 misscount++;
+                MessageBox.Show("Stepper data return failure");
             }
            
         }
@@ -391,5 +371,41 @@ namespace Monitoring
 
            
         }
+
+        private void stepperDisconnect()
+        {
+            tmrStepperRequests.Enabled = false;
+            StepperPort.Connected = false;
+
+            lblStepper.BackColor = Color.Black;
+            btnConnectToStepper.Enabled = true;
+
+            btnConnectToStepper.Text = "Connect";
+            lblCommsEncoderValue.Text = "unknown";
+            lblCommsEncoderValue.BackColor = Color.Black;
+        }
     }
+
+    //new below for custom exception when connecting to the port send Query and await for reply Stepper
+    // if (!Stepper i.e. wrong port) throw new wrongPortException();
+    // in catch stmt put catch (wrongPortException one)
+    // in catch block put:
+    // MessageBox.Show(one.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
+    // disconnect - need MCU ports to respond to Query what happens if they timeout?
+    public class wrongPortException : Exception
+    {                                             //use like this throw new wrongPortException
+        public override string Message
+        {
+            get
+            {
+                return "My error message here";
+            }
+        }
+    }
+
+    // end new custom exception
+
+
+
+
 }
