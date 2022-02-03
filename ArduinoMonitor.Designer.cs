@@ -334,12 +334,12 @@
             // 
             // tmrStepperRequests
             // 
-            this.tmrStepperRequests.Interval = 10;
+            this.tmrStepperRequests.Interval = 15;
             this.tmrStepperRequests.Tick += new System.EventHandler(this.tmrStepperRequests_Tick);
             // 
             // tmrEncoderRequests
             // 
-            this.tmrEncoderRequests.Interval = 500;
+            this.tmrEncoderRequests.Interval = 200;
             this.tmrEncoderRequests.Tick += new System.EventHandler(this.tmrEncoderRequests_Tick);
             // 
             // label2
