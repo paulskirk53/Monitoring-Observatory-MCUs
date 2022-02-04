@@ -1,10 +1,10 @@
 ﻿/********************************************
  * 
  ********  status of this project: *******
- * Connections to the MCUs are complete
- * The code requests to the mcus are complete 
- * Initial test with Stepper MCU returned data
- * Needs test with encoder simulator
+ * 
+ * Best to look in Github
+ * 
+ * 
  * 
  */
 
