@@ -31,11 +31,14 @@ namespace Monitoring
             //   string[] ports = SerialPort.GetPortNames();
             //   MessageBox.Show("Test" + ports[0]);
             cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
-            lblCommsEncoderValue.BackColor = Color.Black;
+            lblCommsEncoderValue.BackColor = Color.Black;    //
             lblStatus.BackColor = Color.Black;
-          //  BTNCamoff.Enabled = false;    // these work
+          //  BTNCamoff.Enabled = false;    // these work ...
             BTNCamon.Enabled = false;
 
+            //  Version number generation below - added 4-2-22
+            int displayableVersion = (int)(DateTime.UtcNow - new DateTime(2022, 1, 1)).TotalDays;
+            label2.Text = "Ver " + displayableVersion.ToString();
         }
 
         ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
