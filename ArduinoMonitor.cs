@@ -63,13 +63,6 @@ namespace Monitoring
             { 
                 try
                 {
-                    // MessageBox.Show("Test 1" + cmbPickStepperPort.SelectedItem);
-                    //  MessageBox.Show("Test 2" + cmbPickStepperPort.SelectedText);
-                    //  MessageBox.Show("Test 3" + cmbPickStepperPort.SelectedValue);
-                    //  MessageBox.Show("Test 4" + cmbPickStepperPort.SelectedIndex);
-                    //ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();
-
-
                     StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;      
 
                     StepperPort.DTREnable = false;
