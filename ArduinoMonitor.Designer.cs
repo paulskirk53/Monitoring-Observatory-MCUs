@@ -348,9 +348,9 @@
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(105, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(193, 16);
+            this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Pick a port before connecting....";
+            this.label2.Text = "Version";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
