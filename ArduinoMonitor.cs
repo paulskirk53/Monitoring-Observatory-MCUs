@@ -29,8 +29,7 @@ namespace Monitoring
         public ArduinoMonitor()
         {
             InitializeComponent();
-            //   string[] ports = SerialPort.GetPortNames();
-            //   MessageBox.Show("Test" + ports[0]);
+           
             cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
             lblCommsEncoderValue.BackColor = Color.Black;    //
             lblStatus.BackColor = Color.Black;
@@ -269,7 +268,7 @@ namespace Monitoring
             {
                 lblStatus.BackColor = Color.Green;  //green?
             }
-
+            
             lblStatus.Text = StepperReplyCounter;          //display the count on the label
 
             //now check the status of the camera power and set the labels accordinly
