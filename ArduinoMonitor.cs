@@ -86,10 +86,10 @@ namespace Monitoring
                     btnConnectToStepper.Text = "Disconnect";
                   //  throw new wrongPortException();
                 }
-                catch (Exception)              //substitute wrongPortException ex when we get to testing the data from the port
+                catch (Exception ex)              //substitute wrongPortException ex when we get to testing the data from the port
                 {
                     // substitute this when you get to it MessageBox.Show(ex.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
-                    MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
+                    MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
                 }
           }
           else
@@ -106,28 +106,21 @@ namespace Monitoring
             {
                 try
                 {
-                   string portName = portFinder(EncoderPort, "encoder#");                         //  MessageBox.Show(portFinder(EncoderPort, "encoder"));
-                   // EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;        //portFinder(EncoderPort, "encoder");
-                 //   MessageBox.Show("finally got the portname " + portName);
+                   string portName = portFinder(EncoderPort, "encoder#");        // this line used to be :EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;        
+                    
                     EncoderPort.PortName = portName;
                     EncoderPort.DTREnable = false;
                     EncoderPort.RTSEnable = false;
                     EncoderPort.ReceiveTimeout = 5;
-
                     EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-               //     MessageBox.Show("Encoder PORT name...." + EncoderPort.PortName + "  " + EncoderPort.Speed);
+               
                     EncoderPort.Connected = true;
                     
                     lblEncoder.Text = "Connected on " + EncoderPort.PortName;
                     EncoderPort.ClearBuffers();
 
-                  //  EncoderPort.Transmit("encoder#");
-                  //  string x = EncoderPort.ReceiveTerminated("#");
-
-
                     lblEncoder.BackColor = Color.Green;
-                    // lblEncoder.Text = "Active";
-                    // ADD THE TIMER START HERE
+
                     tmrEncoderRequests.Enabled = true;
 
                     btnConnectToEncoder.Text = "Disconnect";
@@ -405,67 +398,58 @@ namespace Monitoring
 
         private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
         {
+            /*
+             * This routine uses a test port to cycle through the portnames (COM1, COM3 etc), checking each port 
+             *  by sending a string recognised by a particular MCU e.g. stepper# or encoder#
+             *  if the mcu is on the port, it responds with stepper# or encoder#
+             * */
             setupThePort(testPort);            //set the parameters for testport - baud etc
             bool found = false;
-            // MessageBox.Show("here");
-            foreach (string portName in GetUnusedSerialPorts()) 
-            {                         
-
-               // MessageBox.Show("here" + portName);
-                found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (stepper / emcoder)
+            foreach (string portName in GetUnusedSerialPorts())     // GetUnusedSerialPorts forms a list of COM ports which are available
+            {                                      
+                found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (stepper# / emcoder#)
                 if (found)
                 {
-                    // MessageBox.Show("found " + portName);
-                    testPort.Connected = false;                    //disconnect the port todo ?
+                    
+                    testPort.Connected = false;                    //disconnect the port
                     return portName;
                     
                 }
 
                
             }
-            return null;
+            return null;                // if no ports respond to queries (e.g. perhaps mcus are not connected), the nukk return is picked by the try - catch exception
+                                        // of encoder connect or stepper connect
         }
 
         private bool checkforMCU(ASCOM.Utilities.Serial testPort, string portName, string MCUDescription)
         {
-           // MessageBox.Show("here");
-            testPort.PortName = portName;  //
-            
-            
-           testPort.Connected = true;
+           
+            testPort.PortName = portName;  //                      
+            testPort.Connected = true;
 
             //now send data and see what comes back
             try
             {
-                // MessageBox.Show("x return from mcu is  " + x);
-                // MessageBox.Show(" mcudescription is  " + MCUDescription);
-                //MessageBox.Show("here before try testport name is " + testPort.PortName);
-              //  MessageBox.Show("testport baud rate is " + testPort.Speed);
-               // MessageBox.Show("Sent  MCUDescription " + MCUDescription );
+               
+                testPort.Transmit(MCUDescription);            // transmits encoder# or stepper# depending upon where called
+                string response = testPort.ReceiveTerminated("#");   // not all ports respond to a query and those which don't respond will timeout
 
-                //testPort.ClearBuffers();
-
-                testPort.Transmit(MCUDescription);            //(MCUDescription + "#");     // transmits encoder or stepper depending upon where called
-                string x = testPort.ReceiveTerminated("#");   // not all the four MCU ports respond to a query yet and those which don't respond will timeout
-
-                // x = x.Replace("#", "");
-              //  MessageBox.Show("Sent  " + MCUDescription + " to portname "+ portName + "return from mcu is  " + x);
-                
-                if (x == MCUDescription)
+                            
+                if (response == MCUDescription)
                 {
-                   // MessageBox.Show(" got the MCU description on port " + portName);
-                    testPort.Connected = false;
-                    return true;
+                
+                    return true;            //mcu response match
                 }
-               // MessageBox.Show(portName);
-                return false;
+
+                testPort.Connected = false;
+                return false;              // if there was a response it was not the right MCU
             }
             catch (Exception e)     //TimeoutException
             {
-                //todo remove the encoderport connected = false line
-               // EncoderPort.Connected = false;
-                testPort.Connected = false;
-               // MessageBox.Show("port failed to respond " + portName + e.Message);
+               
+                testPort.Connected = false;    // no response
+               
             }
             
             return false;

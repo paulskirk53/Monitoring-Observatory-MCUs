@@ -318,8 +318,8 @@
             this.cmbPickStepperPort.Name = "cmbPickStepperPort";
             this.cmbPickStepperPort.Size = new System.Drawing.Size(138, 24);
             this.cmbPickStepperPort.TabIndex = 6;
-            this.cmbPickStepperPort.Text = "Port chooser";
-            this.toolTipPK.SetToolTip(this.cmbPickStepperPort, "Pick the stepper port and connect, then pick the encoder port and connect");
+            this.cmbPickStepperPort.Text = "Port info";
+            this.toolTipPK.SetToolTip(this.cmbPickStepperPort, "Port info");
             // 
             // lblEncoder
             // 
