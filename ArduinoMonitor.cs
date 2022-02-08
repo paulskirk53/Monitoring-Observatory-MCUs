@@ -37,8 +37,10 @@ namespace Monitoring
             BTNCamon.Enabled = false;
 
             //  Version number generation below - added 4-2-22
-            int displayableVersion = (int)(DateTime.UtcNow - new DateTime(2022, 1, 1)).TotalDays;
-            label2.Text = "Ver " + displayableVersion.ToString();
+            // did not work  int displayableVersion = (int)(DateTime.UtcNow - new DateTime(2022, 1, 1)).TotalDays;
+            string version = System.Windows.Forms.Application.ProductVersion;
+            label2.Text = String.Format("MCU Monitoring Version {0}", version);
+           // label2.Text = "Ver " + displayableVersion.ToString();
         }
 
         ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
@@ -354,6 +356,8 @@ namespace Monitoring
                 tmrStepperRequests.Enabled = false;     // stop the requests to the Stepper MCU
                 StepperPort.Transmit("reset");          // request the reset
                 StepperPort.Connected = false;          // disconnect from the Port
+                btnConnectToStepper.Text = "Connect";
+                lblStepper.Text = "Disconnected";
             }
         }
 
@@ -365,6 +369,7 @@ namespace Monitoring
                 EncoderPort.Transmit("reset");         // request the reset
                 EncoderPort.Connected = false;         // disconnect from the Port
                 btnConnectToEncoder.Text = "Connect";
+                lblEncoder.Text = "Disconnected";
             }
         }
 
@@ -448,7 +453,7 @@ namespace Monitoring
                 
                 if (x == MCUDescription)
                 {
-                    MessageBox.Show(" got the MCU description on port " + portName);
+                   // MessageBox.Show(" got the MCU description on port " + portName);
                     testPort.Connected = false;
                     return true;
                 }
