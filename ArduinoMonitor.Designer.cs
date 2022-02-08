@@ -66,6 +66,7 @@
             this.btnresetStepper = new System.Windows.Forms.Button();
             this.btnresetEncoder = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
+            this.roundButton1 = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.gpboxEncoder.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // gpboxStepper
             // 
+            this.gpboxStepper.Controls.Add(this.roundButton1);
             this.gpboxStepper.Controls.Add(this.lblCommsEncoderValue);
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
@@ -440,6 +442,16 @@
             this.btnactivate.UseVisualStyleBackColor = true;
             this.btnactivate.Click += new System.EventHandler(this.btnactivate_Click);
             // 
+            // roundButton1
+            // 
+            this.roundButton1.Location = new System.Drawing.Point(191, 124);
+            this.roundButton1.Name = "roundButton1";
+            this.roundButton1.Size = new System.Drawing.Size(63, 32);
+            this.roundButton1.TabIndex = 16;
+            this.roundButton1.Text = "roundButton1";
+            this.roundButton1.UseVisualStyleBackColor = true;
+            this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,6 +520,7 @@
         private System.Windows.Forms.Button btnresetEncoder;
         private System.Windows.Forms.Button btnactivate;
         private System.Windows.Forms.Button btnpowerActivate;
+        private RoundButton roundButton1;
     }
 }
 

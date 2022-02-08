@@ -4,8 +4,8 @@
  * 
  * Best to look in Github 4-2-22
  * 
- * 
- * 
+ * now the connection strings are sent, for the stepper, on disconnect, must send a string to stop the monitor data flow
+ *  as otherwise the port is flooded when a RECONNECTIOn is attempeted
  */
 
 using System;
@@ -63,11 +63,16 @@ namespace Monitoring
             { 
                 try
                 {
-                    StepperPort.PortName = (String)cmbPickStepperPort.SelectedItem;      
 
+                    string portName = portFinder(StepperPort, "stepper#");            
+                                                                                      
+                   // MessageBox.Show("the stepper portname is " + portName);
+
+                    StepperPort.PortName = portName;                   //(String)cmbPickStepperPort.SelectedItem;
+                 
                     StepperPort.DTREnable = false;
                     StepperPort.RTSEnable = false;
-                    StepperPort.ReceiveTimeout = 10000;
+                    StepperPort.ReceiveTimeout = 5;
 
                     StepperPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
                     StepperPort.Connected = true;
@@ -100,30 +105,39 @@ namespace Monitoring
             {
                 try
                 {
-
-                    EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;
+                   string portName = portFinder(EncoderPort, "encoder#");                         //  MessageBox.Show(portFinder(EncoderPort, "encoder"));
+                   // EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;        //portFinder(EncoderPort, "encoder");
+                 //   MessageBox.Show("finally got the portname " + portName);
+                    EncoderPort.PortName = portName;
                     EncoderPort.DTREnable = false;
                     EncoderPort.RTSEnable = false;
-                    EncoderPort.ReceiveTimeout = 10000;
+                    EncoderPort.ReceiveTimeout = 5;
 
                     EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
                //     MessageBox.Show("Encoder PORT name...." + EncoderPort.PortName + "  " + EncoderPort.Speed);
                     EncoderPort.Connected = true;
+                    
                     lblEncoder.Text = "Connected on " + EncoderPort.PortName;
                     EncoderPort.ClearBuffers();
+
+                  //  EncoderPort.Transmit("encoder#");
+                  //  string x = EncoderPort.ReceiveTerminated("#");
+
+
                     lblEncoder.BackColor = Color.Green;
                     // lblEncoder.Text = "Active";
                     // ADD THE TIMER START HERE
                     tmrEncoderRequests.Enabled = true;
-                    
+
                     btnConnectToEncoder.Text = "Disconnect";
                     btnpowerActivate.Enabled = true;
                     
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Encoder connection failed. Check the MCUs are on, connected, and in receive mode.");
+                    MessageBox.Show("Encoder connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
+                    
                 }
             }
             else          // it's disconnect from the encoder MCU
@@ -212,11 +226,11 @@ namespace Monitoring
 
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
 
                 misscount++;
-                MessageBox.Show("Stepper data return failure");
+                MessageBox.Show("Stepper data return failure" );
             }
            
         }
@@ -371,6 +385,9 @@ namespace Monitoring
 
         private void stepperDisconnect()
         {
+
+            //turn off the monitor data stream in case a reconnection is required
+            StepperPort.Transmit("stopdata#");
             tmrStepperRequests.Enabled = false;
             StepperPort.Connected = false;
 
@@ -380,6 +397,133 @@ namespace Monitoring
             btnConnectToStepper.Text = "Connect";
             lblCommsEncoderValue.Text = "unknown";
             lblCommsEncoderValue.BackColor = Color.Black;
+        }
+
+        private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
+        {
+            setupThePort(testPort);            //set the parameters for testport - baud etc
+            bool found = false;
+            // MessageBox.Show("here");
+            foreach (string portName in GetUnusedSerialPorts()) 
+            {                         
+
+               // MessageBox.Show("here" + portName);
+                found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (stepper / emcoder)
+                if (found)
+                {
+                    // MessageBox.Show("found " + portName);
+                    testPort.Connected = false;                    //disconnect the port todo ?
+                    return portName;
+                    
+                }
+
+               
+            }
+            return null;
+        }
+
+        private bool checkforMCU(ASCOM.Utilities.Serial testPort, string portName, string MCUDescription)
+        {
+           // MessageBox.Show("here");
+            testPort.PortName = portName;  //
+            
+            
+           testPort.Connected = true;
+
+            //now send data and see what comes back
+            try
+            {
+                // MessageBox.Show("x return from mcu is  " + x);
+                // MessageBox.Show(" mcudescription is  " + MCUDescription);
+                //MessageBox.Show("here before try testport name is " + testPort.PortName);
+              //  MessageBox.Show("testport baud rate is " + testPort.Speed);
+               // MessageBox.Show("Sent  MCUDescription " + MCUDescription );
+
+                //testPort.ClearBuffers();
+
+                testPort.Transmit(MCUDescription);            //(MCUDescription + "#");     // transmits encoder or stepper depending upon where called
+                string x = testPort.ReceiveTerminated("#");   // not all the four MCU ports respond to a query yet and those which don't respond will timeout
+
+                // x = x.Replace("#", "");
+              //  MessageBox.Show("Sent  " + MCUDescription + " to portname "+ portName + "return from mcu is  " + x);
+                
+                if (x == MCUDescription)
+                {
+                    MessageBox.Show(" got the MCU description on port " + portName);
+                    testPort.Connected = false;
+                    return true;
+                }
+               // MessageBox.Show(portName);
+                return false;
+            }
+            catch (Exception e)     //TimeoutException
+            {
+                //todo remove the encoderport connected = false line
+               // EncoderPort.Connected = false;
+                testPort.Connected = false;
+               // MessageBox.Show("port failed to respond " + portName + e.Message);
+            }
+            
+            return false;
+        }
+        private void setupThePort(ASCOM.Utilities.Serial testPort)
+        {
+            //set all the port propereties
+
+            testPort.DTREnable = false;
+            testPort.RTSEnable = false;
+            testPort.ReceiveTimeout = 5;
+
+            testPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+
+
+
+        }
+
+
+
+        private string[] GetUnusedSerialPorts()                     //string[] is a string array
+        {
+            using (ASCOM.Utilities.Serial temp = new ASCOM.Utilities.Serial())
+            {
+                var ports = new List<string>(temp.AvailableCOMPorts); // List<T> class constructor is used to create a List object of type T. So in this case, available comports
+                var busyPorts = new List<string>();
+
+                foreach (var port in ports)
+                {
+                    try
+                    {
+                        temp.PortName = port;
+
+                        temp.Connected = true;
+                        temp.Connected = false;
+                    }
+                    catch (Exception)
+                    {
+
+                        // If we get here then the current port is currently in use so add it to the busy ports list.
+
+                        busyPorts.Add(port);
+                    }
+                }
+
+                // Remove the busy ports from the return list.
+
+                foreach (var busyPort in busyPorts)
+                {
+                    ports.Remove(busyPort);
+                }
+
+                return ports.ToArray();               // I think this returns a clean sequential list - no gaps  
+            }
+        }
+
+        private void roundButton1_Click(object sender, EventArgs e)
+        {
+            foreach (string s in GetUnusedSerialPorts() )
+            {
+                MessageBox.Show("Port name " + s);
+            }
         }
     }
 
