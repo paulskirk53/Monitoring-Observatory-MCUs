@@ -66,14 +66,22 @@
             this.btnresetStepper = new System.Windows.Forms.Button();
             this.btnresetEncoder = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
+            this.tabMonitor = new System.Windows.Forms.TabControl();
+            this.tabDome = new System.Windows.Forms.TabPage();
+            this.tabShutter = new System.Windows.Forms.TabPage();
+            this.tabInfo = new System.Windows.Forms.TabPage();
             this.gpboxStepper.SuspendLayout();
             this.gpboxEncoder.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabMonitor.SuspendLayout();
+            this.tabDome.SuspendLayout();
+            this.tabInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpboxStepper
             // 
+            this.gpboxStepper.Controls.Add(this.btnConnectToStepper);
             this.gpboxStepper.Controls.Add(this.lblCommsEncoderValue);
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
@@ -86,10 +94,9 @@
             this.gpboxStepper.Controls.Add(this.lbl5);
             this.gpboxStepper.Controls.Add(this.lbl4);
             this.gpboxStepper.Controls.Add(this.lbl3);
-            this.gpboxStepper.Controls.Add(this.btnConnectToStepper);
             this.gpboxStepper.Controls.Add(this.lbl2);
             this.gpboxStepper.Controls.Add(this.lbl1);
-            this.gpboxStepper.Location = new System.Drawing.Point(21, 50);
+            this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
             this.gpboxStepper.Name = "gpboxStepper";
             this.gpboxStepper.Size = new System.Drawing.Size(433, 176);
             this.gpboxStepper.TabIndex = 0;
@@ -112,7 +119,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(291, 116);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Connection Status";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -122,7 +129,7 @@
             this.lbl6.AutoSize = true;
             this.lbl6.Location = new System.Drawing.Point(17, 134);
             this.lbl6.Name = "lbl6";
-            this.lbl6.Size = new System.Drawing.Size(139, 13);
+            this.lbl6.Size = new System.Drawing.Size(137, 13);
             this.lbl6.TabIndex = 10;
             this.lbl6.Text = "Comms Status with Encoder";
             // 
@@ -131,7 +138,7 @@
             this.lblDirection.AutoSize = true;
             this.lblDirection.Location = new System.Drawing.Point(159, 51);
             this.lblDirection.Name = "lblDirection";
-            this.lblDirection.Size = new System.Drawing.Size(74, 13);
+            this.lblDirection.Size = new System.Drawing.Size(73, 13);
             this.lblDirection.TabIndex = 9;
             this.lblDirection.Text = "Awaiting  data";
             // 
@@ -149,7 +156,7 @@
             this.lblDistance.AutoSize = true;
             this.lblDistance.Location = new System.Drawing.Point(159, 92);
             this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(74, 13);
+            this.lblDistance.Size = new System.Drawing.Size(73, 13);
             this.lblDistance.TabIndex = 7;
             this.lblDistance.Text = "Awaiting  data";
             // 
@@ -169,7 +176,7 @@
             this.lblMoving.AutoSize = true;
             this.lblMoving.Location = new System.Drawing.Point(159, 71);
             this.lblMoving.Name = "lblMoving";
-            this.lblMoving.Size = new System.Drawing.Size(74, 13);
+            this.lblMoving.Size = new System.Drawing.Size(73, 13);
             this.lblMoving.TabIndex = 6;
             this.lblMoving.Text = "Awaiting  data";
             // 
@@ -197,7 +204,7 @@
             this.lbl4.AutoSize = true;
             this.lbl4.Location = new System.Drawing.Point(16, 92);
             this.lbl4.Name = "lbl4";
-            this.lbl4.Size = new System.Drawing.Size(71, 13);
+            this.lbl4.Size = new System.Drawing.Size(68, 13);
             this.lbl4.TabIndex = 3;
             this.lbl4.Text = "Target Status";
             // 
@@ -212,7 +219,7 @@
             // 
             // btnConnectToStepper
             // 
-            this.btnConnectToStepper.Location = new System.Drawing.Point(280, 22);
+            this.btnConnectToStepper.Location = new System.Drawing.Point(285, 29);
             this.btnConnectToStepper.Name = "btnConnectToStepper";
             this.btnConnectToStepper.Size = new System.Drawing.Size(117, 62);
             this.btnConnectToStepper.TabIndex = 2;
@@ -225,7 +232,7 @@
             this.lbl2.AutoSize = true;
             this.lbl2.Location = new System.Drawing.Point(16, 51);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(100, 13);
+            this.lbl2.Size = new System.Drawing.Size(102, 13);
             this.lbl2.TabIndex = 1;
             this.lbl2.Text = "Movement direction";
             // 
@@ -234,7 +241,7 @@
             this.lbl1.AutoSize = true;
             this.lbl1.Location = new System.Drawing.Point(16, 29);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(79, 13);
+            this.lbl1.Size = new System.Drawing.Size(71, 13);
             this.lbl1.TabIndex = 0;
             this.lbl1.Text = "ASCOM Target";
             // 
@@ -244,10 +251,12 @@
             this.gpboxEncoder.Controls.Add(this.lblStatus);
             this.gpboxEncoder.Controls.Add(this.lbl9);
             this.gpboxEncoder.Controls.Add(this.lbl8);
+            this.gpboxEncoder.Controls.Add(this.label1);
+            this.gpboxEncoder.Controls.Add(this.lblEncoder);
             this.gpboxEncoder.Controls.Add(this.btnConnectToEncoder);
-            this.gpboxEncoder.Location = new System.Drawing.Point(24, 236);
+            this.gpboxEncoder.Location = new System.Drawing.Point(42, 225);
             this.gpboxEncoder.Name = "gpboxEncoder";
-            this.gpboxEncoder.Size = new System.Drawing.Size(420, 139);
+            this.gpboxEncoder.Size = new System.Drawing.Size(433, 139);
             this.gpboxEncoder.TabIndex = 1;
             this.gpboxEncoder.TabStop = false;
             this.gpboxEncoder.Text = "Encoder MCU";
@@ -277,13 +286,14 @@
             this.lbl9.AutoSize = true;
             this.lbl9.Location = new System.Drawing.Point(13, 59);
             this.lbl9.Name = "lbl9";
-            this.lbl9.Size = new System.Drawing.Size(81, 13);
+            this.lbl9.Size = new System.Drawing.Size(83, 13);
             this.lbl9.TabIndex = 1;
             this.lbl9.Text = "Current Azimuth";
             // 
             // lbl8
             // 
             this.lbl8.AutoSize = true;
+            this.lbl8.BackColor = System.Drawing.Color.FloralWhite;
             this.lbl8.Location = new System.Drawing.Point(13, 27);
             this.lbl8.Name = "lbl8";
             this.lbl8.Size = new System.Drawing.Size(136, 13);
@@ -303,9 +313,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(317, 328);
+            this.label1.Location = new System.Drawing.Point(291, 87);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Connection Status";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -314,7 +324,7 @@
             // 
             this.cmbPickStepperPort.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPickStepperPort.FormattingEnabled = true;
-            this.cmbPickStepperPort.Location = new System.Drawing.Point(306, 9);
+            this.cmbPickStepperPort.Location = new System.Drawing.Point(111, 104);
             this.cmbPickStepperPort.Name = "cmbPickStepperPort";
             this.cmbPickStepperPort.Size = new System.Drawing.Size(138, 24);
             this.cmbPickStepperPort.TabIndex = 6;
@@ -325,7 +335,7 @@
             // 
             this.lblEncoder.BackColor = System.Drawing.Color.Black;
             this.lblEncoder.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblEncoder.Location = new System.Drawing.Point(301, 346);
+            this.lblEncoder.Location = new System.Drawing.Point(280, 103);
             this.lblEncoder.Name = "lblEncoder";
             this.lblEncoder.Size = new System.Drawing.Size(122, 22);
             this.lblEncoder.TabIndex = 8;
@@ -346,7 +356,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(31, 17);
+            this.label2.Location = new System.Drawing.Point(108, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 9;
@@ -357,9 +367,10 @@
             // 
             this.groupBox1.Controls.Add(this.btnpowerActivate);
             this.groupBox1.Controls.Add(this.BTNCamon);
-            this.groupBox1.Location = new System.Drawing.Point(24, 381);
+            this.groupBox1.Controls.Add(this.lblCamerapowerstatus);
+            this.groupBox1.Location = new System.Drawing.Point(42, 377);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 56);
+            this.groupBox1.Size = new System.Drawing.Size(433, 56);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Camera and Rotator Power";
@@ -389,9 +400,10 @@
             // lblCamerapowerstatus
             // 
             this.lblCamerapowerstatus.AutoSize = true;
-            this.lblCamerapowerstatus.Location = new System.Drawing.Point(317, 411);
+            this.lblCamerapowerstatus.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCamerapowerstatus.Location = new System.Drawing.Point(295, 29);
             this.lblCamerapowerstatus.Name = "lblCamerapowerstatus";
-            this.lblCamerapowerstatus.Size = new System.Drawing.Size(107, 13);
+            this.lblCamerapowerstatus.Size = new System.Drawing.Size(102, 13);
             this.lblCamerapowerstatus.TabIndex = 17;
             this.lblCamerapowerstatus.Text = "Camera Power State ";
             this.lblCamerapowerstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -401,9 +413,9 @@
             this.groupBox2.Controls.Add(this.btnresetStepper);
             this.groupBox2.Controls.Add(this.btnresetEncoder);
             this.groupBox2.Controls.Add(this.btnactivate);
-            this.groupBox2.Location = new System.Drawing.Point(34, 443);
+            this.groupBox2.Location = new System.Drawing.Point(42, 437);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 53);
+            this.groupBox2.Size = new System.Drawing.Size(433, 53);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resets";
@@ -440,21 +452,64 @@
             this.btnactivate.UseVisualStyleBackColor = true;
             this.btnactivate.Click += new System.EventHandler(this.btnactivate_Click);
             // 
+            // tabMonitor
+            // 
+            this.tabMonitor.Controls.Add(this.tabDome);
+            this.tabMonitor.Controls.Add(this.tabShutter);
+            this.tabMonitor.Controls.Add(this.tabInfo);
+            this.tabMonitor.Location = new System.Drawing.Point(22, 12);
+            this.tabMonitor.Name = "tabMonitor";
+            this.tabMonitor.SelectedIndex = 0;
+            this.tabMonitor.Size = new System.Drawing.Size(533, 522);
+            this.tabMonitor.TabIndex = 19;
+            // 
+            // tabDome
+            // 
+            this.tabDome.BackColor = System.Drawing.Color.Khaki;
+            this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabDome.Controls.Add(this.gpboxStepper);
+            this.tabDome.Controls.Add(this.groupBox2);
+            this.tabDome.Controls.Add(this.gpboxEncoder);
+            this.tabDome.Controls.Add(this.groupBox1);
+            this.tabDome.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabDome.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tabDome.Location = new System.Drawing.Point(4, 22);
+            this.tabDome.Name = "tabDome";
+            this.tabDome.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDome.Size = new System.Drawing.Size(525, 496);
+            this.tabDome.TabIndex = 0;
+            this.tabDome.Text = "Dome";
+            // 
+            // tabShutter
+            // 
+            this.tabShutter.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabShutter.Location = new System.Drawing.Point(4, 22);
+            this.tabShutter.Name = "tabShutter";
+            this.tabShutter.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShutter.Size = new System.Drawing.Size(525, 496);
+            this.tabShutter.TabIndex = 1;
+            this.tabShutter.Text = "Shutter";
+            this.tabShutter.UseVisualStyleBackColor = true;
+            // 
+            // tabInfo
+            // 
+            this.tabInfo.Controls.Add(this.label2);
+            this.tabInfo.Controls.Add(this.cmbPickStepperPort);
+            this.tabInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabInfo.Name = "tabInfo";
+            this.tabInfo.Size = new System.Drawing.Size(525, 496);
+            this.tabInfo.TabIndex = 2;
+            this.tabInfo.Text = "Info";
+            this.tabInfo.UseVisualStyleBackColor = true;
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(466, 501);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.lblCamerapowerstatus);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblEncoder);
-            this.Controls.Add(this.cmbPickStepperPort);
-            this.Controls.Add(this.gpboxEncoder);
-            this.Controls.Add(this.gpboxStepper);
+            this.ClientSize = new System.Drawing.Size(616, 543);
+            this.Controls.Add(this.tabMonitor);
             this.Name = "ArduinoMonitor";
             this.Text = "Control MCU Monitoring";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArduinoMonitor_FormClosing);
@@ -463,9 +518,13 @@
             this.gpboxEncoder.ResumeLayout(false);
             this.gpboxEncoder.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.tabMonitor.ResumeLayout(false);
+            this.tabDome.ResumeLayout(false);
+            this.tabInfo.ResumeLayout(false);
+            this.tabInfo.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -508,6 +567,10 @@
         private System.Windows.Forms.Button btnresetEncoder;
         private System.Windows.Forms.Button btnactivate;
         private System.Windows.Forms.Button btnpowerActivate;
+        private System.Windows.Forms.TabControl tabMonitor;
+        private System.Windows.Forms.TabPage tabDome;
+        private System.Windows.Forms.TabPage tabShutter;
+        private System.Windows.Forms.TabPage tabInfo;
     }
 }
 
