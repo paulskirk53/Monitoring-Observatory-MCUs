@@ -542,6 +542,7 @@
             this.ClientSize = new System.Drawing.Size(579, 552);
             this.Controls.Add(this.tabMonitor);
             this.Name = "ArduinoMonitor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Control MCU Monitoring";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArduinoMonitor_FormClosing);
             this.gpboxStepper.ResumeLayout(false);
