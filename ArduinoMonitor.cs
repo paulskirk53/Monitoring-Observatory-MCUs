@@ -537,10 +537,10 @@ namespace Monitoring
     //roundbutton class - PK
     class RoundButton : Button
     {
-
+        
         protected override void OnPaint(PaintEventArgs pevent)
         {
-
+            
             GraphicsPath gp = new GraphicsPath();
             gp.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
 

@@ -416,7 +416,7 @@
             this.BTNCamon.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNCamon.Location = new System.Drawing.Point(156, 26);
             this.BTNCamon.Name = "BTNCamon";
-            this.BTNCamon.Size = new System.Drawing.Size(96, 20);
+            this.BTNCamon.Size = new System.Drawing.Size(96, 25);
             this.BTNCamon.TabIndex = 0;
             this.BTNCamon.Text = "Turn On";
             this.BTNCamon.UseVisualStyleBackColor = true;
@@ -450,9 +450,9 @@
             // 
             this.btnresetStepper.Enabled = false;
             this.btnresetStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnresetStepper.Location = new System.Drawing.Point(267, 18);
+            this.btnresetStepper.Location = new System.Drawing.Point(298, 17);
             this.btnresetStepper.Name = "btnresetStepper";
-            this.btnresetStepper.Size = new System.Drawing.Size(87, 25);
+            this.btnresetStepper.Size = new System.Drawing.Size(116, 25);
             this.btnresetStepper.TabIndex = 2;
             this.btnresetStepper.Text = "Reset Stepper";
             this.btnresetStepper.UseVisualStyleBackColor = true;
@@ -464,7 +464,7 @@
             this.btnresetEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnresetEncoder.Location = new System.Drawing.Point(155, 16);
             this.btnresetEncoder.Name = "btnresetEncoder";
-            this.btnresetEncoder.Size = new System.Drawing.Size(87, 25);
+            this.btnresetEncoder.Size = new System.Drawing.Size(121, 25);
             this.btnresetEncoder.TabIndex = 1;
             this.btnresetEncoder.Text = "Reset Encoder";
             this.btnresetEncoder.UseVisualStyleBackColor = true;
