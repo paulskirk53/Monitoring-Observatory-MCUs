@@ -182,9 +182,9 @@
             this.lblStepper.BackColor = System.Drawing.Color.Black;
             this.lblStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStepper.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStepper.Location = new System.Drawing.Point(280, 134);
+            this.lblStepper.Location = new System.Drawing.Point(270, 134);
             this.lblStepper.Name = "lblStepper";
-            this.lblStepper.Size = new System.Drawing.Size(117, 23);
+            this.lblStepper.Size = new System.Drawing.Size(158, 23);
             this.lblStepper.TabIndex = 7;
             this.lblStepper.Text = "Not Connected COM5";
             this.lblStepper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -335,9 +335,9 @@
             this.lblEncoder.BackColor = System.Drawing.Color.Black;
             this.lblEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncoder.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblEncoder.Location = new System.Drawing.Point(280, 103);
+            this.lblEncoder.Location = new System.Drawing.Point(273, 103);
             this.lblEncoder.Name = "lblEncoder";
-            this.lblEncoder.Size = new System.Drawing.Size(122, 22);
+            this.lblEncoder.Size = new System.Drawing.Size(166, 22);
             this.lblEncoder.TabIndex = 8;
             this.lblEncoder.Text = "Not Connected COM4";
             this.lblEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
