@@ -99,7 +99,7 @@
             this.gpboxStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(433, 176);
+            this.gpboxStepper.Size = new System.Drawing.Size(451, 176);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Stepper MCU";
@@ -182,9 +182,9 @@
             this.lblStepper.BackColor = System.Drawing.Color.Black;
             this.lblStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStepper.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStepper.Location = new System.Drawing.Point(270, 134);
+            this.lblStepper.Location = new System.Drawing.Point(266, 134);
             this.lblStepper.Name = "lblStepper";
-            this.lblStepper.Size = new System.Drawing.Size(158, 23);
+            this.lblStepper.Size = new System.Drawing.Size(175, 30);
             this.lblStepper.TabIndex = 7;
             this.lblStepper.Text = "Not Connected COM5";
             this.lblStepper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -270,9 +270,9 @@
             this.gpboxEncoder.Controls.Add(this.lblEncoder);
             this.gpboxEncoder.Controls.Add(this.btnConnectToEncoder);
             this.gpboxEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxEncoder.Location = new System.Drawing.Point(42, 225);
+            this.gpboxEncoder.Location = new System.Drawing.Point(42, 213);
             this.gpboxEncoder.Name = "gpboxEncoder";
-            this.gpboxEncoder.Size = new System.Drawing.Size(433, 139);
+            this.gpboxEncoder.Size = new System.Drawing.Size(451, 144);
             this.gpboxEncoder.TabIndex = 1;
             this.gpboxEncoder.TabStop = false;
             this.gpboxEncoder.Text = "Encoder MCU";
@@ -335,9 +335,9 @@
             this.lblEncoder.BackColor = System.Drawing.Color.Black;
             this.lblEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncoder.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblEncoder.Location = new System.Drawing.Point(273, 103);
+            this.lblEncoder.Location = new System.Drawing.Point(263, 103);
             this.lblEncoder.Name = "lblEncoder";
-            this.lblEncoder.Size = new System.Drawing.Size(166, 22);
+            this.lblEncoder.Size = new System.Drawing.Size(176, 30);
             this.lblEncoder.TabIndex = 8;
             this.lblEncoder.Text = "Not Connected COM4";
             this.lblEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

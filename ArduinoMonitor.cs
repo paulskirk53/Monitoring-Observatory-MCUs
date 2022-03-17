@@ -140,6 +140,7 @@ namespace Monitoring
                 EncoderPort.Connected = false;
 
                 lblEncoder.BackColor = Color.Black;
+                lblEncoder.Text = "Not connected " + EncoderPort.PortName;
                 btnConnectToEncoder.Enabled = true;
 
                 BTNCamon.Enabled = false;
@@ -389,6 +390,7 @@ namespace Monitoring
             StepperPort.Connected = false;
 
             lblStepper.BackColor = Color.Black;
+            lblStepper.Text = "Not connected " + StepperPort.PortName;
             btnConnectToStepper.Enabled = true;
 
             btnConnectToStepper.Text = "Connect";
