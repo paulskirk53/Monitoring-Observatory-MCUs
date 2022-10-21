@@ -61,11 +61,13 @@ namespace Monitoring
         private void btnConnectToStepper_Click(object sender, EventArgs e)
         {
             if (btnConnectToStepper.Text == "Connect")
-            { 
+            {
+                btnConnectToStepper.Text = "Waiting for connection";
+                btnConnectToStepper.Refresh();
                 try
                 {
 
-                    string portName = portFinder(StepperPort, "stepper#");            
+                    string portName = portFinder(StepperPort, "monitorstepper#");            
                                                                                       
                    // MessageBox.Show("the stepper portname is " + portName);
 
@@ -84,12 +86,13 @@ namespace Monitoring
                     //btnConnectToStepper.Enabled = false;
                     
                     btnConnectToStepper.Text = "Disconnect";
-                  //  throw new wrongPortException();
+                  
                 }
-                catch (Exception ex)              //substitute wrongPortException ex when we get to testing the data from the port
+                catch (Exception ex)              
                 {
                     // substitute this when you get to it MessageBox.Show(ex.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
                     MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
+                    btnConnectToStepper.Text = "Connect";
                 }
           }
           else
@@ -101,12 +104,16 @@ namespace Monitoring
 
         private void btnConnectToEncoder_Click(object sender, EventArgs e)
         {
-
+        
+            
             if (btnConnectToEncoder.Text == "Connect")    //connect to the encoder MCU
             {
+                btnConnectToEncoder.Text = "Waiting for connection";
+                btnConnectToEncoder.Refresh();
+
                 try
                 {
-                   string portName = portFinder(EncoderPort, "encoder#");        // this line used to be :EncoderPort.PortName = (String)cmbPickStepperPort.SelectedItem;        
+                   string portName = portFinder(EncoderPort, "monitorencoder#");        
                     
                     EncoderPort.PortName = portName;
                     EncoderPort.DTREnable = false;
@@ -131,7 +138,7 @@ namespace Monitoring
                 catch (Exception ex)
                 {
                     MessageBox.Show("Encoder connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
-                    
+                    btnConnectToEncoder.Text = "Connect";
                 }
             }
             else          // it's disconnect from the encoder MCU
@@ -402,14 +409,15 @@ namespace Monitoring
         {
             /*
              * This routine uses a test port to cycle through the portnames (COM1, COM3 etc), checking each port 
-             *  by sending a string recognised by a particular MCU e.g. stepper# or encoder#
-             *  if the mcu is on the port, it responds with stepper# or encoder#
+             *  by sending a string recognised by a particular MCU e.g. monitorstepper# or monitorencoder#
+             *  if the mcu is on the port, it responds with monitorstepper# or monitorencoder#
+             *  the word monitor is a prefix, because the ASCOM driver also uses the same method to identify MCUs it communicates with.
              * */
             setupThePort(testPort);            //set the parameters for testport - baud etc
             bool found = false;
             foreach (string portName in GetUnusedSerialPorts())     // GetUnusedSerialPorts forms a list of COM ports which are available
             {                                      
-                found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (stepper# / emcoder#)
+                found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (monitorstepper# / monitoremcoder#)
                 if (found)
                 {
                     
@@ -434,7 +442,7 @@ namespace Monitoring
             try
             {
                
-                testPort.Transmit(MCUDescription);            // transmits encoder# or stepper# depending upon where called
+                testPort.Transmit(MCUDescription);            // transmits monitorencoder# or monitorstepper# depending upon where called
                 string response = testPort.ReceiveTerminated("#");   // not all ports respond to a query and those which don't respond will timeout
 
                             
