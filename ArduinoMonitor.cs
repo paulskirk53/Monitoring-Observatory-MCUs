@@ -31,8 +31,8 @@ namespace Monitoring
             InitializeComponent();
            
             cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
-            lblCommsEncoderValue.BackColor = Color.Black;    //
-            lblStatus.BackColor = Color.Black;
+            
+            
           //  BTNCamoff.Enabled = false;    // these work ...
             BTNCamon.Enabled = false;
 
@@ -43,8 +43,8 @@ namespace Monitoring
            // label2.Text = "Ver " + displayableVersion.ToString();
         }
 
-        ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
-        ASCOM.Utilities.Serial EncoderPort = new ASCOM.Utilities.Serial();
+       // todo remove ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
+        ASCOM.Utilities.Serial control_box = new ASCOM.Utilities.Serial();
 
         DateTime Now = DateTime.Now;                                       // guess what - this is the system date and time
 
@@ -57,42 +57,42 @@ namespace Monitoring
            
         }
 
-
-        private void btnConnectToStepper_Click(object sender, EventArgs e)
+        /*
+        private void btnConnectToControlBox_Click(object sender, EventArgs e)
         {
-            if (btnConnectToStepper.Text == "Connect")
+            if (btnConnectToControlBox.Text == "Connect")
             {
-                btnConnectToStepper.Text = "Waiting for connection";
-                btnConnectToStepper.Refresh();
+                btnConnectToControlBox.Text = "Waiting for connection";
+                btnConnectToControlBox.Refresh();
                 try
                 {
 
-                    string portName = portFinder(StepperPort, "monitorstepper#");            
+                    string portName = portFinder(control_box, "monitorstepper#");     // todo change string       
                                                                                       
-                   // MessageBox.Show("the stepper portname is " + portName);
+                   // MessageBox.Show("the control box portname is " + portName);
 
-                    StepperPort.PortName = portName;                   //(String)cmbPickStepperPort.SelectedItem;
+                    control_box.PortName = portName;                   //(String)cmbPickcontrol_box.SelectedItem;
                  
-                    StepperPort.DTREnable = false;
-                    StepperPort.RTSEnable = false;
-                    StepperPort.ReceiveTimeout = 5;
+                    control_box.DTREnable = false;
+                    control_box.RTSEnable = false;
+                    control_box.ReceiveTimeout = 5;
 
-                    StepperPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-                    StepperPort.Connected = true;
-                    lblStepper.Text = "Connected on " + StepperPort.PortName;
-                    StepperPort.ClearBuffers();
-                    lblStepper.BackColor = Color.Green;
+                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+                    control_box.Connected = true;
+                    lblControlBox.Text = "Connected on " + control_box.PortName;
+                    control_box.ClearBuffers();
+                    lblControlBox.BackColor = Color.Green;
                     tmrStepperRequests.Enabled = true;
                     //btnConnectToStepper.Enabled = false;
                     
-                    btnConnectToStepper.Text = "Disconnect";
+                    btnConnectToControlBox.Text = "Disconnect";
                   
                 }
                 catch (Exception ex)              
                 {
                     // substitute this when you get to it MessageBox.Show(ex.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
                     MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
-                    btnConnectToStepper.Text = "Connect";
+                    btnConnectToControlBox.Text = "Connect";
                 }
           }
           else
@@ -102,58 +102,50 @@ namespace Monitoring
             }
         }
 
-        private void btnConnectToEncoder_Click(object sender, EventArgs e)
+        */
+
+        private void btnConnectToControlBox_Click(object sender, EventArgs e)
         {
         
             
-            if (btnConnectToEncoder.Text == "Connect")    //connect to the encoder MCU
+            if (btnConnectToControlBox.Text == "Connect")    //connect to the encoder MCU
             {
-                btnConnectToEncoder.Text = "Waiting for connection";
-                btnConnectToEncoder.Refresh();
+                btnConnectToControlBox.Text = "Waiting for connection";
+                btnConnectToControlBox.Refresh();
 
                 try
                 {
-                   string portName = portFinder(EncoderPort, "monitorencoder#");        
+                   string portName = portFinder(control_box, "monitorencoder#");        
                     
-                    EncoderPort.PortName = portName;
-                    EncoderPort.DTREnable = false;
-                    EncoderPort.RTSEnable = false;
-                    EncoderPort.ReceiveTimeout = 5;
-                    EncoderPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+                    control_box.PortName = portName;
+                    control_box.DTREnable = false;
+                    control_box.RTSEnable = false;
+                    control_box.ReceiveTimeout = 5;
+                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
                
-                    EncoderPort.Connected = true;
+                    control_box.Connected = true;
                     
-                    lblEncoder.Text = "Connected on " + EncoderPort.PortName;
-                    EncoderPort.ClearBuffers();
+                    
+                    control_box.ClearBuffers();
 
-                    lblEncoder.BackColor = Color.Green;
-
-                    tmrEncoderRequests.Enabled = true;
-
-                    btnConnectToEncoder.Text = "Disconnect";
                     btnpowerActivate.Enabled = true;
                     
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Encoder connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
-                    btnConnectToEncoder.Text = "Connect";
+                    MessageBox.Show("Control Box connection failed. Check the MCU is on, connected, and in receive mode." + ex.Message);
+                    
                 }
             }
             else          // it's disconnect from the encoder MCU
             {
-                tmrEncoderRequests.Enabled = false;
-                EncoderPort.Connected = false;
-
-                lblEncoder.BackColor = Color.Black;
-                lblEncoder.Text = "Not connected " + EncoderPort.PortName;
-                btnConnectToEncoder.Enabled = true;
-
+               
+                control_box.Connected = false;
+                
                 BTNCamon.Enabled = false;
-                btnConnectToEncoder.Text = "Connect";
-                lblStatus.Text = "unknown";
-                lblStatus.BackColor = Color.Black;
+                
+               
                 btnpowerActivate.Enabled = false;
                 btnactivate.Enabled = false;      // disable the reset toggle button
 
@@ -176,32 +168,32 @@ namespace Monitoring
                 /* 
                  while (ReceivedItem != "START#")                         // wait until start sequence is received
                  {
-                     ReceivedItem = StepperPort.ReceiveTerminated("#");
+                     ReceivedItem = control_box.ReceiveTerminated("#");
                     // MessageBox.Show("Received " + ReceivedItem);
 
 
                  }
                  */
-                ReceivedItem = StepperPort.ReceiveTerminated("#");     //REMOVE THIS LINE IF THE CODE IS REVERTED to use the while loop
+                ReceivedItem = control_box.ReceiveTerminated("#");     //REMOVE THIS LINE IF THE CODE IS REVERTED to use the while loop
                 if (ReceivedItem == "START#")                          //remove this if stmt and its braces if reverting back to the while loop
                 {
 
-                    string TargetAzimuth = StepperPort.ReceiveTerminated("#");
+                    string TargetAzimuth = control_box.ReceiveTerminated("#");
                     TargetAzimuth = TargetAzimuth.Replace("#", "");
 
-                    string MovementState = StepperPort.ReceiveTerminated("#");
+                    string MovementState = control_box.ReceiveTerminated("#");
                     MovementState = MovementState.Replace("#", "");
 
-                    string QueryDir = StepperPort.ReceiveTerminated("#");
+                    string QueryDir = control_box.ReceiveTerminated("#");
                     QueryDir = QueryDir.Replace("#", "");
 
-                    string TargetMessage = StepperPort.ReceiveTerminated("#");
+                    string TargetMessage = control_box.ReceiveTerminated("#");
                     TargetMessage = TargetMessage.Replace("#", "");           //the MCU creates a string which shows distance to target and then changes to Target Achieved
 
-                    string AngleMod360 = StepperPort.ReceiveTerminated("#");
+                    string AngleMod360 = control_box.ReceiveTerminated("#");
                     AngleMod360 = AngleMod360.Replace("#", "");               //This is the Azimuth the stepper receives from the encoder
 
-                    string EncoderReplyCounter = StepperPort.ReceiveTerminated("#");
+                    string EncoderReplyCounter = control_box.ReceiveTerminated("#");
                     EncoderReplyCounter = EncoderReplyCounter.Replace("#", "");
 
                     // now set the form labels to the values received from the MCUs
@@ -213,18 +205,9 @@ namespace Monitoring
 
                     //if the value of EncoderReplyCounter is changing, set the colour property of lblcommsencodervalue to green. If its not green, its red
                     // e.g. compare the strings and if equal then set colour to red (comms fail), if different set to green
-                    bool equal = String.Equals(EncoderReplyCounter, lblCommsEncoderValue.Text, StringComparison.InvariantCulture);
-                    if (equal)
-                    {
-                        lblCommsEncoderValue.BackColor = Color.DimGray;     // comms between Stepper MCU and Encoder MCU has failed
-                    }
-                    else
-                    {
-                        lblCommsEncoderValue.BackColor = Color.Green;
+                  
 
-                    }
-
-                    lblCommsEncoderValue.Text = EncoderReplyCounter;   // July '21 looks like this may not be needed as the if stmt above gives status
+                   
 
                 }
             }
@@ -245,34 +228,25 @@ namespace Monitoring
             String cameraPowerStatus   = "";
 
             // send the interrogation protocol....there are two pieces of data to be received, each terminated with #
-             EncoderPort .Transmit("EncoderRequest#");
+             control_box .Transmit("EncoderRequest#");
 
-             Azimuth = EncoderPort.ReceiveTerminated("#");
+             Azimuth = control_box.ReceiveTerminated("#");
              Azimuth = Azimuth.Replace("#", "");
 
-             StepperReplyCounter = EncoderPort.ReceiveTerminated("#");
+             StepperReplyCounter = control_box.ReceiveTerminated("#");
              StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
 
-           cameraPowerStatus = EncoderPort.ReceiveTerminated("#");
+           cameraPowerStatus = control_box.ReceiveTerminated("#");
            cameraPowerStatus = cameraPowerStatus.Replace("#", "");
 
 
-            lblAzimuthValue.Text = Azimuth;                        //display the azimuth on the label
+          // todo need this somewhere  lblAzimuthValue.Text = Azimuth;                        //display the azimuth on the label
 
             // check if the last two counter values are the same, if they are comms between the encoder and stepper MCUs has failed.
 
-            bool equal = String.Equals(StepperReplyCounter, lblStatus.Text, StringComparison.InvariantCulture);   
-
-            if (equal)
-            {
-                lblStatus.BackColor = Color.Red;     // comms between Stepper MCU and Encoder MCU has failed....
-            }
-            else
-            {
-                lblStatus.BackColor = Color.Green;  //green?
-            }
+          
             
-            lblStatus.Text = StepperReplyCounter;          //display the count on the label
+            
 
             //now check the status of the camera power and set the labels accordinly
 
@@ -294,10 +268,10 @@ namespace Monitoring
             // put the serial port dispose code here rather than in the disconnect button event.
             // that means its possible to connect after disconnect without closing the app 
 
-            EncoderPort.Dispose();
-            EncoderPort = null;
-            StepperPort.Dispose();
-            StepperPort = null;
+            control_box.Dispose();
+            control_box = null;
+            control_box.Dispose();
+            control_box = null;
 
         }
 
@@ -305,13 +279,13 @@ namespace Monitoring
         {
             if (BTNCamon.Text == "Turn On")
             {
-                EncoderPort.Transmit("CAMON#");
+                control_box.Transmit("CAMON#");
                 BTNCamon.Text = "Turn Off";
             }
             else
             {
                 // switch power off
-                EncoderPort.Transmit("CAMOFF#");
+                control_box.Transmit("CAMOFF#");
                 BTNCamon.Text = "Turn On";
             }
         }
@@ -321,7 +295,7 @@ namespace Monitoring
             //perhaps a the best approcah here is to just send the action and then in the encoder mcu code monitor a status flag and return data into the encoder timer
             //section in this code
             
-          //  EncoderPort.Transmit("CAMOFF#");
+          //  control_box.Transmit("CAMOFF#");
           //  BTNCamoff.Enabled = false;
           //  BTNCamon.Enabled = true;
 
@@ -338,39 +312,31 @@ namespace Monitoring
                 btnresetEncoder.Enabled = true;
             }
 
-            if(btnresetStepper.Enabled)
-            {
-                btnresetStepper.Enabled = false;
-            }
-            else
-            {
-                btnresetStepper.Enabled = true;
-            }
-
+          
             
         }
 
         private void btnresetStepper_Click(object sender, EventArgs e)
         {
-            if (StepperPort.Connected)
+            if (control_box.Connected)
             {
                 tmrStepperRequests.Enabled = false;     // stop the requests to the Stepper MCU
-                StepperPort.Transmit("reset");          // request the reset
-                StepperPort.Connected = false;          // disconnect from the Port
-                btnConnectToStepper.Text = "Connect";
-                lblStepper.Text = "Disconnected";
+                control_box.Transmit("reset");          // request the reset
+                control_box.Connected = false;          // disconnect from the Port
+                btnConnectToControlBox.Text = "Connect";
+                lblControlBox.Text = "Disconnected";
             }
         }
 
         private void btnresetEncoder_Click(object sender, EventArgs e)
         {
-            if (EncoderPort.Connected)
+            if (control_box.Connected)
             {
                 tmrEncoderRequests.Enabled = false;    // stop the requests to the encoder MCU
-                EncoderPort.Transmit("reset");         // request the reset
-                EncoderPort.Connected = false;         // disconnect from the Port
-                btnConnectToEncoder.Text = "Connect";
-                lblEncoder.Text = "Disconnected";
+                control_box.Transmit("reset");         // request the reset
+                control_box.Connected = false;         // disconnect from the Port
+                
+                
             }
         }
 
@@ -392,17 +358,17 @@ namespace Monitoring
         {
 
             //turn off the monitor data stream in case a reconnection is required
-            StepperPort.Transmit("stopdata#");
+            control_box.Transmit("stopdata#");
             tmrStepperRequests.Enabled = false;
-            StepperPort.Connected = false;
+            control_box.Connected = false;
 
-            lblStepper.BackColor = Color.Black;
-            lblStepper.Text = "Not connected " + StepperPort.PortName;
-            btnConnectToStepper.Enabled = true;
+            lblControlBox.BackColor = Color.Black;
+            lblControlBox.Text = "Not connected " + control_box.PortName;
+            btnConnectToControlBox.Enabled = true;
 
-            btnConnectToStepper.Text = "Connect";
-            lblCommsEncoderValue.Text = "unknown";
-            lblCommsEncoderValue.BackColor = Color.Black;
+            btnConnectToControlBox.Text = "Connect";
+            
+            
         }
 
         private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"

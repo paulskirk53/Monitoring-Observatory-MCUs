@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
-            this.btnConnectToStepper = new System.Windows.Forms.Button();
-            this.lblCommsEncoderValue = new System.Windows.Forms.Label();
+            this.btnConnectToControlBox = new System.Windows.Forms.Button();
+            this.lblDomeAzimuth = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
             this.lblDirection = new System.Windows.Forms.Label();
             this.lblAzimuth = new System.Windows.Forms.Label();
             this.lblDistance = new System.Windows.Forms.Label();
-            this.lblStepper = new System.Windows.Forms.Label();
+            this.lblControlBox = new System.Windows.Forms.Label();
             this.lblMoving = new System.Windows.Forms.Label();
             this.lblTarget = new System.Windows.Forms.Label();
             this.lbl5 = new System.Windows.Forms.Label();
@@ -45,14 +45,6 @@
             this.lbl3 = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.gpboxEncoder = new System.Windows.Forms.GroupBox();
-            this.lblAzimuthValue = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lbl9 = new System.Windows.Forms.Label();
-            this.lbl8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblEncoder = new System.Windows.Forms.Label();
-            this.btnConnectToEncoder = new System.Windows.Forms.Button();
             this.cmbPickStepperPort = new System.Windows.Forms.ComboBox();
             this.tmrStepperRequests = new System.Windows.Forms.Timer(this.components);
             this.tmrEncoderRequests = new System.Windows.Forms.Timer(this.components);
@@ -63,7 +55,6 @@
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnresetStepper = new System.Windows.Forms.Button();
             this.btnresetEncoder = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
@@ -71,7 +62,6 @@
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.gpboxStepper.SuspendLayout();
-            this.gpboxEncoder.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabMonitor.SuspendLayout();
@@ -81,14 +71,14 @@
             // 
             // gpboxStepper
             // 
-            this.gpboxStepper.Controls.Add(this.btnConnectToStepper);
-            this.gpboxStepper.Controls.Add(this.lblCommsEncoderValue);
+            this.gpboxStepper.Controls.Add(this.btnConnectToControlBox);
+            this.gpboxStepper.Controls.Add(this.lblDomeAzimuth);
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
             this.gpboxStepper.Controls.Add(this.lblDirection);
             this.gpboxStepper.Controls.Add(this.lblAzimuth);
             this.gpboxStepper.Controls.Add(this.lblDistance);
-            this.gpboxStepper.Controls.Add(this.lblStepper);
+            this.gpboxStepper.Controls.Add(this.lblControlBox);
             this.gpboxStepper.Controls.Add(this.lblMoving);
             this.gpboxStepper.Controls.Add(this.lblTarget);
             this.gpboxStepper.Controls.Add(this.lbl5);
@@ -99,32 +89,31 @@
             this.gpboxStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(451, 176);
+            this.gpboxStepper.Size = new System.Drawing.Size(451, 208);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
-            this.gpboxStepper.Text = "Stepper MCU";
+            this.gpboxStepper.Text = "Monitoring Data";
             // 
-            // btnConnectToStepper
+            // btnConnectToControlBox
             // 
-            this.btnConnectToStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectToStepper.Location = new System.Drawing.Point(285, 29);
-            this.btnConnectToStepper.Name = "btnConnectToStepper";
-            this.btnConnectToStepper.Size = new System.Drawing.Size(117, 62);
-            this.btnConnectToStepper.TabIndex = 2;
-            this.btnConnectToStepper.Text = "Connect";
-            this.btnConnectToStepper.UseVisualStyleBackColor = true;
-            this.btnConnectToStepper.Click += new System.EventHandler(this.btnConnectToStepper_Click);
+            this.btnConnectToControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectToControlBox.Location = new System.Drawing.Point(285, 29);
+            this.btnConnectToControlBox.Name = "btnConnectToControlBox";
+            this.btnConnectToControlBox.Size = new System.Drawing.Size(117, 62);
+            this.btnConnectToControlBox.TabIndex = 2;
+            this.btnConnectToControlBox.Text = "Connect";
+            this.btnConnectToControlBox.UseVisualStyleBackColor = true;
             // 
-            // lblCommsEncoderValue
+            // lblDomeAzimuth
             // 
-            this.lblCommsEncoderValue.AutoSize = true;
-            this.lblCommsEncoderValue.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblCommsEncoderValue.Location = new System.Drawing.Point(159, 134);
-            this.lblCommsEncoderValue.Name = "lblCommsEncoderValue";
-            this.lblCommsEncoderValue.Size = new System.Drawing.Size(56, 16);
-            this.lblCommsEncoderValue.TabIndex = 11;
-            this.lblCommsEncoderValue.Text = "............";
-            this.toolTipPK.SetToolTip(this.lblCommsEncoderValue, "This is the comms state between the two Arduino MCUs");
+            this.lblDomeAzimuth.AutoSize = true;
+            this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 137);
+            this.lblDomeAzimuth.Name = "lblDomeAzimuth";
+            this.lblDomeAzimuth.Size = new System.Drawing.Size(56, 16);
+            this.lblDomeAzimuth.TabIndex = 11;
+            this.lblDomeAzimuth.Text = "............";
+            this.toolTipPK.SetToolTip(this.lblDomeAzimuth, "This is the comms state between the two Arduino MCUs");
             // 
             // label3
             // 
@@ -141,11 +130,11 @@
             // 
             this.lbl6.AutoSize = true;
             this.lbl6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl6.Location = new System.Drawing.Point(17, 134);
+            this.lbl6.Location = new System.Drawing.Point(17, 137);
             this.lbl6.Name = "lbl6";
-            this.lbl6.Size = new System.Drawing.Size(111, 16);
+            this.lbl6.Size = new System.Drawing.Size(101, 16);
             this.lbl6.TabIndex = 10;
-            this.lbl6.Text = "Encoder Comms";
+            this.lbl6.Text = "Dome Azimuth";
             // 
             // lblDirection
             // 
@@ -177,17 +166,17 @@
             this.lblDistance.TabIndex = 7;
             this.lblDistance.Text = "Awaiting  data";
             // 
-            // lblStepper
+            // lblControlBox
             // 
-            this.lblStepper.BackColor = System.Drawing.Color.Black;
-            this.lblStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStepper.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStepper.Location = new System.Drawing.Point(266, 134);
-            this.lblStepper.Name = "lblStepper";
-            this.lblStepper.Size = new System.Drawing.Size(175, 30);
-            this.lblStepper.TabIndex = 7;
-            this.lblStepper.Text = "Not Connected COM5";
-            this.lblStepper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblControlBox.BackColor = System.Drawing.Color.Black;
+            this.lblControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblControlBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblControlBox.Location = new System.Drawing.Point(266, 134);
+            this.lblControlBox.Name = "lblControlBox";
+            this.lblControlBox.Size = new System.Drawing.Size(175, 30);
+            this.lblControlBox.TabIndex = 7;
+            this.lblControlBox.Text = "Not Connected COM5";
+            this.lblControlBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMoving
             // 
@@ -260,99 +249,6 @@
             this.lbl1.TabIndex = 0;
             this.lbl1.Text = "ASCOM Target";
             // 
-            // gpboxEncoder
-            // 
-            this.gpboxEncoder.Controls.Add(this.lblAzimuthValue);
-            this.gpboxEncoder.Controls.Add(this.lblStatus);
-            this.gpboxEncoder.Controls.Add(this.lbl9);
-            this.gpboxEncoder.Controls.Add(this.lbl8);
-            this.gpboxEncoder.Controls.Add(this.label1);
-            this.gpboxEncoder.Controls.Add(this.lblEncoder);
-            this.gpboxEncoder.Controls.Add(this.btnConnectToEncoder);
-            this.gpboxEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxEncoder.Location = new System.Drawing.Point(42, 213);
-            this.gpboxEncoder.Name = "gpboxEncoder";
-            this.gpboxEncoder.Size = new System.Drawing.Size(451, 144);
-            this.gpboxEncoder.TabIndex = 1;
-            this.gpboxEncoder.TabStop = false;
-            this.gpboxEncoder.Text = "Encoder MCU";
-            // 
-            // lblAzimuthValue
-            // 
-            this.lblAzimuthValue.AutoSize = true;
-            this.lblAzimuthValue.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAzimuthValue.Location = new System.Drawing.Point(156, 59);
-            this.lblAzimuthValue.Name = "lblAzimuthValue";
-            this.lblAzimuthValue.Size = new System.Drawing.Size(29, 16);
-            this.lblAzimuthValue.TabIndex = 7;
-            this.lblAzimuthValue.Text = "999";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblStatus.Location = new System.Drawing.Point(162, 27);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(48, 16);
-            this.lblStatus.TabIndex = 6;
-            this.lblStatus.Text = "..........";
-            this.toolTipPK.SetToolTip(this.lblStatus, "Indicates that the comms between the Encoder and Stepper MCUs is live");
-            // 
-            // lbl9
-            // 
-            this.lbl9.AutoSize = true;
-            this.lbl9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl9.Location = new System.Drawing.Point(13, 59);
-            this.lbl9.Name = "lbl9";
-            this.lbl9.Size = new System.Drawing.Size(111, 16);
-            this.lbl9.TabIndex = 1;
-            this.lbl9.Text = "Current Azimuth";
-            // 
-            // lbl8
-            // 
-            this.lbl8.AutoSize = true;
-            this.lbl8.BackColor = System.Drawing.Color.FloralWhite;
-            this.lbl8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl8.Location = new System.Drawing.Point(13, 27);
-            this.lbl8.Name = "lbl8";
-            this.lbl8.Size = new System.Drawing.Size(109, 16);
-            this.lbl8.TabIndex = 0;
-            this.lbl8.Text = "Stepper Comms";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(291, 87);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 16);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Connection Status";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblEncoder
-            // 
-            this.lblEncoder.BackColor = System.Drawing.Color.Black;
-            this.lblEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEncoder.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblEncoder.Location = new System.Drawing.Point(263, 103);
-            this.lblEncoder.Name = "lblEncoder";
-            this.lblEncoder.Size = new System.Drawing.Size(176, 30);
-            this.lblEncoder.TabIndex = 8;
-            this.lblEncoder.Text = "Not Connected COM4";
-            this.lblEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnConnectToEncoder
-            // 
-            this.btnConnectToEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectToEncoder.Location = new System.Drawing.Point(282, 14);
-            this.btnConnectToEncoder.Name = "btnConnectToEncoder";
-            this.btnConnectToEncoder.Size = new System.Drawing.Size(117, 58);
-            this.btnConnectToEncoder.TabIndex = 4;
-            this.btnConnectToEncoder.Text = "Connect";
-            this.btnConnectToEncoder.UseVisualStyleBackColor = true;
-            this.btnConnectToEncoder.Click += new System.EventHandler(this.btnConnectToEncoder_Click);
-            // 
             // cmbPickStepperPort
             // 
             this.cmbPickStepperPort.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -391,7 +287,7 @@
             this.groupBox1.Controls.Add(this.BTNCamon);
             this.groupBox1.Controls.Add(this.lblCamerapowerstatus);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(42, 377);
+            this.groupBox1.Location = new System.Drawing.Point(42, 250);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(433, 56);
             this.groupBox1.TabIndex = 16;
@@ -435,28 +331,15 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnresetStepper);
             this.groupBox2.Controls.Add(this.btnresetEncoder);
             this.groupBox2.Controls.Add(this.btnactivate);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(42, 437);
+            this.groupBox2.Location = new System.Drawing.Point(42, 332);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(433, 53);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resets";
-            // 
-            // btnresetStepper
-            // 
-            this.btnresetStepper.Enabled = false;
-            this.btnresetStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnresetStepper.Location = new System.Drawing.Point(298, 17);
-            this.btnresetStepper.Name = "btnresetStepper";
-            this.btnresetStepper.Size = new System.Drawing.Size(116, 25);
-            this.btnresetStepper.TabIndex = 2;
-            this.btnresetStepper.Text = "Reset Stepper";
-            this.btnresetStepper.UseVisualStyleBackColor = true;
-            this.btnresetStepper.Click += new System.EventHandler(this.btnresetStepper_Click);
             // 
             // btnresetEncoder
             // 
@@ -464,9 +347,9 @@
             this.btnresetEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnresetEncoder.Location = new System.Drawing.Point(155, 16);
             this.btnresetEncoder.Name = "btnresetEncoder";
-            this.btnresetEncoder.Size = new System.Drawing.Size(121, 25);
+            this.btnresetEncoder.Size = new System.Drawing.Size(154, 25);
             this.btnresetEncoder.TabIndex = 1;
-            this.btnresetEncoder.Text = "Reset Encoder";
+            this.btnresetEncoder.Text = "Reset Control Box";
             this.btnresetEncoder.UseVisualStyleBackColor = true;
             this.btnresetEncoder.Click += new System.EventHandler(this.btnresetEncoder_Click);
             // 
@@ -500,7 +383,6 @@
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabDome.Controls.Add(this.gpboxStepper);
             this.tabDome.Controls.Add(this.groupBox2);
-            this.tabDome.Controls.Add(this.gpboxEncoder);
             this.tabDome.Controls.Add(this.groupBox1);
             this.tabDome.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabDome.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -547,8 +429,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArduinoMonitor_FormClosing);
             this.gpboxStepper.ResumeLayout(false);
             this.gpboxStepper.PerformLayout();
-            this.gpboxEncoder.ResumeLayout(false);
-            this.gpboxEncoder.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -563,12 +443,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gpboxStepper;
-        private System.Windows.Forms.GroupBox gpboxEncoder;
-        private System.Windows.Forms.Button btnConnectToStepper;
-        private System.Windows.Forms.Button btnConnectToEncoder;
+        private System.Windows.Forms.Button btnConnectToControlBox;
         private System.Windows.Forms.ComboBox cmbPickStepperPort;
-        private System.Windows.Forms.Label lblStepper;
-        private System.Windows.Forms.Label lblEncoder;
+        private System.Windows.Forms.Label lblControlBox;
         private System.Windows.Forms.Label lbl5;
         private System.Windows.Forms.Label lbl4;
         private System.Windows.Forms.Label lbl3;
@@ -579,23 +456,15 @@
         private System.Windows.Forms.Label lblDistance;
         private System.Windows.Forms.Label lblMoving;
         private System.Windows.Forms.Label lblTarget;
-        private System.Windows.Forms.Label lbl9;
-        private System.Windows.Forms.Label lbl8;
-        private System.Windows.Forms.Label lblAzimuthValue;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblCommsEncoderValue;
-        private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Timer tmrStepperRequests;
         private System.Windows.Forms.Timer tmrEncoderRequests;
         private System.Windows.Forms.ToolTip toolTipPK;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BTNCamon;
         private System.Windows.Forms.Label lblCamerapowerstatus;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnresetStepper;
         private System.Windows.Forms.Button btnresetEncoder;
         private System.Windows.Forms.Button btnactivate;
         private System.Windows.Forms.Button btnpowerActivate;
@@ -603,6 +472,8 @@
         private System.Windows.Forms.TabPage tabDome;
         private System.Windows.Forms.TabPage tabShutter;
         private System.Windows.Forms.TabPage tabInfo;
+        private System.Windows.Forms.Label lblDomeAzimuth;
+        private System.Windows.Forms.Label lbl6;
     }
 }
 
