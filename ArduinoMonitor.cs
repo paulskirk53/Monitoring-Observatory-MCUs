@@ -43,8 +43,8 @@ namespace Monitoring
            // label2.Text = "Ver " + displayableVersion.ToString();
         }
 
-       // todo remove ASCOM.Utilities.Serial StepperPort = new ASCOM.Utilities.Serial();   // puting the fing thing here makes it available globally
-        ASCOM.Utilities.Serial control_box = new ASCOM.Utilities.Serial();
+       
+        ASCOM.Utilities.Serial control_box = new ASCOM.Utilities.Serial();  // new serial port for control box, replaces stepper and encoder ports
 
         DateTime Now = DateTime.Now;                                       // guess what - this is the system date and time
 
@@ -57,52 +57,7 @@ namespace Monitoring
            
         }
 
-        /*
-        private void btnConnectToControlBox_Click(object sender, EventArgs e)
-        {
-            if (btnConnectToControlBox.Text == "Connect")
-            {
-                btnConnectToControlBox.Text = "Waiting for connection";
-                btnConnectToControlBox.Refresh();
-                try
-                {
-
-                    string portName = portFinder(control_box, "monitorstepper#");     // todo change string       
-                                                                                      
-                   // MessageBox.Show("the control box portname is " + portName);
-
-                    control_box.PortName = portName;                   //(String)cmbPickcontrol_box.SelectedItem;
-                 
-                    control_box.DTREnable = false;
-                    control_box.RTSEnable = false;
-                    control_box.ReceiveTimeout = 5;
-
-                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-                    control_box.Connected = true;
-                    lblControlBox.Text = "Connected on " + control_box.PortName;
-                    control_box.ClearBuffers();
-                    lblControlBox.BackColor = Color.Green;
-                    tmrStepperRequests.Enabled = true;
-                    //btnConnectToStepper.Enabled = false;
-                    
-                    btnConnectToControlBox.Text = "Disconnect";
-                  
-                }
-                catch (Exception ex)              
-                {
-                    // substitute this when you get to it MessageBox.Show(ex.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
-                    MessageBox.Show("Stepper connection failed. Check the MCUs are on, connected, and in receive mode." + ex.Message);
-                    btnConnectToControlBox.Text = "Connect";
-                }
-          }
-          else
-          {
-                //it's disconnect
-                stepperDisconnect();
-            }
-        }
-
-        */
+       
 
         private void btnConnectToControlBox_Click(object sender, EventArgs e)
         {
@@ -115,7 +70,7 @@ namespace Monitoring
 
                 try
                 {
-                   string portName = portFinder(control_box, "monitorencoder#");        
+                   string portName = portFinder(control_box, "monitorcontrol#");        
                     
                     control_box.PortName = portName;
                     control_box.DTREnable = false;
@@ -140,11 +95,10 @@ namespace Monitoring
             }
             else          // it's disconnect from the encoder MCU
             {
-               
-                control_box.Connected = false;
-                
+
+
+                control_boxDisconnect();
                 BTNCamon.Enabled = false;
-                
                
                 btnpowerActivate.Enabled = false;
                 btnactivate.Enabled = false;      // disable the reset toggle button
@@ -270,8 +224,7 @@ namespace Monitoring
 
             control_box.Dispose();
             control_box = null;
-            control_box.Dispose();
-            control_box = null;
+           
 
         }
 
@@ -354,12 +307,10 @@ namespace Monitoring
            
         }
 
-        private void stepperDisconnect()
+        private void control_boxDisconnect()
         {
 
-            //turn off the monitor data stream in case a reconnection is required
-            control_box.Transmit("stopdata#");
-            tmrStepperRequests.Enabled = false;
+                      
             control_box.Connected = false;
 
             lblControlBox.BackColor = Color.Black;
