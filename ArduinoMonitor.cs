@@ -111,24 +111,58 @@ namespace Monitoring
 
         private void tmrStepperRequests_Tick(object sender, EventArgs e)
         {                                              //THE TIMER INTERVAL MIGHT BE INCREASED NOW THAT  the while loop is not used, note the previous value here though
-            int misscount = 0;
+
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
+            String Azimuth = "";
+            String cameraPowerStatus = "";
+            String dataPacket = "";
+
+            control_box.Transmit("dataRequest"); //get the data packet from the MCU
+
+            dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+            dataPacket = dataPacket.Remove('$');                  
+            //note new string terminator $
+            // todo now unpack the data packet - adjust and remove the lines below once tested
+            // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
+            // the problem needs a fix at the time of testing - which may just be not to  process the last item 
             
+            // example  dataPacket = "string1#string 2#end string#another string#$";
+            // remember c# strings are 0 indexed so we can refer to the values array as values[0], values[1] etc
+
+            string[] values = dataPacket.Split('#');   //# is the data item delimiter
+            //test printout code below todo remove
+            foreach (string item in values)
+            {
+                
+                MessageBox.Show(" string content is " + item);
+            }
+            //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
+            // e.g. Azimuth = values[0]; 
+            // etc
+            Azimuth = Azimuth.Replace("#", "");
+
+            cameraPowerStatus = control_box.ReceiveTerminated("#");
+            cameraPowerStatus = cameraPowerStatus.Replace("#", "");
+
+            //now check the status of the camera power and set the labels accordinly
+
+            if (cameraPowerStatus == "ON")
+            {
+                // set label text to on
+                lblCamerapowerstatus.Text = "Power On";
+            }
+            else
+            {
+                //set the label text to OFF
+                lblCamerapowerstatus.Text = "Power Off";
+            }
             try
             {
                // MessageBox.Show("in stepper timer try ");
                 string ReceivedItem = "";
 
-                /* 
-                 while (ReceivedItem != "START#")                         // wait until start sequence is received
-                 {
-                     ReceivedItem = control_box.ReceiveTerminated("#");
-                    // MessageBox.Show("Received " + ReceivedItem);
-
-
-                 }
-                 */
                 ReceivedItem = control_box.ReceiveTerminated("#");     //REMOVE THIS LINE IF THE CODE IS REVERTED to use the while loop
+
                 if (ReceivedItem == "START#")                          //remove this if stmt and its braces if reverting back to the while loop
                 {
 
@@ -167,55 +201,13 @@ namespace Monitoring
             }
             catch (Exception )
             {
-
-                misscount++;
+                
                 MessageBox.Show("Stepper data return failure" );
             }
            
         }
 
-        private void tmrEncoderRequests_Tick(object sender, EventArgs e)
-        {
-            
-            String Azimuth             = "";
-            String StepperReplyCounter = "";
-            String cameraPowerStatus   = "";
-
-            // send the interrogation protocol....there are two pieces of data to be received, each terminated with #
-             control_box .Transmit("EncoderRequest#");
-
-             Azimuth = control_box.ReceiveTerminated("#");
-             Azimuth = Azimuth.Replace("#", "");
-
-             StepperReplyCounter = control_box.ReceiveTerminated("#");
-             StepperReplyCounter = StepperReplyCounter.Replace("#", "");             // this is a simulated (in the MCU code) value
-
-           cameraPowerStatus = control_box.ReceiveTerminated("#");
-           cameraPowerStatus = cameraPowerStatus.Replace("#", "");
-
-
-          // todo need this somewhere  lblAzimuthValue.Text = Azimuth;                        //display the azimuth on the label
-
-            // check if the last two counter values are the same, if they are comms between the encoder and stepper MCUs has failed.
-
-          
-            
-            
-
-            //now check the status of the camera power and set the labels accordinly
-
-            if (cameraPowerStatus == "ON")
-            {
-                // set label text to on
-                lblCamerapowerstatus.Text = "Power On";
-            }
-            else
-            {
-                //set the label text to OFF
-                lblCamerapowerstatus.Text = "Power Off";
-            }
-
-        }
+    
 
         private void ArduinoMonitor_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -285,7 +277,7 @@ namespace Monitoring
         {
             if (control_box.Connected)
             {
-                tmrEncoderRequests.Enabled = false;    // stop the requests to the encoder MCU
+                tmrStepperRequests.Enabled = false;            // stop the requests to the encoder MCU
                 control_box.Transmit("reset");         // request the reset
                 control_box.Connected = false;         // disconnect from the Port
                 
@@ -439,6 +431,24 @@ namespace Monitoring
             {
                 MessageBox.Show("Port name " + s);
             }
+        }
+
+        private void toolTipPK_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           String dataPacket = "string1# string 2#end string$";
+            
+            string[] values = dataPacket.Split('#');   //# is the data delimiter
+            foreach (string item in values)
+            {
+                
+                MessageBox.Show(" string content is " + item);
+            }
+
         }
     }
 

@@ -47,7 +47,6 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.cmbPickStepperPort = new System.Windows.Forms.ComboBox();
             this.tmrStepperRequests = new System.Windows.Forms.Timer(this.components);
-            this.tmrEncoderRequests = new System.Windows.Forms.Timer(this.components);
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -61,6 +60,7 @@
             this.tabDome = new System.Windows.Forms.TabPage();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -107,12 +107,12 @@
             // lblDomeAzimuth
             // 
             this.lblDomeAzimuth.AutoSize = true;
-            this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.Info;
+            this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.Desktop;
             this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 137);
             this.lblDomeAzimuth.Name = "lblDomeAzimuth";
-            this.lblDomeAzimuth.Size = new System.Drawing.Size(56, 16);
+            this.lblDomeAzimuth.Size = new System.Drawing.Size(29, 16);
             this.lblDomeAzimuth.TabIndex = 11;
-            this.lblDomeAzimuth.Text = "............";
+            this.lblDomeAzimuth.Text = "999";
             this.toolTipPK.SetToolTip(this.lblDomeAzimuth, "This is the comms state between the two Arduino MCUs");
             // 
             // label3
@@ -265,10 +265,9 @@
             this.tmrStepperRequests.Interval = 15;
             this.tmrStepperRequests.Tick += new System.EventHandler(this.tmrStepperRequests_Tick);
             // 
-            // tmrEncoderRequests
+            // toolTipPK
             // 
-            this.tmrEncoderRequests.Interval = 200;
-            this.tmrEncoderRequests.Tick += new System.EventHandler(this.tmrEncoderRequests_Tick);
+            this.toolTipPK.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTipPK_Popup);
             // 
             // label2
             // 
@@ -381,6 +380,7 @@
             // 
             this.tabDome.BackColor = System.Drawing.Color.Khaki;
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabDome.Controls.Add(this.button1);
             this.tabDome.Controls.Add(this.gpboxStepper);
             this.tabDome.Controls.Add(this.groupBox2);
             this.tabDome.Controls.Add(this.groupBox1);
@@ -415,6 +415,16 @@
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(327, 412);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 38);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ArduinoMonitor
             // 
@@ -457,7 +467,6 @@
         private System.Windows.Forms.Label lblMoving;
         private System.Windows.Forms.Label lblTarget;
         private System.Windows.Forms.Timer tmrStepperRequests;
-        private System.Windows.Forms.Timer tmrEncoderRequests;
         private System.Windows.Forms.ToolTip toolTipPK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -474,6 +483,7 @@
         private System.Windows.Forms.TabPage tabInfo;
         private System.Windows.Forms.Label lblDomeAzimuth;
         private System.Windows.Forms.Label lbl6;
+        private System.Windows.Forms.Button button1;
     }
 }
 
