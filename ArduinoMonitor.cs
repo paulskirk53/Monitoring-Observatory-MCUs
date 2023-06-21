@@ -120,12 +120,12 @@ namespace Monitoring
             control_box.Transmit("dataRequest"); //get the data packet from the MCU
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
-            dataPacket = dataPacket.Remove('$');                  
+            dataPacket = dataPacket.Remove('$');
             //note new string terminator $
             // todo now unpack the data packet - adjust and remove the lines below once tested
             // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
             // the problem needs a fix at the time of testing - which may just be not to  process the last item 
-            
+
             // example  dataPacket = "string1#string 2#end string#another string#$";
             // remember c# strings are 0 indexed so we can refer to the values array as values[0], values[1] etc
 
@@ -143,14 +143,19 @@ namespace Monitoring
             //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
             // e.g. lblAzimuth.text = values[0]; 
             // etc
-            Azimuth = Azimuth.Replace("#", "");
+            lblDomeAzimuth.Text = values[0];
+            lblTarget.Text = values[1];
+            lblMoving.Text = values[2];
+            lbltargetStatus.Text = values[4];
+            lblDirection.Text = values[3];
+            lbldegreesToTarget.Text = values[5];
 
-            cameraPowerStatus = control_box.ReceiveTerminated("#");
-            cameraPowerStatus = cameraPowerStatus.Replace("#", "");
 
+            cameraPowerStatus = values[6];
+            //todo -the camerapowerstatus var is 0 or 1 so the code below will need change
             //now check the status of the camera power and set the labels accordinly
 
-            if (cameraPowerStatus == "ON")
+            if (cameraPowerStatus == "1")
             {
                 // set label text to on
                 lblCamerapowerstatus.Text = "Power On";
@@ -160,57 +165,8 @@ namespace Monitoring
                 //set the label text to OFF
                 lblCamerapowerstatus.Text = "Power Off";
             }
-            try
-            {
-               // MessageBox.Show("in stepper timer try ");
-                string ReceivedItem = "";
 
-                ReceivedItem = control_box.ReceiveTerminated("#");     //REMOVE THIS LINE IF THE CODE IS REVERTED to use the while loop
-
-                if (ReceivedItem == "START#")                          //remove this if stmt and its braces if reverting back to the while loop
-                {
-
-                    string TargetAzimuth = control_box.ReceiveTerminated("#");
-                    TargetAzimuth = TargetAzimuth.Replace("#", "");
-
-                    string MovementState = control_box.ReceiveTerminated("#");
-                    MovementState = MovementState.Replace("#", "");
-
-                    string QueryDir = control_box.ReceiveTerminated("#");
-                    QueryDir = QueryDir.Replace("#", "");
-
-                    string TargetMessage = control_box.ReceiveTerminated("#");
-                    TargetMessage = TargetMessage.Replace("#", "");           //the MCU creates a string which shows distance to target and then changes to Target Achieved
-
-                    string AngleMod360 = control_box.ReceiveTerminated("#");
-                    AngleMod360 = AngleMod360.Replace("#", "");               //This is the Azimuth the stepper receives from the encoder
-
-                    string EncoderReplyCounter = control_box.ReceiveTerminated("#");
-                    EncoderReplyCounter = EncoderReplyCounter.Replace("#", "");
-
-                    // now set the form labels to the values received from the MCUs
-                    lblTarget.Text = TargetAzimuth;
-                    lblDirection.Text = QueryDir;
-                    lblMoving.Text = MovementState;
-                    lblDistance.Text = TargetMessage;
-                    lblAzimuth.Text = AngleMod360;
-
-                    //if the value of EncoderReplyCounter is changing, set the colour property of lblcommsencodervalue to green. If its not green, its red
-                    // e.g. compare the strings and if equal then set colour to red (comms fail), if different set to green
-                  
-
-                   
-
-                }
-            }
-            catch (Exception )
-            {
-                
-                MessageBox.Show("Stepper data return failure" );
-            }
-           
         }
-
     
 
         private void ArduinoMonitor_FormClosing(object sender, FormClosingEventArgs e)

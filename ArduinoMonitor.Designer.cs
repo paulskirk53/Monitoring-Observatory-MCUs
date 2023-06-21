@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
             this.lblDirection = new System.Windows.Forms.Label();
-            this.lblAzimuth = new System.Windows.Forms.Label();
-            this.lblDistance = new System.Windows.Forms.Label();
+            this.lbldegreesToTarget = new System.Windows.Forms.Label();
+            this.lbltargetStatus = new System.Windows.Forms.Label();
             this.lblControlBox = new System.Windows.Forms.Label();
             this.lblMoving = new System.Windows.Forms.Label();
             this.lblTarget = new System.Windows.Forms.Label();
@@ -76,8 +76,8 @@
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
             this.gpboxStepper.Controls.Add(this.lblDirection);
-            this.gpboxStepper.Controls.Add(this.lblAzimuth);
-            this.gpboxStepper.Controls.Add(this.lblDistance);
+            this.gpboxStepper.Controls.Add(this.lbldegreesToTarget);
+            this.gpboxStepper.Controls.Add(this.lbltargetStatus);
             this.gpboxStepper.Controls.Add(this.lblControlBox);
             this.gpboxStepper.Controls.Add(this.lblMoving);
             this.gpboxStepper.Controls.Add(this.lblTarget);
@@ -146,25 +146,25 @@
             this.lblDirection.TabIndex = 9;
             this.lblDirection.Text = "Awaiting  data";
             // 
-            // lblAzimuth
+            // lbldegreesToTarget
             // 
-            this.lblAzimuth.AutoSize = true;
-            this.lblAzimuth.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAzimuth.Location = new System.Drawing.Point(159, 113);
-            this.lblAzimuth.Name = "lblAzimuth";
-            this.lblAzimuth.Size = new System.Drawing.Size(29, 16);
-            this.lblAzimuth.TabIndex = 8;
-            this.lblAzimuth.Text = "999";
+            this.lbldegreesToTarget.AutoSize = true;
+            this.lbldegreesToTarget.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldegreesToTarget.Location = new System.Drawing.Point(159, 113);
+            this.lbldegreesToTarget.Name = "lbldegreesToTarget";
+            this.lbldegreesToTarget.Size = new System.Drawing.Size(29, 16);
+            this.lbldegreesToTarget.TabIndex = 8;
+            this.lbldegreesToTarget.Text = "999";
             // 
-            // lblDistance
+            // lbltargetStatus
             // 
-            this.lblDistance.AutoSize = true;
-            this.lblDistance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistance.Location = new System.Drawing.Point(159, 92);
-            this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(100, 16);
-            this.lblDistance.TabIndex = 7;
-            this.lblDistance.Text = "Awaiting  data";
+            this.lbltargetStatus.AutoSize = true;
+            this.lbltargetStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltargetStatus.Location = new System.Drawing.Point(159, 92);
+            this.lbltargetStatus.Name = "lbltargetStatus";
+            this.lbltargetStatus.Size = new System.Drawing.Size(100, 16);
+            this.lbltargetStatus.TabIndex = 7;
+            this.lbltargetStatus.Text = "Awaiting  data";
             // 
             // lblControlBox
             // 
@@ -462,8 +462,8 @@
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lblDirection;
-        private System.Windows.Forms.Label lblAzimuth;
-        private System.Windows.Forms.Label lblDistance;
+        private System.Windows.Forms.Label lbldegreesToTarget;
+        private System.Windows.Forms.Label lbltargetStatus;
         private System.Windows.Forms.Label lblMoving;
         private System.Windows.Forms.Label lblTarget;
         private System.Windows.Forms.Timer tmrStepperRequests;
