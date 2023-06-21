@@ -70,8 +70,8 @@ namespace Monitoring
 
                 try
                 {
-                   string portName = portFinder(control_box, "monitorcontrol#");        
-                    
+                   string portName = portFinder(control_box, "monitorcontrol#");
+                    // MessageBox.Show("haha");
                     control_box.PortName = portName;
                     control_box.DTREnable = false;
                     control_box.RTSEnable = false;
@@ -80,12 +80,13 @@ namespace Monitoring
                
                     control_box.Connected = true;
                     
-                    
+                    lblControlBox.Text = "Connected on " + control_box.PortName;
                     control_box.ClearBuffers();
 
                     btnpowerActivate.Enabled = true;
-                    
-
+                    btnConnectToControlBox.Text = "Disconnect";
+                    lblControlBox.BackColor = Color.Green;
+                    tmrStepperRequests.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -97,13 +98,15 @@ namespace Monitoring
             {
 
 
-                control_boxDisconnect();
+                
                 BTNCamon.Enabled = false;
                
                 btnpowerActivate.Enabled = false;
                 btnactivate.Enabled = false;      // disable the reset toggle button
 
 
+                tmrStepperRequests.Enabled = false;
+                control_boxDisconnect();
             }
         }
 
@@ -113,7 +116,7 @@ namespace Monitoring
         {                                              //THE TIMER INTERVAL MIGHT BE INCREASED NOW THAT  the while loop is not used, note the previous value here though
 
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
-            String Azimuth = "";
+            
             String cameraPowerStatus = "";
             String dataPacket = "";
 
@@ -121,6 +124,7 @@ namespace Monitoring
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
             dataPacket = dataPacket.Remove('$');
+            MessageBox.Show(dataPacket );
             //note new string terminator $
             // todo now unpack the data packet - adjust and remove the lines below once tested
             // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
@@ -132,26 +136,25 @@ namespace Monitoring
             string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator
 
             /* the string items are arranged in the following order when they arrive from the MCU
-            dome azimuth
-            target azimuth
-            movementstate
-            querydir
-            targetmessage
-            cdarray[currentazimut]  - not sure how this works - perhaps a countdown to target achieved?
+            dome azimuth,  target azimuth,  movementstate,  querydir,  targetmessage,  cdarray[currentazimut]  - not sure how this works - perhaps a countdown to target achieved?
+
             camerapowerstate
            */
             //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
             // e.g. lblAzimuth.text = values[0]; 
             // etc
-            lblDomeAzimuth.Text = values[0];
-            lblTarget.Text = values[1];
-            lblMoving.Text = values[2];
-            lbltargetStatus.Text = values[4];
-            lblDirection.Text = values[3];
-            lbldegreesToTarget.Text = values[5];
+            lblDomeAzimuth.Text = values[0];   // current (dome az)
+            lblTarget.Text = values[1];        // Target Az
+            lblMoving.Text = values[2];        // movementstate
+            lblDirection.Text = values[3];     // querydir - clock or anti clock
+            lbltargetStatus.Text = values[4];  // target message
+            
+          
+
+            // todo lbldegreesToTarget.Text = values[5];
 
 
-            cameraPowerStatus = values[6];
+            //todo   cameraPowerStatus = values[6];
             //todo -the camerapowerstatus var is 0 or 1 so the code below will need change
             //now check the status of the camera power and set the labels accordinly
 
