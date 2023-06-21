@@ -411,10 +411,7 @@ namespace Monitoring
 
         }
 
-        private void btnConnectToControlBox_Click_1(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 
  
