@@ -58,9 +58,9 @@
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -262,7 +262,7 @@
             // 
             // tmrStepperRequests
             // 
-            this.tmrStepperRequests.Interval = 15;
+            this.tmrStepperRequests.Interval = 1000;
             this.tmrStepperRequests.Tick += new System.EventHandler(this.tmrStepperRequests_Tick);
             // 
             // toolTipPK
@@ -393,6 +393,16 @@
             this.tabDome.TabIndex = 0;
             this.tabDome.Text = "Dome";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(327, 412);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 38);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // tabShutter
             // 
             this.tabShutter.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -415,16 +425,6 @@
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(327, 412);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 38);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ArduinoMonitor
             // 

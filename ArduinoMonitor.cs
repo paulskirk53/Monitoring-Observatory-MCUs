@@ -129,15 +129,19 @@ namespace Monitoring
             // example  dataPacket = "string1#string 2#end string#another string#$";
             // remember c# strings are 0 indexed so we can refer to the values array as values[0], values[1] etc
 
-            string[] values = dataPacket.Split('#');   //# is the data item delimiter
-            //test printout code below todo remove
-            foreach (string item in values)
-            {
-                
-                MessageBox.Show(" string content is " + item);
-            }
+            string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator
+
+            /* the string items are arranged in the following order when they arrive from the MCU
+            dome azimuth
+            target azimuth
+            movementstate
+            querydir
+            targetmessage
+            cdarray[currentazimut]  - not sure how this works - perhaps a countdown to target achieved?
+            camerapowerstate
+           */
             //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
-            // e.g. Azimuth = values[0]; 
+            // e.g. lblAzimuth.text = values[0]; 
             // etc
             Azimuth = Azimuth.Replace("#", "");
 
