@@ -103,6 +103,7 @@
             this.btnConnectToControlBox.TabIndex = 2;
             this.btnConnectToControlBox.Text = "Connect";
             this.btnConnectToControlBox.UseVisualStyleBackColor = true;
+            this.btnConnectToControlBox.Click += new System.EventHandler(this.btnConnectToControlBox_Click_1);
             // 
             // lblDomeAzimuth
             // 

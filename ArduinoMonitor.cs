@@ -410,26 +410,14 @@ namespace Monitoring
             }
 
         }
-    }
 
-    //new below for custom exception when connecting to the port send Query and await for reply Stepper
-    // if (!Stepper i.e. wrong port) throw new wrongPortException();
-    // in catch stmt put catch (wrongPortException one)
-    // in catch block put:
-    // MessageBox.Show(one.Message + "Stepper connection failed. Check the MCUs are on, connected, and in receive mode.");
-    // disconnect - need MCU ports to respond to Query what happens if they timeout?
-    public class wrongPortException : Exception
-    {                                             //use like this throw new wrongPortException
-        public override string Message
+        private void btnConnectToControlBox_Click_1(object sender, EventArgs e)
         {
-            get
-            {
-                return "My error message here";
-            }
+
         }
     }
 
-    // end new custom exception
+ 
 
     //roundbutton class - PK
     class RoundButton : Button
