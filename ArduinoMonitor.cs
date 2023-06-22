@@ -71,7 +71,7 @@ namespace Monitoring
                 try
                 {
                    string portName = portFinder(control_box, "monitorcontrol#");
-                    // MessageBox.Show("haha");
+                    
                     control_box.PortName = portName;
                     control_box.DTREnable = false;
                     control_box.RTSEnable = false;
@@ -87,6 +87,7 @@ namespace Monitoring
                     btnConnectToControlBox.Text = "Disconnect";
                     lblControlBox.BackColor = Color.Green;
                     tmrStepperRequests.Enabled = true;
+                    btnactivate.Enabled = true;    // enable the button to facilitate MCU reset
                 }
                 catch (Exception ex)
                 {
@@ -123,8 +124,8 @@ namespace Monitoring
             control_box.Transmit("dataRequest"); //get the data packet from the MCU
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
-            dataPacket = dataPacket.Remove('$');
-            MessageBox.Show(dataPacket );
+           // dataPacket = dataPacket.Remove('$');   // this line caused a problem with parsing the string
+       //     MessageBox.Show(dataPacket );
             //note new string terminator $
             // todo now unpack the data packet - adjust and remove the lines below once tested
             // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
@@ -141,7 +142,7 @@ namespace Monitoring
             camerapowerstate
            */
             //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
-            // e.g. lblAzimuth.text = values[0]; 
+            // There are seven items in the string 0 to 6
             // etc
             lblDomeAzimuth.Text = values[0];   // current (dome az)
             lblTarget.Text = values[1];        // Target Az
@@ -151,14 +152,11 @@ namespace Monitoring
             
           
 
-            // todo lbldegreesToTarget.Text = values[5];
+            lbldegreesToTarget.Text = values[5]; // degrees to target
+            
 
-
-            //todo   cameraPowerStatus = values[6];
-            //todo -the camerapowerstatus var is 0 or 1 so the code below will need change
-            //now check the status of the camera power and set the labels accordinly
-
-            if (cameraPowerStatus == "1")
+        
+            if (values[6] == "1")    //  values[6] is the imaging camera power status
             {
                 // set label text to on
                 lblCamerapowerstatus.Text = "Power On";
@@ -185,16 +183,25 @@ namespace Monitoring
 
         private void BTNCamon_Click(object sender, EventArgs e)
         {
-            if (BTNCamon.Text == "Turn On")
+            if (control_box.Connected )     // the control box needs to be connected before these commands can work
             {
-                control_box.Transmit("CAMON#");
-                BTNCamon.Text = "Turn Off";
+                if (BTNCamon.Text == "Turn On")
+                {
+                    control_box.Transmit("CAMON#");
+                    BTNCamon.Text = "Turn Off";
+                    //  lblCamerapowerstatus.Text = "On";
+                }
+                else
+                {
+                    // switch power off
+                    control_box.Transmit("CAMOFF#");
+                    BTNCamon.Text = "Turn On";
+                    // lblCamerapowerstatus.Text = "Off";
+                }
             }
             else
             {
-                // switch power off
-                control_box.Transmit("CAMOFF#");
-                BTNCamon.Text = "Turn On";
+                MessageBox.Show("Connect first", "Not cennected error");
             }
         }
 
@@ -211,13 +218,13 @@ namespace Monitoring
 
         private void btnactivate_Click(object sender, EventArgs e)
         {
-            if (btnresetEncoder.Enabled)
+            if (btnresetControlBox.Enabled)
             {
-                btnresetEncoder.Enabled = false;
+                btnresetControlBox.Enabled = false;
             }
             else
             {
-                btnresetEncoder.Enabled = true;
+                btnresetControlBox.Enabled = true;
             }
 
           
@@ -243,8 +250,9 @@ namespace Monitoring
                 tmrStepperRequests.Enabled = false;            // stop the requests to the encoder MCU
                 control_box.Transmit("reset");         // request the reset
                 control_box.Connected = false;         // disconnect from the Port
-                
-                
+                btnConnectToControlBox.Text = "Connect";
+                lblControlBox.Text = "Disconnected";
+
             }
         }
 
@@ -403,9 +411,16 @@ namespace Monitoring
 
         private void button1_Click(object sender, EventArgs e)
         {
-           String dataPacket = "string1# string 2#end string$";
-            
-            string[] values = dataPacket.Split('#');   //# is the data delimiter
+            String dataPacket = "";
+
+            control_box.Transmit("dataRequest"); //get the data packet from the MCU
+
+            dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+            dataPacket = dataPacket.Remove('$');
+        
+
+            string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator 
+
             foreach (string item in values)
             {
                 

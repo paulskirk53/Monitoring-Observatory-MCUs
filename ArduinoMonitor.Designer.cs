@@ -54,7 +54,7 @@
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnresetEncoder = new System.Windows.Forms.Button();
+            this.btnresetControlBox = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
@@ -263,7 +263,7 @@
             // 
             // tmrStepperRequests
             // 
-            this.tmrStepperRequests.Interval = 1000;
+            this.tmrStepperRequests.Interval = 750;
             this.tmrStepperRequests.Tick += new System.EventHandler(this.tmrStepperRequests_Tick);
             // 
             // toolTipPK
@@ -331,7 +331,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnresetEncoder);
+            this.groupBox2.Controls.Add(this.btnresetControlBox);
             this.groupBox2.Controls.Add(this.btnactivate);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(42, 332);
@@ -341,17 +341,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resets";
             // 
-            // btnresetEncoder
+            // btnresetControlBox
             // 
-            this.btnresetEncoder.Enabled = false;
-            this.btnresetEncoder.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnresetEncoder.Location = new System.Drawing.Point(155, 16);
-            this.btnresetEncoder.Name = "btnresetEncoder";
-            this.btnresetEncoder.Size = new System.Drawing.Size(154, 25);
-            this.btnresetEncoder.TabIndex = 1;
-            this.btnresetEncoder.Text = "Reset Control Box";
-            this.btnresetEncoder.UseVisualStyleBackColor = true;
-            this.btnresetEncoder.Click += new System.EventHandler(this.btnresetEncoder_Click);
+            this.btnresetControlBox.Enabled = false;
+            this.btnresetControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnresetControlBox.Location = new System.Drawing.Point(155, 16);
+            this.btnresetControlBox.Name = "btnresetControlBox";
+            this.btnresetControlBox.Size = new System.Drawing.Size(154, 25);
+            this.btnresetControlBox.TabIndex = 1;
+            this.btnresetControlBox.Text = "Reset Control Box";
+            this.btnresetControlBox.UseVisualStyleBackColor = true;
+            this.btnresetControlBox.Click += new System.EventHandler(this.btnresetEncoder_Click);
             // 
             // btnactivate
             // 
@@ -396,11 +396,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(327, 412);
+            this.button1.Location = new System.Drawing.Point(180, 412);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 38);
+            this.button1.Size = new System.Drawing.Size(232, 38);
             this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
+            this.button1.Text = "Connect before use";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -475,7 +475,7 @@
         private System.Windows.Forms.Button BTNCamon;
         private System.Windows.Forms.Label lblCamerapowerstatus;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnresetEncoder;
+        private System.Windows.Forms.Button btnresetControlBox;
         private System.Windows.Forms.Button btnactivate;
         private System.Windows.Forms.Button btnpowerActivate;
         private System.Windows.Forms.TabControl tabMonitor;
