@@ -46,7 +46,7 @@
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.cmbPickStepperPort = new System.Windows.Forms.ComboBox();
-            this.tmrStepperRequests = new System.Windows.Forms.Timer(this.components);
+            this.tmrControloxRequests = new System.Windows.Forms.Timer(this.components);
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,13 +54,13 @@
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnresetControlBox = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
+            this.btnresetControlBox = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -261,10 +261,10 @@
             this.cmbPickStepperPort.Text = "Port info";
             this.toolTipPK.SetToolTip(this.cmbPickStepperPort, "Port info");
             // 
-            // tmrStepperRequests
+            // tmrControloxRequests
             // 
-            this.tmrStepperRequests.Interval = 750;
-            this.tmrStepperRequests.Tick += new System.EventHandler(this.tmrStepperRequests_Tick);
+            this.tmrControloxRequests.Interval = 750;
+            this.tmrControloxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
             // 
             // toolTipPK
             // 
@@ -341,18 +341,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resets";
             // 
-            // btnresetControlBox
-            // 
-            this.btnresetControlBox.Enabled = false;
-            this.btnresetControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnresetControlBox.Location = new System.Drawing.Point(155, 16);
-            this.btnresetControlBox.Name = "btnresetControlBox";
-            this.btnresetControlBox.Size = new System.Drawing.Size(154, 25);
-            this.btnresetControlBox.TabIndex = 1;
-            this.btnresetControlBox.Text = "Reset Control Box";
-            this.btnresetControlBox.UseVisualStyleBackColor = true;
-            this.btnresetControlBox.Click += new System.EventHandler(this.btnresetEncoder_Click);
-            // 
             // btnactivate
             // 
             this.btnactivate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -427,6 +415,16 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
+            // btnresetControlBox
+            // 
+            this.btnresetControlBox.Location = new System.Drawing.Point(183, 18);
+            this.btnresetControlBox.Name = "btnresetControlBox";
+            this.btnresetControlBox.Size = new System.Drawing.Size(144, 24);
+            this.btnresetControlBox.TabIndex = 2;
+            this.btnresetControlBox.Text = "Reset the MCU";
+            this.btnresetControlBox.UseVisualStyleBackColor = true;
+            this.btnresetControlBox.Click += new System.EventHandler(this.btnresetControlBox_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,7 +465,7 @@
         private System.Windows.Forms.Label lbltargetStatus;
         private System.Windows.Forms.Label lblMoving;
         private System.Windows.Forms.Label lblTarget;
-        private System.Windows.Forms.Timer tmrStepperRequests;
+        private System.Windows.Forms.Timer tmrControloxRequests;
         private System.Windows.Forms.ToolTip toolTipPK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -475,7 +473,6 @@
         private System.Windows.Forms.Button BTNCamon;
         private System.Windows.Forms.Label lblCamerapowerstatus;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnresetControlBox;
         private System.Windows.Forms.Button btnactivate;
         private System.Windows.Forms.Button btnpowerActivate;
         private System.Windows.Forms.TabControl tabMonitor;
@@ -485,6 +482,7 @@
         private System.Windows.Forms.Label lblDomeAzimuth;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnresetControlBox;
     }
 }
 

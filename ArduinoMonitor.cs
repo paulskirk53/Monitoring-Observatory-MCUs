@@ -35,7 +35,9 @@ namespace Monitoring
             
           //  BTNCamoff.Enabled = false;    // these work ...
             BTNCamon.Enabled = false;
-
+            btnactivate.Enabled = false;
+            btnresetControlBox.Text = "No Function";
+            btnresetControlBox.Enabled  = false;
             //  Version number generation below - added 4-2-22
             // did not work  int displayableVersion = (int)(DateTime.UtcNow - new DateTime(2022, 1, 1)).TotalDays;
             string version = System.Windows.Forms.Application.ProductVersion;
@@ -83,10 +85,10 @@ namespace Monitoring
                     lblControlBox.Text = "Connected on " + control_box.PortName;
                     control_box.ClearBuffers();
 
-                    btnpowerActivate.Enabled = true;
+                    btnpowerActivate.Enabled = true;   // enable the camera power toggle button
                     btnConnectToControlBox.Text = "Disconnect";
                     lblControlBox.BackColor = Color.Green;
-                    tmrStepperRequests.Enabled = true;
+                    tmrControloxRequests.Enabled = true;  // start the timer which requests the data packet from the MCU
                     btnactivate.Enabled = true;    // enable the button to facilitate MCU reset
                 }
                 catch (Exception ex)
@@ -106,14 +108,14 @@ namespace Monitoring
                 btnactivate.Enabled = false;      // disable the reset toggle button
 
 
-                tmrStepperRequests.Enabled = false;
+                tmrControloxRequests.Enabled = false;
                 control_boxDisconnect();
             }
         }
 
 
 
-        private void tmrStepperRequests_Tick(object sender, EventArgs e)
+        private void tmrControlBoxRequests_Tick(object sender, EventArgs e)
         {                                              //THE TIMER INTERVAL MIGHT BE INCREASED NOW THAT  the while loop is not used, note the previous value here though
 
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
@@ -218,42 +220,26 @@ namespace Monitoring
 
         private void btnactivate_Click(object sender, EventArgs e)
         {
-            if (btnresetControlBox.Enabled)
+            if (btnresetControlBox.Enabled)  // error
             {
                 btnresetControlBox.Enabled = false;
+                btnresetControlBox.Text = "No function";
             }
             else
             {
                 btnresetControlBox.Enabled = true;
+                btnresetControlBox.Text = "Reset Control Box";
             }
 
           
             
         }
 
-        private void btnresetStepper_Click(object sender, EventArgs e)
-        {
-            if (control_box.Connected)
-            {
-                tmrStepperRequests.Enabled = false;     // stop the requests to the Stepper MCU
-                control_box.Transmit("reset");          // request the reset
-                control_box.Connected = false;          // disconnect from the Port
-                btnConnectToControlBox.Text = "Connect";
-                lblControlBox.Text = "Disconnected";
-            }
-        }
+      
 
         private void btnresetEncoder_Click(object sender, EventArgs e)
         {
-            if (control_box.Connected)
-            {
-                tmrStepperRequests.Enabled = false;            // stop the requests to the encoder MCU
-                control_box.Transmit("reset");         // request the reset
-                control_box.Connected = false;         // disconnect from the Port
-                btnConnectToControlBox.Text = "Connect";
-                lblControlBox.Text = "Disconnected";
-
-            }
+           
         }
 
         private void btnpowerActivate_Click(object sender, EventArgs e)
@@ -429,10 +415,22 @@ namespace Monitoring
 
         }
 
-       
+        private void btnresetControlBox_Click(object sender, EventArgs e)
+        {
+            if (control_box.Connected)
+            {
+                tmrControloxRequests.Enabled = false;            // stop the requests to the encoder MCU
+                control_box.Transmit("reset");         // request the reset
+                control_box.Connected = false;         // disconnect from the Port
+                btnConnectToControlBox.Text = "Connect";
+                lblControlBox.Text = "Disconnected";
+
+            }
+            MessageBox.Show("Must be connected to reset", "Connection Error");
+        }
     }
 
- 
+
 
     //roundbutton class - PK
     class RoundButton : Button
