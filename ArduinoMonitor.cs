@@ -116,13 +116,19 @@ namespace Monitoring
 
 
         private void tmrControlBoxRequests_Tick(object sender, EventArgs e)
-        {                                              //THE TIMER INTERVAL MIGHT BE INCREASED NOW THAT  the while loop is not used, note the previous value here though
+        {                                             
+            //THE TIMER INTERVAL is CRITICAL to the MCU performance.
+            //If the interval is set lower than 2 seconds, the MCU gets choked and buggered - it slows down so much dealing with available() requests
+            // that stepper.run() execution frequency is too low and stepping takes a long time (about 30 seconds to reach an ASCOM Target Azimuth
 
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
             
             String cameraPowerStatus = "";
             String dataPacket = "";
 
+            // THE TIMEOUT IS IMPORTANT IF it's too short, the system throws an unhandled exception whilst waiting for the MCU to respond
+            control_box.ReceiveTimeout = 10;
+            //todo need a try - catch here
             control_box.Transmit("dataRequest"); //get the data packet from the MCU
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
@@ -168,13 +174,19 @@ namespace Monitoring
                 //set the label text to OFF
                 lblCamerapowerstatus.Text = "Power Off";
             }
-            if (lbldataTick.Text == "1")
+            if (lbldataTick.Text == "Tick")
             {
-                lbldataTick.Text = "0";
+                lbldataTick.Text = "Tock";
+                lbldataTick.BackColor = Color.DarkRed;
+                lbldataTick.ForeColor = Color.Khaki;
             }
             else
             {
-                lbldataTick.Text = "1";
+
+                lbldataTick.Text = "Tick";
+                lbldataTick.BackColor = Color.Khaki;
+                lbldataTick.ForeColor = Color.Black;
+
             }
         }
     
@@ -431,9 +443,13 @@ namespace Monitoring
                 control_box.Connected = false;         // disconnect from the Port
                 btnConnectToControlBox.Text = "Connect";
                 lblControlBox.Text = "Disconnected";
+                lblControlBox.BackColor = Color.Black;
 
             }
-            MessageBox.Show("Must be connected to reset", "Connection Error");
+            else
+            {
+                MessageBox.Show("Must be connected to reset", "Connection Error");
+            }
         }
     }
 
