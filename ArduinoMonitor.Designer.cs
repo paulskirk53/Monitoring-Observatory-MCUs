@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.lbldataTick = new System.Windows.Forms.Label();
             this.btnConnectToControlBox = new System.Windows.Forms.Button();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,13 +55,13 @@
             this.BTNCamon = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnresetControlBox = new System.Windows.Forms.Button();
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.btnresetControlBox = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // gpboxStepper
             // 
+            this.gpboxStepper.Controls.Add(this.lbldataTick);
             this.gpboxStepper.Controls.Add(this.btnConnectToControlBox);
             this.gpboxStepper.Controls.Add(this.lblDomeAzimuth);
             this.gpboxStepper.Controls.Add(this.label3);
@@ -93,6 +95,15 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
+            // 
+            // lbldataTick
+            // 
+            this.lbldataTick.AutoSize = true;
+            this.lbldataTick.Location = new System.Drawing.Point(283, 191);
+            this.lbldataTick.Name = "lbldataTick";
+            this.lbldataTick.Size = new System.Drawing.Size(34, 16);
+            this.lbldataTick.TabIndex = 16;
+            this.lbldataTick.Text = "Tick";
             // 
             // btnConnectToControlBox
             // 
@@ -263,7 +274,7 @@
             // 
             // tmrControloxRequests
             // 
-            this.tmrControloxRequests.Interval = 750;
+            this.tmrControloxRequests.Interval = 1000;
             this.tmrControloxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
             // 
             // toolTipPK
@@ -341,6 +352,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resets";
             // 
+            // btnresetControlBox
+            // 
+            this.btnresetControlBox.Location = new System.Drawing.Point(183, 18);
+            this.btnresetControlBox.Name = "btnresetControlBox";
+            this.btnresetControlBox.Size = new System.Drawing.Size(144, 24);
+            this.btnresetControlBox.TabIndex = 2;
+            this.btnresetControlBox.Text = "Reset the MCU";
+            this.btnresetControlBox.UseVisualStyleBackColor = true;
+            this.btnresetControlBox.Click += new System.EventHandler(this.btnresetControlBox_Click);
+            // 
             // btnactivate
             // 
             this.btnactivate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -415,16 +436,6 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
-            // btnresetControlBox
-            // 
-            this.btnresetControlBox.Location = new System.Drawing.Point(183, 18);
-            this.btnresetControlBox.Name = "btnresetControlBox";
-            this.btnresetControlBox.Size = new System.Drawing.Size(144, 24);
-            this.btnresetControlBox.TabIndex = 2;
-            this.btnresetControlBox.Text = "Reset the MCU";
-            this.btnresetControlBox.UseVisualStyleBackColor = true;
-            this.btnresetControlBox.Click += new System.EventHandler(this.btnresetControlBox_Click);
-            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +494,7 @@
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnresetControlBox;
+        private System.Windows.Forms.Label lbldataTick;
     }
 }
 

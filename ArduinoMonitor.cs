@@ -168,7 +168,14 @@ namespace Monitoring
                 //set the label text to OFF
                 lblCamerapowerstatus.Text = "Power Off";
             }
-
+            if (lbldataTick.Text == "1")
+            {
+                lbldataTick.Text = "0";
+            }
+            else
+            {
+                lbldataTick.Text = "1";
+            }
         }
     
 
