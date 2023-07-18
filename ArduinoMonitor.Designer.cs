@@ -59,7 +59,6 @@
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.gpboxStepper.SuspendLayout();
@@ -119,10 +118,11 @@
             // lblDomeAzimuth
             // 
             this.lblDomeAzimuth.AutoSize = true;
-            this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 137);
+            this.lblDomeAzimuth.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 158);
             this.lblDomeAzimuth.Name = "lblDomeAzimuth";
-            this.lblDomeAzimuth.Size = new System.Drawing.Size(29, 16);
+            this.lblDomeAzimuth.Size = new System.Drawing.Size(46, 24);
             this.lblDomeAzimuth.TabIndex = 11;
             this.lblDomeAzimuth.Text = "999";
             this.toolTipPK.SetToolTip(this.lblDomeAzimuth, "This is the comms state between the two Arduino MCUs");
@@ -141,10 +141,11 @@
             // lbl6
             // 
             this.lbl6.AutoSize = true;
-            this.lbl6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl6.Location = new System.Drawing.Point(17, 137);
+            this.lbl6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbl6.Location = new System.Drawing.Point(17, 158);
             this.lbl6.Name = "lbl6";
-            this.lbl6.Size = new System.Drawing.Size(101, 16);
+            this.lbl6.Size = new System.Drawing.Size(120, 19);
             this.lbl6.TabIndex = 10;
             this.lbl6.Text = "Dome Azimuth";
             // 
@@ -162,7 +163,7 @@
             // 
             this.lbldegreesToTarget.AutoSize = true;
             this.lbldegreesToTarget.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbldegreesToTarget.Location = new System.Drawing.Point(159, 113);
+            this.lbldegreesToTarget.Location = new System.Drawing.Point(159, 120);
             this.lbldegreesToTarget.Name = "lbldegreesToTarget";
             this.lbldegreesToTarget.Size = new System.Drawing.Size(29, 16);
             this.lbldegreesToTarget.TabIndex = 8;
@@ -172,7 +173,7 @@
             // 
             this.lbltargetStatus.AutoSize = true;
             this.lbltargetStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltargetStatus.Location = new System.Drawing.Point(159, 92);
+            this.lbltargetStatus.Location = new System.Drawing.Point(159, 96);
             this.lbltargetStatus.Name = "lbltargetStatus";
             this.lbltargetStatus.Size = new System.Drawing.Size(100, 16);
             this.lbltargetStatus.TabIndex = 7;
@@ -187,7 +188,7 @@
             this.lblControlBox.Name = "lblControlBox";
             this.lblControlBox.Size = new System.Drawing.Size(175, 30);
             this.lblControlBox.TabIndex = 7;
-            this.lblControlBox.Text = "Not Connected COM5";
+            this.lblControlBox.Text = "Not Connected";
             this.lblControlBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMoving
@@ -204,6 +205,7 @@
             // 
             this.lblTarget.AutoSize = true;
             this.lblTarget.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblTarget.Location = new System.Drawing.Point(159, 29);
             this.lblTarget.Name = "lblTarget";
             this.lblTarget.Size = new System.Drawing.Size(29, 16);
@@ -215,7 +217,7 @@
             this.lbl5.AccessibleDescription = "Sent from Encoder";
             this.lbl5.AutoSize = true;
             this.lbl5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl5.Location = new System.Drawing.Point(16, 113);
+            this.lbl5.Location = new System.Drawing.Point(16, 120);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(117, 16);
             this.lbl5.TabIndex = 4;
@@ -225,7 +227,7 @@
             // 
             this.lbl4.AutoSize = true;
             this.lbl4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4.Location = new System.Drawing.Point(16, 92);
+            this.lbl4.Location = new System.Drawing.Point(16, 96);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(91, 16);
             this.lbl4.TabIndex = 3;
@@ -255,6 +257,7 @@
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lbl1.Location = new System.Drawing.Point(16, 29);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(100, 16);
@@ -345,7 +348,7 @@
             this.groupBox2.Controls.Add(this.btnresetControlBox);
             this.groupBox2.Controls.Add(this.btnactivate);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(42, 332);
+            this.groupBox2.Location = new System.Drawing.Point(42, 343);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(433, 53);
             this.groupBox2.TabIndex = 18;
@@ -390,7 +393,6 @@
             // 
             this.tabDome.BackColor = System.Drawing.Color.Khaki;
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabDome.Controls.Add(this.button1);
             this.tabDome.Controls.Add(this.gpboxStepper);
             this.tabDome.Controls.Add(this.groupBox2);
             this.tabDome.Controls.Add(this.groupBox1);
@@ -402,16 +404,6 @@
             this.tabDome.Size = new System.Drawing.Size(517, 496);
             this.tabDome.TabIndex = 0;
             this.tabDome.Text = "Dome";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(180, 412);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(232, 38);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Connect before use";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabShutter
             // 
@@ -492,7 +484,6 @@
         private System.Windows.Forms.TabPage tabInfo;
         private System.Windows.Forms.Label lblDomeAzimuth;
         private System.Windows.Forms.Label lbl6;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnresetControlBox;
         private System.Windows.Forms.Label lbldataTick;
     }
