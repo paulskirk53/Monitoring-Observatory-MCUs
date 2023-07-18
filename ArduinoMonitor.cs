@@ -414,7 +414,7 @@ namespace Monitoring
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)    // just for test purposes can now be deleted.
         {
             String dataPacket = "";
 
