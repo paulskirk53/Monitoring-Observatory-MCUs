@@ -174,16 +174,16 @@ namespace Monitoring
                 //set the label text to OFF
                 lblCamerapowerstatus.Text = "Power Off";
             }
-            if (lbldataTick.Text == "Tick")
+            if (lbldataTick.Text == "Pull")
             {
-                lbldataTick.Text = "Tock";
+                lbldataTick.Text = "    ";
                 lbldataTick.BackColor = Color.DarkRed;
                 lbldataTick.ForeColor = Color.Khaki;
             }
             else
             {
 
-                lbldataTick.Text = "Tick";
+                lbldataTick.Text = "Pull";
                 lbldataTick.BackColor = Color.Khaki;
                 lbldataTick.ForeColor = Color.Black;
 

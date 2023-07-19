@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.btnConnectToControlBox = new System.Windows.Forms.Button();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -71,6 +72,7 @@
             // 
             // gpboxStepper
             // 
+            this.gpboxStepper.Controls.Add(this.label1);
             this.gpboxStepper.Controls.Add(this.lbldataTick);
             this.gpboxStepper.Controls.Add(this.btnConnectToControlBox);
             this.gpboxStepper.Controls.Add(this.lblDomeAzimuth);
@@ -95,14 +97,23 @@
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(241, 193);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 16);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Data Request indicator";
+            // 
             // lbldataTick
             // 
             this.lbldataTick.AutoSize = true;
-            this.lbldataTick.Location = new System.Drawing.Point(283, 191);
+            this.lbldataTick.Location = new System.Drawing.Point(408, 194);
             this.lbldataTick.Name = "lbldataTick";
-            this.lbldataTick.Size = new System.Drawing.Size(34, 16);
+            this.lbldataTick.Size = new System.Drawing.Size(33, 16);
             this.lbldataTick.TabIndex = 16;
-            this.lbldataTick.Text = "Tick";
+            this.lbldataTick.Text = "Pull";
             // 
             // btnConnectToControlBox
             // 
@@ -486,6 +497,7 @@
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Button btnresetControlBox;
         private System.Windows.Forms.Label lbldataTick;
+        private System.Windows.Forms.Label label1;
     }
 }
 
