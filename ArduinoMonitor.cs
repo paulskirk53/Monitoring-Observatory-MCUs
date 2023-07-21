@@ -75,13 +75,41 @@ namespace Monitoring
             
             
             String dataPacket = "";
+            
 
             // THE TIMEOUT IS IMPORTANT IF it's too short, the system throws an unhandled exception whilst waiting for the MCU to respond
             control_box.ReceiveTimeout = 10;
             //todo need a try - catch here
-            control_box.Transmit("dataRequest"); //get the data packet from the MCU
+           
+            try
+            {
+                control_box.Transmit("dataRequest");             // get the data packet from the MCU
+                dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+            }
+            catch (InvalidOperationException)
+            {
+                tmrControloxRequests.Enabled = false;  //stop the data packet requests
 
-            dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+                MessageBox.Show("Transmit failure - the port is closed - probably bad connection - fix and restart ");
+                Environment.Exit(0);    // close the application   // close the application
+            }
+            catch (TimeoutException)
+            {
+                tmrControloxRequests.Enabled = false;  //stop the data packet requests
+                MessageBox.Show("The port request timed out - trying disconnect and reconnect - check the cable ");
+
+                control_boxDisconnect();
+                Connect();
+            }
+            catch ( Exception )
+            {
+                tmrControloxRequests.Enabled = false;  //stop the data packet requests
+                MessageBox.Show(" General exception will have to restart ");
+                
+                Environment.Exit(0);    // close the application
+            }
+          
+           
             // dataPacket = dataPacket.Remove('$');   // this line caused a problem with parsing the string
             //  MessageBox.Show(dataPacket );
             //note new string terminator $
@@ -410,7 +438,12 @@ namespace Monitoring
 
         private void rbtnConnect_Click(object sender, EventArgs e)
         {
+            
+            Connect();    // code for this routine below
+        }
 
+        private void Connect()
+        {
 
             if (rbtnConnect.Text == "Connect")    //connect to the encoder MCU
             {
