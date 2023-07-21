@@ -32,7 +32,6 @@
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
-            this.btnConnectToControlBox = new System.Windows.Forms.Button();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
@@ -60,8 +59,11 @@
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
+            this.lblsync = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,9 +74,9 @@
             // 
             // gpboxStepper
             // 
+            this.gpboxStepper.Controls.Add(this.rbtnConnect);
             this.gpboxStepper.Controls.Add(this.label1);
             this.gpboxStepper.Controls.Add(this.lbldataTick);
-            this.gpboxStepper.Controls.Add(this.btnConnectToControlBox);
             this.gpboxStepper.Controls.Add(this.lblDomeAzimuth);
             this.gpboxStepper.Controls.Add(this.label3);
             this.gpboxStepper.Controls.Add(this.lbl6);
@@ -92,7 +94,7 @@
             this.gpboxStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(451, 208);
+            this.gpboxStepper.Size = new System.Drawing.Size(451, 223);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
@@ -100,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(241, 193);
+            this.label1.Location = new System.Drawing.Point(241, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 16);
             this.label1.TabIndex = 17;
@@ -109,29 +111,18 @@
             // lbldataTick
             // 
             this.lbldataTick.AutoSize = true;
-            this.lbldataTick.Location = new System.Drawing.Point(408, 194);
+            this.lbldataTick.Location = new System.Drawing.Point(408, 186);
             this.lbldataTick.Name = "lbldataTick";
             this.lbldataTick.Size = new System.Drawing.Size(33, 16);
             this.lbldataTick.TabIndex = 16;
             this.lbldataTick.Text = "Pull";
-            // 
-            // btnConnectToControlBox
-            // 
-            this.btnConnectToControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectToControlBox.Location = new System.Drawing.Point(285, 29);
-            this.btnConnectToControlBox.Name = "btnConnectToControlBox";
-            this.btnConnectToControlBox.Size = new System.Drawing.Size(117, 62);
-            this.btnConnectToControlBox.TabIndex = 2;
-            this.btnConnectToControlBox.Text = "Connect";
-            this.btnConnectToControlBox.UseVisualStyleBackColor = true;
-            this.btnConnectToControlBox.Click += new System.EventHandler(this.btnConnectToControlBox_Click);
             // 
             // lblDomeAzimuth
             // 
             this.lblDomeAzimuth.AutoSize = true;
             this.lblDomeAzimuth.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 158);
+            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 181);
             this.lblDomeAzimuth.Name = "lblDomeAzimuth";
             this.lblDomeAzimuth.Size = new System.Drawing.Size(46, 24);
             this.lblDomeAzimuth.TabIndex = 11;
@@ -142,7 +133,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(291, 116);
+            this.label3.Location = new System.Drawing.Point(291, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 16);
             this.label3.TabIndex = 15;
@@ -154,7 +145,7 @@
             this.lbl6.AutoSize = true;
             this.lbl6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbl6.Location = new System.Drawing.Point(17, 158);
+            this.lbl6.Location = new System.Drawing.Point(17, 181);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(120, 19);
             this.lbl6.TabIndex = 10;
@@ -195,7 +186,7 @@
             this.lblControlBox.BackColor = System.Drawing.Color.Black;
             this.lblControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControlBox.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblControlBox.Location = new System.Drawing.Point(266, 134);
+            this.lblControlBox.Location = new System.Drawing.Point(266, 140);
             this.lblControlBox.Name = "lblControlBox";
             this.lblControlBox.Size = new System.Drawing.Size(175, 30);
             this.lblControlBox.TabIndex = 7;
@@ -312,7 +303,7 @@
             this.groupBox1.Controls.Add(this.BTNCamon);
             this.groupBox1.Controls.Add(this.lblCamerapowerstatus);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(42, 250);
+            this.groupBox1.Location = new System.Drawing.Point(42, 272);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(433, 56);
             this.groupBox1.TabIndex = 16;
@@ -404,6 +395,8 @@
             // 
             this.tabDome.BackColor = System.Drawing.Color.Khaki;
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabDome.Controls.Add(this.lblsync);
+            this.tabDome.Controls.Add(this.label4);
             this.tabDome.Controls.Add(this.gpboxStepper);
             this.tabDome.Controls.Add(this.groupBox2);
             this.tabDome.Controls.Add(this.groupBox1);
@@ -415,6 +408,26 @@
             this.tabDome.Size = new System.Drawing.Size(517, 496);
             this.tabDome.TabIndex = 0;
             this.tabDome.Text = "Dome";
+            // 
+            // lblsync
+            // 
+            this.lblsync.AutoSize = true;
+            this.lblsync.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsync.Location = new System.Drawing.Point(395, 250);
+            this.lblsync.Name = "lblsync";
+            this.lblsync.Size = new System.Drawing.Size(57, 16);
+            this.lblsync.TabIndex = 19;
+            this.lblsync.Text = "No data";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(282, 250);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 16);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Sync indicator";
             // 
             // tabShutter
             // 
@@ -439,6 +452,22 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,6 +486,7 @@
             this.groupBox2.ResumeLayout(false);
             this.tabMonitor.ResumeLayout(false);
             this.tabDome.ResumeLayout(false);
+            this.tabDome.PerformLayout();
             this.tabInfo.ResumeLayout(false);
             this.tabInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -466,7 +496,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gpboxStepper;
-        private System.Windows.Forms.Button btnConnectToControlBox;
         private System.Windows.Forms.ComboBox cmbPickStepperPort;
         private System.Windows.Forms.Label lblControlBox;
         private System.Windows.Forms.Label lbl5;
@@ -498,6 +527,9 @@
         private System.Windows.Forms.Button btnresetControlBox;
         private System.Windows.Forms.Label lbldataTick;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblsync;
+        private System.Windows.Forms.Label label4;
+        private RoundButton rbtnConnect;
     }
 }
 

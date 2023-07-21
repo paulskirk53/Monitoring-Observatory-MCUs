@@ -61,57 +61,7 @@ namespace Monitoring
 
        
 
-        private void btnConnectToControlBox_Click(object sender, EventArgs e)
-        {
-        
-            
-            if (btnConnectToControlBox.Text == "Connect")    //connect to the encoder MCU
-            {
-                btnConnectToControlBox.Text = "Waiting for connection";
-                btnConnectToControlBox.Refresh();
-
-                try
-                {
-                   string portName = portFinder(control_box, "monitorcontrol#");
-                    
-                    control_box.PortName = portName;
-                    control_box.DTREnable = false;
-                    control_box.RTSEnable = false;
-                    control_box.ReceiveTimeout = 5;
-                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
-               
-                    control_box.Connected = true;
-                    
-                    lblControlBox.Text = "Connected on " + control_box.PortName;
-                    control_box.ClearBuffers();
-
-                    btnpowerActivate.Enabled = true;   // enable the camera power toggle button
-                    btnConnectToControlBox.Text = "Disconnect";
-                    lblControlBox.BackColor = Color.Green;
-                    tmrControloxRequests.Enabled = true;  // start the timer which requests the data packet from the MCU
-                    btnactivate.Enabled = true;    // enable the button to facilitate MCU reset
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Control Box connection failed. Check the MCU is on, connected, and in receive mode." + ex.Message);
-                    
-                }
-            }
-            else          // it's disconnect from the encoder MCU
-            {
-
-
-                
-                BTNCamon.Enabled = false;
-               
-                btnpowerActivate.Enabled = false;
-                btnactivate.Enabled = false;      // disable the reset toggle button
-
-
-                tmrControloxRequests.Enabled = false;
-                control_boxDisconnect();
-            }
-        }
+       
 
 
 
@@ -123,7 +73,7 @@ namespace Monitoring
 
             // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
             
-            String cameraPowerStatus = "";
+            
             String dataPacket = "";
 
             // THE TIMEOUT IS IMPORTANT IF it's too short, the system throws an unhandled exception whilst waiting for the MCU to respond
@@ -132,8 +82,8 @@ namespace Monitoring
             control_box.Transmit("dataRequest"); //get the data packet from the MCU
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
-           // dataPacket = dataPacket.Remove('$');   // this line caused a problem with parsing the string
-       //     MessageBox.Show(dataPacket );
+            // dataPacket = dataPacket.Remove('$');   // this line caused a problem with parsing the string
+            //  MessageBox.Show(dataPacket );
             //note new string terminator $
             // todo now unpack the data packet - adjust and remove the lines below once tested
             // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
@@ -144,10 +94,10 @@ namespace Monitoring
 
             string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator
 
-            /* the string items are arranged in the following order when they arrive from the MCU
-            dome azimuth,  target azimuth,  movementstate,  querydir,  targetmessage,  cdarray[currentazimut]  - not sure how this works - perhaps a countdown to target achieved?
+            /* there are eight string items arranged in the following order when they arrive from the MCU
+            dome azimuth,  target azimuth,  movementstate,  querydir,  targetmessage,  cdarray[currentazimut]  ,  camerapowerstate,  syncCount
 
-            camerapowerstate
+            
            */
             //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
             // There are seven items in the string 0 to 6
@@ -188,6 +138,9 @@ namespace Monitoring
                 lbldataTick.ForeColor = Color.Black;
 
             }
+
+            lblsync.Text = values[7];      // values[7] is the west synchronisation counter
+
         }
     
 
@@ -283,11 +236,14 @@ namespace Monitoring
 
             lblControlBox.BackColor = Color.Black;
             lblControlBox.Text = "Not connected " + control_box.PortName;
-            btnConnectToControlBox.Enabled = true;
+            
+            rbtnConnect.Enabled = true;
 
-            btnConnectToControlBox.Text = "Connect";
             
-            
+            rbtnConnect.Text= "Connect";
+            lblsync.Text  = "No data";
+
+
         }
 
         private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
@@ -441,7 +397,7 @@ namespace Monitoring
                 tmrControloxRequests.Enabled = false;            // stop the requests to the encoder MCU
                 control_box.Transmit("reset");         // request the reset
                 control_box.Connected = false;         // disconnect from the Port
-                btnConnectToControlBox.Text = "Connect";
+                rbtnConnect.Text = "Connect";
                 lblControlBox.Text = "Disconnected";
                 lblControlBox.BackColor = Color.Black;
 
@@ -449,6 +405,58 @@ namespace Monitoring
             else
             {
                 MessageBox.Show("Must be connected to reset", "Connection Error");
+            }
+        }
+
+        private void rbtnConnect_Click(object sender, EventArgs e)
+        {
+
+
+            if (rbtnConnect.Text == "Connect")    //connect to the encoder MCU
+            {
+                rbtnConnect.Text = "Waiting for connection";
+                rbtnConnect.Refresh();
+
+                try
+                {
+                    string portName = portFinder(control_box, "monitorcontrol#");
+
+                    control_box.PortName = portName;
+                    control_box.DTREnable = false;
+                    control_box.RTSEnable = false;
+                    control_box.ReceiveTimeout = 5;
+                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+
+                    control_box.Connected = true;
+
+                    lblControlBox.Text = "Connected on " + control_box.PortName;
+                    control_box.ClearBuffers();
+
+                    btnpowerActivate.Enabled = true;   // enable the camera power toggle button
+                    rbtnConnect.Text = "Disconnect";
+                    lblControlBox.BackColor = Color.Green;
+                    tmrControloxRequests.Enabled = true;  // start the timer which requests the data packet from the MCU
+                    btnactivate.Enabled = true;    // enable the button to facilitate MCU reset
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Control Box connection failed. Check the MCU is on, connected, and in receive mode." + ex.Message);
+
+                }
+            }
+            else          // it's disconnect from the encoder MCU
+            {
+
+
+
+                BTNCamon.Enabled = false;
+
+                btnpowerActivate.Enabled = false;
+                btnactivate.Enabled = false;      // disable the reset toggle button
+
+
+                tmrControloxRequests.Enabled = false;
+                control_boxDisconnect();
             }
         }
     }
