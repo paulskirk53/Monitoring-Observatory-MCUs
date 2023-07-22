@@ -101,10 +101,11 @@ namespace Monitoring
                 control_boxDisconnect();
                 Connect();
             }
-            catch ( Exception )
+            
+            catch ( Exception exc)
             {
                 tmrControloxRequests.Enabled = false;  //stop the data packet requests
-                MessageBox.Show(" General exception will have to restart ");
+                MessageBox.Show(" An exception occurred, will have to restart " + exc.Message );
                 
                 Environment.Exit(0);    // close the application
             }
