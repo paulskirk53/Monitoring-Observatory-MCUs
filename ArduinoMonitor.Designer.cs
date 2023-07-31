@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -52,7 +53,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnpowerActivate = new System.Windows.Forms.Button();
-            this.BTNCamon = new System.Windows.Forms.Button();
+            this.BTNCameraSwitch = new System.Windows.Forms.Button();
             this.lblCamerapowerstatus = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnresetControlBox = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,6 +98,22 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
+            // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // label1
             // 
@@ -300,7 +316,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnpowerActivate);
-            this.groupBox1.Controls.Add(this.BTNCamon);
+            this.groupBox1.Controls.Add(this.BTNCameraSwitch);
             this.groupBox1.Controls.Add(this.lblCamerapowerstatus);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(42, 272);
@@ -322,17 +338,17 @@
             this.btnpowerActivate.UseVisualStyleBackColor = true;
             this.btnpowerActivate.Click += new System.EventHandler(this.btnpowerActivate_Click);
             // 
-            // BTNCamon
+            // BTNCameraSwitch
             // 
-            this.BTNCamon.Enabled = false;
-            this.BTNCamon.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNCamon.Location = new System.Drawing.Point(156, 26);
-            this.BTNCamon.Name = "BTNCamon";
-            this.BTNCamon.Size = new System.Drawing.Size(96, 25);
-            this.BTNCamon.TabIndex = 0;
-            this.BTNCamon.Text = "Turn On";
-            this.BTNCamon.UseVisualStyleBackColor = true;
-            this.BTNCamon.Click += new System.EventHandler(this.BTNCamon_Click);
+            this.BTNCameraSwitch.Enabled = false;
+            this.BTNCameraSwitch.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNCameraSwitch.Location = new System.Drawing.Point(156, 26);
+            this.BTNCameraSwitch.Name = "BTNCameraSwitch";
+            this.BTNCameraSwitch.Size = new System.Drawing.Size(96, 25);
+            this.BTNCameraSwitch.TabIndex = 0;
+            this.BTNCameraSwitch.Text = "Turn On";
+            this.BTNCameraSwitch.UseVisualStyleBackColor = true;
+            this.BTNCameraSwitch.Click += new System.EventHandler(this.BTNCameraSwitch_Click);
             // 
             // lblCamerapowerstatus
             // 
@@ -452,22 +468,6 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
-            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,7 +513,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button BTNCamon;
+        private System.Windows.Forms.Button BTNCameraSwitch;
         private System.Windows.Forms.Label lblCamerapowerstatus;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnactivate;

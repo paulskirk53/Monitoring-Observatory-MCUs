@@ -34,7 +34,7 @@ namespace Monitoring
             
             
           //  BTNCamoff.Enabled = false;    // these work ...
-            BTNCamon.Enabled = false;
+            BTNCameraSwitch.Enabled = false;
             btnactivate.Enabled = false;
             btnresetControlBox.Text = "No Function";
             btnresetControlBox.Enabled  = false;
@@ -184,22 +184,27 @@ namespace Monitoring
 
         }
 
-        private void BTNCamon_Click(object sender, EventArgs e)
+        private void BTNCameraSwitch_Click(object sender, EventArgs e)
         {
-            if (control_box.Connected )     // the control box needs to be connected before these commands can work
+            CameraPowerSwitch();  // check the power state and toggle switch as appropriate
+        }
+
+        private void CameraPowerSwitch()   //toggle the power state
+        {
+            if (control_box.Connected)     // the control box Serial port needs to be connected before these commands can work
             {
-                if (BTNCamon.Text == "Turn On")
+                if (BTNCameraSwitch.Text == "Turn On")
                 {
                     control_box.Transmit("CAMON#");
-                    BTNCamon.Text = "Turn Off";
-                    //  lblCamerapowerstatus.Text = "On";
+                    BTNCameraSwitch.Text = "Turn Off";
+                    
                 }
                 else
                 {
                     // switch power off
                     control_box.Transmit("CAMOFF#");
-                    BTNCamon.Text = "Turn On";
-                    // lblCamerapowerstatus.Text = "Off";
+                    BTNCameraSwitch.Text = "Turn On";
+                    
                 }
             }
             else
@@ -245,13 +250,13 @@ namespace Monitoring
 
         private void btnpowerActivate_Click(object sender, EventArgs e)
         {
-            if (BTNCamon.Enabled )
+            if (BTNCameraSwitch.Enabled )
             {
-                BTNCamon.Enabled = false;
+                BTNCameraSwitch.Enabled = false;
             }
             else
             {
-                BTNCamon.Enabled = true;
+                BTNCameraSwitch.Enabled = true;
             }
 
            
@@ -260,7 +265,26 @@ namespace Monitoring
         private void control_boxDisconnect()
         {
 
-                      
+
+            // is the camera power still on? give the user a choice to turn it off before exit
+            if (BTNCameraSwitch.Text == "Turn Off")   // if this condition is true, the power is on
+            {
+                const string message = "Yes = Turn off the camera / Rotator Power before exit," + "\n" +  "No = leave the power on and exit";
+                const string caption = "Disconnecting....";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                // If the yes button was pressed ...
+                if (result == DialogResult.Yes)
+                {
+                    CameraPowerSwitch();    // switch the power off
+                }
+            }
+
+            // end new
+
+
             control_box.Connected = false;
 
             lblControlBox.BackColor = Color.Black;
@@ -483,7 +507,7 @@ namespace Monitoring
 
 
 
-                BTNCamon.Enabled = false;
+                BTNCameraSwitch.Enabled = false;
 
                 btnpowerActivate.Enabled = false;
                 btnactivate.Enabled = false;      // disable the reset toggle button
