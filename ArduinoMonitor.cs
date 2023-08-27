@@ -136,9 +136,6 @@ namespace Monitoring
             lblMoving.Text = values[2];        // movementstate
             lblDirection.Text = values[3];     // querydir - clock or anti clock
             lbltargetStatus.Text = values[4];  // target message
-            
-          
-
             lbldegreesToTarget.Text = values[5]; // degrees to target
             
 
