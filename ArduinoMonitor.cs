@@ -83,7 +83,7 @@ namespace Monitoring
            
             try
             {
-                control_box.Transmit("dataRequest");             // get the data packet from the MCU
+                control_box.Transmit("dataRequest#");             // get the data packet from the MCU
                 dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
             }
             catch (InvalidOperationException)
@@ -424,7 +424,7 @@ namespace Monitoring
         {
             String dataPacket = "";
 
-            control_box.Transmit("dataRequest"); //get the data packet from the MCU
+            control_box.Transmit("dataRequest#"); //get the data packet from the MCU
 
             dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
             dataPacket = dataPacket.Remove('$');
