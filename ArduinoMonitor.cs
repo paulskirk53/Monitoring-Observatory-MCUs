@@ -279,17 +279,31 @@ namespace Monitoring
                 }
             }
 
-            // end new
+            //new 13-11-23
 
+          // set up a dialog to request user input over the type of reset
+                const string resetMessage = "Yes = Power down reset - AZ set to home position on restart," + "\n" + "No =  Control Box will preserve the current Azimuth";
+                const string resetCaption = "Type of reset required";
+                var resetResult = MessageBox.Show(resetMessage, resetCaption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
 
-            control_box.Connected = false;
+                // If the yes button was pressed ...
+                if (resetResult == DialogResult.Yes)
+                {
+                  control_box.Transmit("eepromtoggle#");
+                }
+
+                //end new
+                
 
             lblControlBox.BackColor = Color.Black;
             lblControlBox.Text = "Not connected " + control_box.PortName;
             
             rbtnConnect.Enabled = true;
 
-            
+            control_box.Connected = false;     // disconnect the port
+
             rbtnConnect.Text= "Connect";
             lblsync.Text  = "No data";
 
