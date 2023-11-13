@@ -282,14 +282,14 @@ namespace Monitoring
             //new 13-11-23
 
           // set up a dialog to request user input over the type of reset
-                const string resetMessage = "Yes = Power down reset - AZ set to home position on restart," + "\n" + "No =  Control Box will preserve the current Azimuth";
-                const string resetCaption = "Type of reset required";
+                const string resetMessage = "Yes = Current state is preserved on Power cycle," + "\n" + "\n" + "No = EEPROM will be reset to Azimuth Home on Control Box power cycle";
+                const string resetCaption = "Preserve the Control Box EEPROM state ?";
                 var resetResult = MessageBox.Show(resetMessage, resetCaption,
                                              MessageBoxButtons.YesNo,
                                              MessageBoxIcon.Question);
 
-                // If the yes button was pressed ...
-                if (resetResult == DialogResult.Yes)
+                // If the No button was pressed ...
+                if (resetResult == DialogResult.No)
                 {
                   control_box.Transmit("eepromtoggle#");
                 }
@@ -458,6 +458,7 @@ namespace Monitoring
         {
             if (control_box.Connected)
             {
+                MessageBox.Show("Azimuth value is preserved on reset");
                 tmrControloxRequests.Enabled = false;            // stop the requests to the encoder MCU
                 control_box.Transmit("reset");         // request the reset
                 control_box.Connected = false;         // disconnect from the Port
