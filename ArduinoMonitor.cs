@@ -261,27 +261,28 @@ namespace Monitoring
 
         private void control_boxDisconnect()
         {
-
-
-            // is the camera power still on? give the user a choice to turn it off before exit
-            if (BTNCameraSwitch.Text == "Turn Off")   // if this condition is true, the power is on
+            if ((control_box != null) & control_box.Connected)
             {
-                const string message = "Yes = Turn off the camera / Rotator Power before exit," + "\n" +  "No = leave the power on and exit";
-                const string caption = "Disconnecting....";
-                var result = MessageBox.Show(message, caption,
-                                             MessageBoxButtons.YesNo,
-                                             MessageBoxIcon.Question);
 
-                // If the yes button was pressed ...
-                if (result == DialogResult.Yes)
+                // is the camera power still on? give the user a choice to turn it off before exit
+                if (BTNCameraSwitch.Text == "Turn Off")   // if this condition is true, the power is on
                 {
-                    CameraPowerSwitch();    // switch the power off
+                    const string message = "Yes = Turn off the camera / Rotator Power before exit," + "\n" + "No = leave the power on and exit";
+                    const string caption = "Disconnecting....";
+                    var result = MessageBox.Show(message, caption,
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Question);
+
+                    // If the yes button was pressed ...
+                    if (result == DialogResult.Yes)
+                    {
+                        CameraPowerSwitch();    // switch the power off
+                    }
                 }
-            }
 
-            //new 13-11-23
+                //new 13-11-23
 
-          // set up a dialog to request user input over the type of reset
+                // set up a dialog to request user input over the type of reset
                 const string resetMessage = "Yes = Current state is preserved on Power cycle," + "\n" + "\n" + "No = EEPROM will be reset to Azimuth Home on Control Box power cycle";
                 const string resetCaption = "Preserve the Control Box EEPROM state ?";
                 var resetResult = MessageBox.Show(resetMessage, resetCaption,
@@ -291,23 +292,23 @@ namespace Monitoring
                 // If the No button was pressed ...
                 if (resetResult == DialogResult.No)
                 {
-                  control_box.Transmit("eepromtoggle#");
+                    control_box.Transmit("eepromtoggle#");
                 }
 
                 //end new
-                
-
-            lblControlBox.BackColor = Color.Black;
-            lblControlBox.Text = "Not connected " + control_box.PortName;
-            
-            rbtnConnect.Enabled = true;
-
-            control_box.Connected = false;     // disconnect the port
-
-            rbtnConnect.Text= "Connect";
-            lblsync.Text  = "No data";
 
 
+                lblControlBox.BackColor = Color.Black;
+                lblControlBox.Text = "Not connected " + control_box.PortName;
+
+                rbtnConnect.Enabled = true;
+
+                control_box.Connected = false;     // disconnect the port
+
+                rbtnConnect.Text = "Connect";
+                lblsync.Text = "No data";
+
+            }
         }
 
         private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
@@ -511,6 +512,9 @@ namespace Monitoring
                 catch (Exception ex)
                 {
                     MessageBox.Show("Control Box connection failed. Check the MCU is on, connected, and in receive mode." + ex.Message);
+
+                    control_boxDisconnect();
+                    rbtnConnect.Text = "Connect";
 
                 }
             }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@
             this.lbl4 = new System.Windows.Forms.Label();
             this.lbl3 = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
-            this.lbl1 = new System.Windows.Forms.Label();
+            this.lblTargetDescription = new System.Windows.Forms.Label();
             this.cmbPickStepperPort = new System.Windows.Forms.ComboBox();
             this.tmrControloxRequests = new System.Windows.Forms.Timer(this.components);
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
@@ -63,7 +64,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,7 +90,7 @@
             this.gpboxStepper.Controls.Add(this.lbl4);
             this.gpboxStepper.Controls.Add(this.lbl3);
             this.gpboxStepper.Controls.Add(this.lbl2);
-            this.gpboxStepper.Controls.Add(this.lbl1);
+            this.gpboxStepper.Controls.Add(this.lblTargetDescription);
             this.gpboxStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
             this.gpboxStepper.Name = "gpboxStepper";
@@ -98,6 +98,22 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
+            // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // label1
             // 
@@ -207,7 +223,7 @@
             // 
             this.lblTarget.AutoSize = true;
             this.lblTarget.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblTarget.ForeColor = System.Drawing.Color.Black;
             this.lblTarget.Location = new System.Drawing.Point(159, 29);
             this.lblTarget.Name = "lblTarget";
             this.lblTarget.Size = new System.Drawing.Size(29, 16);
@@ -255,16 +271,16 @@
             this.lbl2.TabIndex = 1;
             this.lbl2.Text = "Movement direction";
             // 
-            // lbl1
+            // lblTargetDescription
             // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lbl1.Location = new System.Drawing.Point(16, 29);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(100, 16);
-            this.lbl1.TabIndex = 0;
-            this.lbl1.Text = "ASCOM Target";
+            this.lblTargetDescription.AutoSize = true;
+            this.lblTargetDescription.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTargetDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblTargetDescription.Location = new System.Drawing.Point(16, 29);
+            this.lblTargetDescription.Name = "lblTargetDescription";
+            this.lblTargetDescription.Size = new System.Drawing.Size(100, 16);
+            this.lblTargetDescription.TabIndex = 0;
+            this.lblTargetDescription.Text = "ASCOM Target";
             // 
             // cmbPickStepperPort
             // 
@@ -452,22 +468,6 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
-            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,7 +502,7 @@
         private System.Windows.Forms.Label lbl4;
         private System.Windows.Forms.Label lbl3;
         private System.Windows.Forms.Label lbl2;
-        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Label lblTargetDescription;
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.Label lbldegreesToTarget;
         private System.Windows.Forms.Label lbltargetStatus;
