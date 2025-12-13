@@ -533,7 +533,30 @@ namespace Monitoring
                 control_boxDisconnect();
             }
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            
+        
+            // Get the numeric value
+            int value = (int)numericUpDownHome.Value;
+
+            // Convert to string and append '#'
+            string message = value.ToString() + "#";
+
+            // Send via serial port
+            if (control_box.Connected)
+            {
+                control_box.Transmit(message);
+            }
+            else
+            {
+                MessageBox.Show("Serial port is not open.");
+            }
+        
+
     }
+}
 
 
 

@@ -64,12 +64,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
+            this.numericUpDownHome = new System.Windows.Forms.NumericUpDown();
+            this.btnHome = new System.Windows.Forms.Button();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabMonitor.SuspendLayout();
             this.tabDome.SuspendLayout();
             this.tabInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).BeginInit();
             this.SuspendLayout();
             // 
             // gpboxStepper
@@ -411,6 +414,8 @@
             // 
             this.tabDome.BackColor = System.Drawing.Color.Khaki;
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabDome.Controls.Add(this.btnHome);
+            this.tabDome.Controls.Add(this.numericUpDownHome);
             this.tabDome.Controls.Add(this.lblsync);
             this.tabDome.Controls.Add(this.label4);
             this.tabDome.Controls.Add(this.gpboxStepper);
@@ -468,6 +473,33 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
+            // numericUpDownHome
+            // 
+            this.numericUpDownHome.Location = new System.Drawing.Point(311, 421);
+            this.numericUpDownHome.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDownHome.Name = "numericUpDownHome";
+            this.numericUpDownHome.Size = new System.Drawing.Size(102, 29);
+            this.numericUpDownHome.TabIndex = 21;
+            this.numericUpDownHome.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            // 
+            // btnHome
+            // 
+            this.btnHome.Location = new System.Drawing.Point(29, 420);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(256, 29);
+            this.btnHome.TabIndex = 22;
+            this.btnHome.Text = "Set Home / Park position";
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +521,7 @@
             this.tabDome.PerformLayout();
             this.tabInfo.ResumeLayout(false);
             this.tabInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -530,6 +563,8 @@
         private System.Windows.Forms.Label lblsync;
         private System.Windows.Forms.Label label4;
         private RoundButton rbtnConnect;
+        private System.Windows.Forms.NumericUpDown numericUpDownHome;
+        private System.Windows.Forms.Button btnHome;
     }
 }
 
