@@ -538,25 +538,69 @@ namespace Monitoring
         {
             
         
+        
+        
+
+    }
+
+        private async void btnSet_Click(object sender, EventArgs e)
+        {
             // Get the numeric value
-            int value = (int)numericUpDownHome.Value;
+            int homeValue = (int)numericUpDownHome.Value;
+            int parkValue = (int)numericUpDownPark.Value;
 
             // Convert to string and append '#'
-            string message = value.ToString() + "#";
+            string homeMessage = "SH" + homeValue.ToString() + "#";    //send the home azimuth to the MCU for storage in eeprom
+            await Task.Delay(400); // non-blocking pause
+            string parkMessage = "SP" + parkValue.ToString() + "#";    //send the park azimuth to the MCU for storage in eeprom
 
             // Send via serial port
             if (control_box.Connected)
             {
-                control_box.Transmit(message);
+                control_box.Transmit(homeMessage);
+                
             }
             else
             {
                 MessageBox.Show("Serial port is not open.");
             }
-        
+        }
+
+        private async void btnGet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!control_box.Connected)
+                {
+                    MessageBox.Show("Serial port is not connected.");
+                    return;
+                }
+
+                // --- Step 1: Send GH# ---
+                control_box.Transmit("GH#");
+
+                // --- Step 2: Await response until '#' ---
+                string homeResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                int homeAzimuth = int.Parse(homeResponse);
+
+                // --- Step 3: Send GP# ---
+                control_box.Transmit("GP#");
+
+                // --- Step 4: Await response until '#' ---
+                string parkResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                int parkAzimuth = int.Parse(parkResponse);
+
+                // Show results
+                MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
 
     }
-}
 
 
 

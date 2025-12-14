@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -60,19 +59,27 @@
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
+            this.lblParkValue = new System.Windows.Forms.Label();
+            this.lblHomeValue = new System.Windows.Forms.Label();
+            this.btnGet = new System.Windows.Forms.Button();
+            this.btnSet = new System.Windows.Forms.Button();
+            this.lblPark = new System.Windows.Forms.Label();
+            this.lblHome = new System.Windows.Forms.Label();
+            this.numericUpDownPark = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownHome = new System.Windows.Forms.NumericUpDown();
             this.lblsync = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.numericUpDownHome = new System.Windows.Forms.NumericUpDown();
-            this.btnHome = new System.Windows.Forms.Button();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabMonitor.SuspendLayout();
             this.tabDome.SuspendLayout();
-            this.tabInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPark)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).BeginInit();
+            this.tabInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpboxStepper
@@ -95,33 +102,17 @@
             this.gpboxStepper.Controls.Add(this.lbl2);
             this.gpboxStepper.Controls.Add(this.lblTargetDescription);
             this.gpboxStepper.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpboxStepper.Location = new System.Drawing.Point(42, 24);
+            this.gpboxStepper.Location = new System.Drawing.Point(42, 20);
             this.gpboxStepper.Name = "gpboxStepper";
-            this.gpboxStepper.Size = new System.Drawing.Size(451, 223);
+            this.gpboxStepper.Size = new System.Drawing.Size(465, 227);
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
             // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(302, 0);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(131, 94);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(241, 185);
+            this.label1.Location = new System.Drawing.Point(241, 165);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 16);
             this.label1.TabIndex = 17;
@@ -130,7 +121,7 @@
             // lbldataTick
             // 
             this.lbldataTick.AutoSize = true;
-            this.lbldataTick.Location = new System.Drawing.Point(408, 186);
+            this.lbldataTick.Location = new System.Drawing.Point(408, 166);
             this.lbldataTick.Name = "lbldataTick";
             this.lbldataTick.Size = new System.Drawing.Size(33, 16);
             this.lbldataTick.TabIndex = 16;
@@ -141,7 +132,7 @@
             this.lblDomeAzimuth.AutoSize = true;
             this.lblDomeAzimuth.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDomeAzimuth.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 181);
+            this.lblDomeAzimuth.Location = new System.Drawing.Point(159, 161);
             this.lblDomeAzimuth.Name = "lblDomeAzimuth";
             this.lblDomeAzimuth.Size = new System.Drawing.Size(46, 24);
             this.lblDomeAzimuth.TabIndex = 11;
@@ -152,7 +143,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(291, 122);
+            this.label3.Location = new System.Drawing.Point(313, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 16);
             this.label3.TabIndex = 15;
@@ -164,7 +155,7 @@
             this.lbl6.AutoSize = true;
             this.lbl6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbl6.Location = new System.Drawing.Point(17, 181);
+            this.lbl6.Location = new System.Drawing.Point(17, 162);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(120, 19);
             this.lbl6.TabIndex = 10;
@@ -205,9 +196,9 @@
             this.lblControlBox.BackColor = System.Drawing.Color.Black;
             this.lblControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControlBox.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblControlBox.Location = new System.Drawing.Point(266, 140);
+            this.lblControlBox.Location = new System.Drawing.Point(304, 115);
             this.lblControlBox.Name = "lblControlBox";
-            this.lblControlBox.Size = new System.Drawing.Size(175, 30);
+            this.lblControlBox.Size = new System.Drawing.Size(143, 30);
             this.lblControlBox.TabIndex = 7;
             this.lblControlBox.Text = "Not Connected";
             this.lblControlBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -378,9 +369,9 @@
             // 
             // btnresetControlBox
             // 
-            this.btnresetControlBox.Location = new System.Drawing.Point(183, 18);
+            this.btnresetControlBox.Location = new System.Drawing.Point(160, 18);
             this.btnresetControlBox.Name = "btnresetControlBox";
-            this.btnresetControlBox.Size = new System.Drawing.Size(144, 24);
+            this.btnresetControlBox.Size = new System.Drawing.Size(110, 24);
             this.btnresetControlBox.TabIndex = 2;
             this.btnresetControlBox.Text = "Reset the MCU";
             this.btnresetControlBox.UseVisualStyleBackColor = true;
@@ -414,7 +405,13 @@
             // 
             this.tabDome.BackColor = System.Drawing.Color.Khaki;
             this.tabDome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabDome.Controls.Add(this.btnHome);
+            this.tabDome.Controls.Add(this.lblParkValue);
+            this.tabDome.Controls.Add(this.lblHomeValue);
+            this.tabDome.Controls.Add(this.btnGet);
+            this.tabDome.Controls.Add(this.btnSet);
+            this.tabDome.Controls.Add(this.lblPark);
+            this.tabDome.Controls.Add(this.lblHome);
+            this.tabDome.Controls.Add(this.numericUpDownPark);
             this.tabDome.Controls.Add(this.numericUpDownHome);
             this.tabDome.Controls.Add(this.lblsync);
             this.tabDome.Controls.Add(this.label4);
@@ -430,11 +427,111 @@
             this.tabDome.TabIndex = 0;
             this.tabDome.Text = "Dome";
             // 
+            // lblParkValue
+            // 
+            this.lblParkValue.AutoSize = true;
+            this.lblParkValue.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParkValue.Location = new System.Drawing.Point(370, 459);
+            this.lblParkValue.Name = "lblParkValue";
+            this.lblParkValue.Size = new System.Drawing.Size(29, 16);
+            this.lblParkValue.TabIndex = 27;
+            this.lblParkValue.Text = "999";
+            // 
+            // lblHomeValue
+            // 
+            this.lblHomeValue.AutoSize = true;
+            this.lblHomeValue.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHomeValue.Location = new System.Drawing.Point(369, 435);
+            this.lblHomeValue.Name = "lblHomeValue";
+            this.lblHomeValue.Size = new System.Drawing.Size(29, 16);
+            this.lblHomeValue.TabIndex = 21;
+            this.lblHomeValue.Text = "999";
+            // 
+            // btnGet
+            // 
+            this.btnGet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGet.Location = new System.Drawing.Point(352, 403);
+            this.btnGet.Name = "btnGet";
+            this.btnGet.Size = new System.Drawing.Size(58, 24);
+            this.btnGet.TabIndex = 26;
+            this.btnGet.Text = "Get";
+            this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
+            // 
+            // btnSet
+            // 
+            this.btnSet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSet.Location = new System.Drawing.Point(426, 403);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.Size = new System.Drawing.Size(58, 24);
+            this.btnSet.TabIndex = 25;
+            this.btnSet.Text = "Set";
+            this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
+            // 
+            // lblPark
+            // 
+            this.lblPark.AutoSize = true;
+            this.lblPark.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPark.Location = new System.Drawing.Point(293, 457);
+            this.lblPark.Name = "lblPark";
+            this.lblPark.Size = new System.Drawing.Size(37, 16);
+            this.lblPark.TabIndex = 24;
+            this.lblPark.Text = "Park";
+            // 
+            // lblHome
+            // 
+            this.lblHome.AutoSize = true;
+            this.lblHome.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHome.Location = new System.Drawing.Point(292, 434);
+            this.lblHome.Name = "lblHome";
+            this.lblHome.Size = new System.Drawing.Size(45, 16);
+            this.lblHome.TabIndex = 21;
+            this.lblHome.Text = "Home";
+            // 
+            // numericUpDownPark
+            // 
+            this.numericUpDownPark.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownPark.Location = new System.Drawing.Point(426, 457);
+            this.numericUpDownPark.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDownPark.Name = "numericUpDownPark";
+            this.numericUpDownPark.Size = new System.Drawing.Size(62, 22);
+            this.numericUpDownPark.TabIndex = 23;
+            this.numericUpDownPark.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownPark.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDownHome
+            // 
+            this.numericUpDownHome.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownHome.Location = new System.Drawing.Point(427, 433);
+            this.numericUpDownHome.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.numericUpDownHome.Name = "numericUpDownHome";
+            this.numericUpDownHome.Size = new System.Drawing.Size(62, 22);
+            this.numericUpDownHome.TabIndex = 21;
+            this.numericUpDownHome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownHome.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            // 
             // lblsync
             // 
             this.lblsync.AutoSize = true;
             this.lblsync.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsync.Location = new System.Drawing.Point(395, 250);
+            this.lblsync.Location = new System.Drawing.Point(27, 464);
             this.lblsync.Name = "lblsync";
             this.lblsync.Size = new System.Drawing.Size(57, 16);
             this.lblsync.TabIndex = 19;
@@ -444,11 +541,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(282, 250);
+            this.label4.Location = new System.Drawing.Point(26, 441);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 16);
+            this.label4.Size = new System.Drawing.Size(89, 16);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Sync indicator";
+            this.label4.Text = "Found Home";
             // 
             // tabShutter
             // 
@@ -473,32 +570,21 @@
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownHome
+            // rbtnConnect
             // 
-            this.numericUpDownHome.Location = new System.Drawing.Point(311, 421);
-            this.numericUpDownHome.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.numericUpDownHome.Name = "numericUpDownHome";
-            this.numericUpDownHome.Size = new System.Drawing.Size(102, 29);
-            this.numericUpDownHome.TabIndex = 21;
-            this.numericUpDownHome.Value = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            // 
-            // btnHome
-            // 
-            this.btnHome.Location = new System.Drawing.Point(29, 420);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(256, 29);
-            this.btnHome.TabIndex = 22;
-            this.btnHome.Text = "Set Home / Park position";
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // ArduinoMonitor
             // 
@@ -519,9 +605,10 @@
             this.tabMonitor.ResumeLayout(false);
             this.tabDome.ResumeLayout(false);
             this.tabDome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPark)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).EndInit();
             this.tabInfo.ResumeLayout(false);
             this.tabInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -564,7 +651,13 @@
         private System.Windows.Forms.Label label4;
         private RoundButton rbtnConnect;
         private System.Windows.Forms.NumericUpDown numericUpDownHome;
-        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Label lblPark;
+        private System.Windows.Forms.Label lblHome;
+        private System.Windows.Forms.NumericUpDown numericUpDownPark;
+        private System.Windows.Forms.Label lblParkValue;
+        private System.Windows.Forms.Label lblHomeValue;
+        private System.Windows.Forms.Button btnGet;
+        private System.Windows.Forms.Button btnSet;
     }
 }
 
