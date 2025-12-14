@@ -551,14 +551,15 @@ namespace Monitoring
 
             // Convert to string and append '#'
             string homeMessage = "SH" + homeValue.ToString() + "#";    //send the home azimuth to the MCU for storage in eeprom
-            await Task.Delay(400); // non-blocking pause
+            
             string parkMessage = "SP" + parkValue.ToString() + "#";    //send the park azimuth to the MCU for storage in eeprom
 
             // Send via serial port
             if (control_box.Connected)
             {
                 control_box.Transmit(homeMessage);
-                
+                await Task.Delay(500); // non-blocking pause
+                control_box.Transmit(parkMessage);
             }
             else
             {
@@ -581,21 +582,25 @@ namespace Monitoring
 
                 // --- Step 2: Await response until '#' ---
                 string homeResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                homeResponse = homeResponse.TrimEnd('#');
                 int homeAzimuth = int.Parse(homeResponse);
+                lblHomeValue.Text = homeAzimuth.ToString();
 
                 // --- Step 3: Send GP# ---
                 control_box.Transmit("GP#");
 
                 // --- Step 4: Await response until '#' ---
                 string parkResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                parkResponse = parkResponse.TrimEnd('#');   // remove # mark
                 int parkAzimuth = int.Parse(parkResponse);
+                lblParkValue.Text = parkAzimuth.ToString();
 
                 // Show results
                 MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("catch Error: " + ex.Message);
             }
         }
 
