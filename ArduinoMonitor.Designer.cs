@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabShutter = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -108,6 +108,22 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
+            // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // label1
             // 
@@ -196,9 +212,9 @@
             this.lblControlBox.BackColor = System.Drawing.Color.Black;
             this.lblControlBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControlBox.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblControlBox.Location = new System.Drawing.Point(304, 115);
+            this.lblControlBox.Location = new System.Drawing.Point(271, 115);
             this.lblControlBox.Name = "lblControlBox";
-            this.lblControlBox.Size = new System.Drawing.Size(143, 30);
+            this.lblControlBox.Size = new System.Drawing.Size(176, 30);
             this.lblControlBox.TabIndex = 7;
             this.lblControlBox.Text = "Not Connected";
             this.lblControlBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -569,22 +585,6 @@
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Info";
             this.tabInfo.UseVisualStyleBackColor = true;
-            // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // ArduinoMonitor
             // 
