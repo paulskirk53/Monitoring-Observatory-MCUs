@@ -282,20 +282,24 @@ namespace Monitoring
 
                 //new 13-11-23
 
-                // set up a dialog to request user input over the type of reset
-                const string resetMessage = "Yes = Current state is preserved on Power cycle," + "\n" + "\n" + "No = EEPROM will be reset to Azimuth Home on Control Box power cycle";
-                const string resetCaption = "Preserve the Control Box EEPROM state ?";
+                // set up a dialog to request user input over how the azimuth is treated when the MCU disconnects
+                const string resetMessage = "Yes = the current Azimuth is preserved," + "\n" + "\n" + "No = Azimuth will be set to Park Azimuth.";
+                const string resetCaption = "Preserve the current Azimuth in EEPROM ?";
                 var resetResult = MessageBox.Show(resetMessage, resetCaption,
                                              MessageBoxButtons.YesNo,
                                              MessageBoxIcon.Question);
 
-                // If the No button was pressed ...
+                // If the No (don't preserve current azimuth button was pressed ...
                 if (resetResult == DialogResult.No)
                 {
-                    control_box.Transmit("eepromtoggle#");
+                    control_box.Transmit("nokeepaz#");
                 }
-
-                //end new
+                //if the yes button is presssed, preserve the current azimuth in eeprom
+                if (resetResult == DialogResult.Yes)
+                {
+                    control_box.Transmit("keepaz#");
+                }
+                
 
 
                 lblControlBox.BackColor = Color.Black;
