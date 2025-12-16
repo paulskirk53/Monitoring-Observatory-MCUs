@@ -600,7 +600,7 @@ namespace Monitoring
                 lblParkValue.Text = parkAzimuth.ToString();
 
                 // Show results
-                MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
+              //  MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
             }
             catch (Exception ex)
             {
