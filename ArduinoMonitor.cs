@@ -2,10 +2,8 @@
  * 
  ********  status of this project: *******
  * 
- * Best to look in Github 4-2-22
+ * Best to look in Github 17-12-25
  * 
- * now the connection strings are sent, for the stepper, on disconnect, must send a string to stop the monitor data flow
- *  as otherwise the port is flooded when a RECONNECTIOn is attempeted
  */
 
 using System;
