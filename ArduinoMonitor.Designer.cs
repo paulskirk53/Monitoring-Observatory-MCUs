@@ -94,6 +94,10 @@
             this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.rbtnConnect = new Monitoring.RoundButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.gpboxStepper.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -580,6 +584,9 @@
             // tabMotor
             // 
             this.tabMotor.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.tabMotor.Controls.Add(this.label19);
+            this.tabMotor.Controls.Add(this.btnLoad);
+            this.tabMotor.Controls.Add(this.label18);
             this.tabMotor.Controls.Add(this.label11);
             this.tabMotor.Controls.Add(this.label10);
             this.tabMotor.Controls.Add(this.label9);
@@ -647,7 +654,7 @@
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label7.Size = new System.Drawing.Size(187, 55);
             this.label7.TabIndex = 41;
-            this.label7.Text = "Saves the Motor shaft revolutions per dome revolutionto EEPROM";
+            this.label7.Text = "Saves the Motor shaft revolutions per dome revolution to EEPROM";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button1
@@ -672,7 +679,7 @@
             // 
             this.numericUpDownMotorShaftRevsPerDomeRev.DecimalPlaces = 2;
             this.numericUpDownMotorShaftRevsPerDomeRev.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownMotorShaftRevsPerDomeRev.Location = new System.Drawing.Point(226, 237);
+            this.numericUpDownMotorShaftRevsPerDomeRev.Location = new System.Drawing.Point(223, 237);
             this.numericUpDownMotorShaftRevsPerDomeRev.Maximum = new decimal(new int[] {
             200,
             0,
@@ -749,7 +756,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(23, 164);
+            this.label5.Location = new System.Drawing.Point(23, 167);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label5.Size = new System.Drawing.Size(140, 32);
@@ -760,6 +767,7 @@
             // tabEncoder
             // 
             this.tabEncoder.BackColor = System.Drawing.Color.Goldenrod;
+            this.tabEncoder.Controls.Add(this.label20);
             this.tabEncoder.Controls.Add(this.label17);
             this.tabEncoder.Controls.Add(this.numericUpDownEncoderRevsPerDomeRev);
             this.tabEncoder.Controls.Add(this.label16);
@@ -907,6 +915,46 @@
             this.rbtnConnect.UseVisualStyleBackColor = false;
             this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(40, 45);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(220, 16);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Load Values below from EEPROM";
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(311, 35);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(136, 33);
+            this.btnLoad.TabIndex = 47;
+            this.btnLoad.Text = "Load fields";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(134, 445);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(190, 16);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "This form not yet operational";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(140, 400);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(190, 16);
+            this.label20.TabIndex = 54;
+            this.label20.Text = "This form not yet operational";
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1013,6 +1061,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown numericUpDownEncoderTicks;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }
 
