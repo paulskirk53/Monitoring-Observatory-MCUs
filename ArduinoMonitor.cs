@@ -28,7 +28,7 @@ namespace Monitoring
         {
             InitializeComponent();
            
-            cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
+          //  cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
             
             
           //  BTNCamoff.Enabled = false;    // these work ...

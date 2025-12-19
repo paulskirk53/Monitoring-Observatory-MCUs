@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -94,6 +93,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -139,22 +139,6 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
-            // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Gold;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // label1
             // 
@@ -443,7 +427,7 @@
             this.tabMonitor.Controls.Add(this.tabMotor);
             this.tabMonitor.Controls.Add(this.tabEncoder);
             this.tabMonitor.ItemSize = new System.Drawing.Size(80, 30);
-            this.tabMonitor.Location = new System.Drawing.Point(27, 6);
+            this.tabMonitor.Location = new System.Drawing.Point(28, 6);
             this.tabMonitor.Name = "tabMonitor";
             this.tabMonitor.SelectedIndex = 0;
             this.tabMonitor.Size = new System.Drawing.Size(525, 534);
@@ -906,6 +890,22 @@
             this.label12.Size = new System.Drawing.Size(107, 16);
             this.label12.TabIndex = 45;
             this.label12.Text = "encoder Ticks =";
+            // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.YellowGreen;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // ArduinoMonitor
             // 
