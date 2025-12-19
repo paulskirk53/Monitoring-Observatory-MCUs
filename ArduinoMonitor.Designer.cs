@@ -71,29 +71,29 @@
             this.lblPark = new System.Windows.Forms.Label();
             this.btnSet = new System.Windows.Forms.Button();
             this.tabMotor = new System.Windows.Forms.TabPage();
-            this.tabEncoder = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDownControllerDIP = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDownMotorShaftRevsPerDomeRev = new System.Windows.Forms.NumericUpDown();
-            this.btnCalc = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.numericUpDownTicksPerDomeRev = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.numericUpDownEncoderRevsPerDomeRev = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCalc = new System.Windows.Forms.Button();
+            this.numericUpDownMotorShaftRevsPerDomeRev = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericUpDownControllerDIP = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabEncoder = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
+            this.numericUpDownEncoderRevsPerDomeRev = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numericUpDownTicksPerDomeRev = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             this.gpboxStepper.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,13 +104,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPark)).BeginInit();
             this.tabMotor.SuspendLayout();
-            this.tabEncoder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownControllerDIP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMotorShaftRevsPerDomeRev)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderTicks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTicksPerDomeRev)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownControllerDIP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabEncoder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderRevsPerDomeRev)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTicksPerDomeRev)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderTicks)).BeginInit();
             this.SuspendLayout();
             // 
             // gpboxStepper
@@ -143,7 +143,7 @@
             // rbtnConnect
             // 
             this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.Orange;
+            this.rbtnConnect.BackColor = System.Drawing.Color.Gold;
             this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -161,7 +161,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(241, 165);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 16);
+            this.label1.Size = new System.Drawing.Size(151, 16);
             this.label1.TabIndex = 17;
             this.label1.Text = "Data Request indicator";
             // 
@@ -170,7 +170,7 @@
             this.lbldataTick.AutoSize = true;
             this.lbldataTick.Location = new System.Drawing.Point(408, 166);
             this.lbldataTick.Name = "lbldataTick";
-            this.lbldataTick.Size = new System.Drawing.Size(33, 16);
+            this.lbldataTick.Size = new System.Drawing.Size(32, 16);
             this.lbldataTick.TabIndex = 16;
             this.lbldataTick.Text = "Pull";
             // 
@@ -192,7 +192,7 @@
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(318, 97);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 16);
+            this.label3.Size = new System.Drawing.Size(122, 16);
             this.label3.TabIndex = 15;
             this.label3.Text = "Connection Status";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -214,7 +214,7 @@
             this.lblDirection.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDirection.Location = new System.Drawing.Point(159, 51);
             this.lblDirection.Name = "lblDirection";
-            this.lblDirection.Size = new System.Drawing.Size(100, 16);
+            this.lblDirection.Size = new System.Drawing.Size(99, 16);
             this.lblDirection.TabIndex = 9;
             this.lblDirection.Text = "Awaiting  data";
             // 
@@ -235,7 +235,7 @@
             this.lbltargetStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltargetStatus.Location = new System.Drawing.Point(159, 89);
             this.lbltargetStatus.Name = "lbltargetStatus";
-            this.lbltargetStatus.Size = new System.Drawing.Size(100, 16);
+            this.lbltargetStatus.Size = new System.Drawing.Size(99, 16);
             this.lbltargetStatus.TabIndex = 7;
             this.lbltargetStatus.Text = "Awaiting  data";
             // 
@@ -257,7 +257,7 @@
             this.lblMoving.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMoving.Location = new System.Drawing.Point(159, 71);
             this.lblMoving.Name = "lblMoving";
-            this.lblMoving.Size = new System.Drawing.Size(100, 16);
+            this.lblMoving.Size = new System.Drawing.Size(99, 16);
             this.lblMoving.TabIndex = 6;
             this.lblMoving.Text = "Awaiting  data";
             // 
@@ -268,7 +268,7 @@
             this.lblTarget.ForeColor = System.Drawing.Color.Black;
             this.lblTarget.Location = new System.Drawing.Point(159, 29);
             this.lblTarget.Name = "lblTarget";
-            this.lblTarget.Size = new System.Drawing.Size(29, 16);
+            this.lblTarget.Size = new System.Drawing.Size(28, 16);
             this.lblTarget.TabIndex = 5;
             this.lblTarget.Text = "999";
             // 
@@ -279,7 +279,7 @@
             this.lbl5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl5.Location = new System.Drawing.Point(16, 120);
             this.lbl5.Name = "lbl5";
-            this.lbl5.Size = new System.Drawing.Size(117, 16);
+            this.lbl5.Size = new System.Drawing.Size(116, 16);
             this.lbl5.TabIndex = 4;
             this.lbl5.Text = "Degrees to target";
             // 
@@ -289,7 +289,7 @@
             this.lbl4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl4.Location = new System.Drawing.Point(16, 89);
             this.lbl4.Name = "lbl4";
-            this.lbl4.Size = new System.Drawing.Size(91, 16);
+            this.lbl4.Size = new System.Drawing.Size(90, 16);
             this.lbl4.TabIndex = 3;
             this.lbl4.Text = "Target Status";
             // 
@@ -299,7 +299,7 @@
             this.lbl3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl3.Location = new System.Drawing.Point(16, 71);
             this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(117, 16);
+            this.lbl3.Size = new System.Drawing.Size(116, 16);
             this.lbl3.TabIndex = 2;
             this.lbl3.Text = "Movement Status";
             // 
@@ -309,7 +309,7 @@
             this.lbl2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl2.Location = new System.Drawing.Point(16, 51);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(134, 16);
+            this.lbl2.Size = new System.Drawing.Size(133, 16);
             this.lbl2.TabIndex = 1;
             this.lbl2.Text = "Movement direction";
             // 
@@ -320,7 +320,7 @@
             this.lblTargetDescription.ForeColor = System.Drawing.Color.Black;
             this.lblTargetDescription.Location = new System.Drawing.Point(16, 29);
             this.lblTargetDescription.Name = "lblTargetDescription";
-            this.lblTargetDescription.Size = new System.Drawing.Size(100, 16);
+            this.lblTargetDescription.Size = new System.Drawing.Size(99, 16);
             this.lblTargetDescription.TabIndex = 0;
             this.lblTargetDescription.Text = "ASCOM Target";
             // 
@@ -337,9 +337,9 @@
             // 
             this.groupBox3.Controls.Add(this.lblsync);
             this.groupBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(344, 297);
+            this.groupBox3.Location = new System.Drawing.Point(344, 307);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(162, 50);
+            this.groupBox3.Size = new System.Drawing.Size(104, 50);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dome Sync";
@@ -349,9 +349,9 @@
             // 
             this.lblsync.AutoSize = true;
             this.lblsync.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsync.Location = new System.Drawing.Point(11, 24);
+            this.lblsync.Location = new System.Drawing.Point(11, 34);
             this.lblsync.Name = "lblsync";
-            this.lblsync.Size = new System.Drawing.Size(57, 16);
+            this.lblsync.Size = new System.Drawing.Size(56, 16);
             this.lblsync.TabIndex = 19;
             this.lblsync.Text = "No data";
             // 
@@ -361,7 +361,7 @@
             this.groupBox1.Controls.Add(this.BTNCameraSwitch);
             this.groupBox1.Controls.Add(this.lblCamerapowerstatus);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(42, 225);
+            this.groupBox1.Location = new System.Drawing.Point(42, 230);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(433, 56);
             this.groupBox1.TabIndex = 16;
@@ -372,7 +372,7 @@
             // 
             this.btnpowerActivate.Enabled = false;
             this.btnpowerActivate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnpowerActivate.Location = new System.Drawing.Point(16, 25);
+            this.btnpowerActivate.Location = new System.Drawing.Point(16, 30);
             this.btnpowerActivate.Name = "btnpowerActivate";
             this.btnpowerActivate.Size = new System.Drawing.Size(114, 23);
             this.btnpowerActivate.TabIndex = 3;
@@ -384,7 +384,7 @@
             // 
             this.BTNCameraSwitch.Enabled = false;
             this.BTNCameraSwitch.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNCameraSwitch.Location = new System.Drawing.Point(156, 26);
+            this.BTNCameraSwitch.Location = new System.Drawing.Point(156, 31);
             this.BTNCameraSwitch.Name = "BTNCameraSwitch";
             this.BTNCameraSwitch.Size = new System.Drawing.Size(96, 25);
             this.BTNCameraSwitch.TabIndex = 0;
@@ -396,9 +396,9 @@
             // 
             this.lblCamerapowerstatus.AutoSize = true;
             this.lblCamerapowerstatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCamerapowerstatus.Location = new System.Drawing.Point(295, 29);
+            this.lblCamerapowerstatus.Location = new System.Drawing.Point(295, 34);
             this.lblCamerapowerstatus.Name = "lblCamerapowerstatus";
-            this.lblCamerapowerstatus.Size = new System.Drawing.Size(144, 16);
+            this.lblCamerapowerstatus.Size = new System.Drawing.Size(143, 16);
             this.lblCamerapowerstatus.TabIndex = 17;
             this.lblCamerapowerstatus.Text = "Camera Power State ";
             this.lblCamerapowerstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -408,7 +408,7 @@
             this.groupBox2.Controls.Add(this.btnresetControlBox);
             this.groupBox2.Controls.Add(this.btnactivate);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(42, 285);
+            this.groupBox2.Location = new System.Drawing.Point(42, 295);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(288, 53);
             this.groupBox2.TabIndex = 18;
@@ -417,7 +417,7 @@
             // 
             // btnresetControlBox
             // 
-            this.btnresetControlBox.Location = new System.Drawing.Point(160, 18);
+            this.btnresetControlBox.Location = new System.Drawing.Point(160, 28);
             this.btnresetControlBox.Name = "btnresetControlBox";
             this.btnresetControlBox.Size = new System.Drawing.Size(110, 24);
             this.btnresetControlBox.TabIndex = 2;
@@ -428,7 +428,7 @@
             // btnactivate
             // 
             this.btnactivate.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnactivate.Location = new System.Drawing.Point(16, 19);
+            this.btnactivate.Location = new System.Drawing.Point(16, 29);
             this.btnactivate.Name = "btnactivate";
             this.btnactivate.Size = new System.Drawing.Size(114, 23);
             this.btnactivate.TabIndex = 0;
@@ -529,7 +529,7 @@
             this.lblParkValue.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblParkValue.Location = new System.Drawing.Point(97, 59);
             this.lblParkValue.Name = "lblParkValue";
-            this.lblParkValue.Size = new System.Drawing.Size(29, 16);
+            this.lblParkValue.Size = new System.Drawing.Size(28, 16);
             this.lblParkValue.TabIndex = 27;
             this.lblParkValue.Text = "999";
             // 
@@ -558,7 +558,7 @@
             this.lblHomeValue.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHomeValue.Location = new System.Drawing.Point(96, 35);
             this.lblHomeValue.Name = "lblHomeValue";
-            this.lblHomeValue.Size = new System.Drawing.Size(29, 16);
+            this.lblHomeValue.Size = new System.Drawing.Size(28, 16);
             this.lblHomeValue.TabIndex = 21;
             this.lblHomeValue.Text = "999";
             // 
@@ -568,7 +568,7 @@
             this.lblHome.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.Location = new System.Drawing.Point(19, 35);
             this.lblHome.Name = "lblHome";
-            this.lblHome.Size = new System.Drawing.Size(45, 16);
+            this.lblHome.Size = new System.Drawing.Size(44, 16);
             this.lblHome.TabIndex = 21;
             this.lblHome.Text = "Home";
             // 
@@ -578,7 +578,7 @@
             this.lblPark.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPark.Location = new System.Drawing.Point(20, 57);
             this.lblPark.Name = "lblPark";
-            this.lblPark.Size = new System.Drawing.Size(37, 16);
+            this.lblPark.Size = new System.Drawing.Size(36, 16);
             this.lblPark.TabIndex = 24;
             this.lblPark.Text = "Park";
             // 
@@ -595,6 +595,7 @@
             // 
             // tabMotor
             // 
+            this.tabMotor.BackColor = System.Drawing.Color.MediumAquamarine;
             this.tabMotor.Controls.Add(this.label11);
             this.tabMotor.Controls.Add(this.label10);
             this.tabMotor.Controls.Add(this.label9);
@@ -615,96 +616,73 @@
             this.tabMotor.Size = new System.Drawing.Size(517, 496);
             this.tabMotor.TabIndex = 1;
             this.tabMotor.Text = "Motor";
-            this.tabMotor.UseVisualStyleBackColor = true;
             // 
-            // tabEncoder
+            // label11
             // 
-            this.tabEncoder.Controls.Add(this.label17);
-            this.tabEncoder.Controls.Add(this.numericUpDownEncoderRevsPerDomeRev);
-            this.tabEncoder.Controls.Add(this.label16);
-            this.tabEncoder.Controls.Add(this.label15);
-            this.tabEncoder.Controls.Add(this.numericUpDownTicksPerDomeRev);
-            this.tabEncoder.Controls.Add(this.label14);
-            this.tabEncoder.Controls.Add(this.label13);
-            this.tabEncoder.Controls.Add(this.numericUpDownEncoderTicks);
-            this.tabEncoder.Controls.Add(this.label12);
-            this.tabEncoder.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabEncoder.Location = new System.Drawing.Point(4, 34);
-            this.tabEncoder.Name = "tabEncoder";
-            this.tabEncoder.Size = new System.Drawing.Size(517, 496);
-            this.tabEncoder.TabIndex = 2;
-            this.tabEncoder.Text = "Encoder";
-            this.tabEncoder.UseVisualStyleBackColor = true;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(342, 237);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 22);
+            this.label11.TabIndex = 45;
+            this.label11.Text = "(3)";
             // 
-            // label5
+            // label10
             // 
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(23, 164);
-            this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label5.Size = new System.Drawing.Size(140, 32);
-            this.label5.TabIndex = 33;
-            this.label5.Text = "Motor steps / degree of dome movement";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(342, 174);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 22);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "(2)";
             // 
-            // numericUpDown1
+            // label9
             // 
-            this.numericUpDown1.DecimalPlaces = 3;
-            this.numericUpDown1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(222, 174);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(64, 22);
-            this.numericUpDown1.TabIndex = 34;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            76333,
-            0,
-            0,
-            196608});
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(342, 121);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 22);
+            this.label9.TabIndex = 43;
+            this.label9.Text = "(1)";
             // 
-            // label2
+            // label8
             // 
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 104);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(140, 49);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Controller DIP settings for one shaft rotation";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(189, 310);
+            this.label8.Name = "label8";
+            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label8.Size = new System.Drawing.Size(186, 27);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "Calculates 2 from 1 and 3 ";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // numericUpDownControllerDIP
+            // label7
             // 
-            this.numericUpDownControllerDIP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownControllerDIP.Location = new System.Drawing.Point(222, 120);
-            this.numericUpDownControllerDIP.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.numericUpDownControllerDIP.Name = "numericUpDownControllerDIP";
-            this.numericUpDownControllerDIP.Size = new System.Drawing.Size(64, 22);
-            this.numericUpDownControllerDIP.TabIndex = 36;
-            this.numericUpDownControllerDIP.Value = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
+            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(23, 355);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label7.Size = new System.Drawing.Size(187, 55);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "Saves the Motor shaft revolutions per dome revolutionto EEPROM";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label6
+            // button1
             // 
-            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 223);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(140, 55);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Motor shaft revolutions per dome revolution";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(228, 365);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 34);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnCalc
+            // 
+            this.btnCalc.Location = new System.Drawing.Point(44, 300);
+            this.btnCalc.Name = "btnCalc";
+            this.btnCalc.Size = new System.Drawing.Size(116, 34);
+            this.btnCalc.TabIndex = 39;
+            this.btnCalc.Text = "Calculate";
+            this.btnCalc.UseVisualStyleBackColor = true;
             // 
             // numericUpDownMotorShaftRevsPerDomeRev
             // 
@@ -725,158 +703,104 @@
             0,
             65536});
             // 
-            // btnCalc
+            // label6
             // 
-            this.btnCalc.Location = new System.Drawing.Point(44, 300);
-            this.btnCalc.Name = "btnCalc";
-            this.btnCalc.Size = new System.Drawing.Size(116, 34);
-            this.btnCalc.TabIndex = 39;
-            this.btnCalc.Text = "Calculate";
-            this.btnCalc.UseVisualStyleBackColor = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(23, 223);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label6.Size = new System.Drawing.Size(140, 55);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Motor shaft revolutions per dome revolution";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // numericUpDownControllerDIP
             // 
-            this.button1.Location = new System.Drawing.Point(228, 365);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 34);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(23, 355);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(187, 55);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "Saves the Motor shaft revolutions per dome revolutionto EEPROM";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(189, 310);
-            this.label8.Name = "label8";
-            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(186, 27);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "Calculates 3 from 1 and 2 ";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(342, 121);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 22);
-            this.label9.TabIndex = 43;
-            this.label9.Text = "(1)";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(342, 174);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 22);
-            this.label10.TabIndex = 44;
-            this.label10.Text = "(2)";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(342, 237);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 22);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "(3)";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(27, 89);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(108, 16);
-            this.label12.TabIndex = 45;
-            this.label12.Text = "encoder Ticks =";
-            // 
-            // numericUpDownEncoderTicks
-            // 
-            this.numericUpDownEncoderTicks.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownEncoderTicks.Location = new System.Drawing.Point(143, 87);
-            this.numericUpDownEncoderTicks.Maximum = new decimal(new int[] {
+            this.numericUpDownControllerDIP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownControllerDIP.Location = new System.Drawing.Point(222, 120);
+            this.numericUpDownControllerDIP.Maximum = new decimal(new int[] {
             3000,
             0,
             0,
             0});
-            this.numericUpDownEncoderTicks.Name = "numericUpDownEncoderTicks";
-            this.numericUpDownEncoderTicks.Size = new System.Drawing.Size(64, 22);
-            this.numericUpDownEncoderTicks.TabIndex = 46;
-            this.numericUpDownEncoderTicks.Value = new decimal(new int[] {
-            600,
+            this.numericUpDownControllerDIP.Name = "numericUpDownControllerDIP";
+            this.numericUpDownControllerDIP.Size = new System.Drawing.Size(64, 22);
+            this.numericUpDownControllerDIP.TabIndex = 36;
+            this.numericUpDownControllerDIP.Value = new decimal(new int[] {
+            800,
             0,
             0,
             0});
             // 
-            // label13
+            // label2
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(226, 91);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(132, 16);
-            this.label13.TabIndex = 47;
-            this.label13.Text = "Per shaft revolution";
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(23, 104);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(140, 49);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Controller DIP settings for one shaft rotation";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label14
+            // numericUpDown1
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(27, 150);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(108, 16);
-            this.label14.TabIndex = 48;
-            this.label14.Text = "encoder Ticks =";
-            // 
-            // numericUpDownTicksPerDomeRev
-            // 
-            this.numericUpDownTicksPerDomeRev.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownTicksPerDomeRev.Location = new System.Drawing.Point(143, 147);
-            this.numericUpDownTicksPerDomeRev.Maximum = new decimal(new int[] {
-            30000,
+            this.numericUpDown1.DecimalPlaces = 3;
+            this.numericUpDown1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(222, 174);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            200,
             0,
             0,
             0});
-            this.numericUpDownTicksPerDomeRev.Name = "numericUpDownTicksPerDomeRev";
-            this.numericUpDownTicksPerDomeRev.Size = new System.Drawing.Size(64, 22);
-            this.numericUpDownTicksPerDomeRev.TabIndex = 49;
-            this.numericUpDownTicksPerDomeRev.Value = new decimal(new int[] {
-            20700,
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(64, 22);
+            this.numericUpDown1.TabIndex = 34;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            76333,
             0,
             0,
-            0});
+            196608});
             // 
-            // label15
+            // label5
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(227, 151);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(137, 16);
-            this.label15.TabIndex = 50;
-            this.label15.Text = "per dome revolution";
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(23, 164);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label5.Size = new System.Drawing.Size(140, 32);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "Motor steps / degree of dome movement";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label16
+            // tabEncoder
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(27, 199);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(115, 16);
-            this.label16.TabIndex = 51;
-            this.label16.Text = "Shaft revolutions";
+            this.tabEncoder.BackColor = System.Drawing.Color.Goldenrod;
+            this.tabEncoder.Controls.Add(this.label17);
+            this.tabEncoder.Controls.Add(this.numericUpDownEncoderRevsPerDomeRev);
+            this.tabEncoder.Controls.Add(this.label16);
+            this.tabEncoder.Controls.Add(this.label15);
+            this.tabEncoder.Controls.Add(this.numericUpDownTicksPerDomeRev);
+            this.tabEncoder.Controls.Add(this.label14);
+            this.tabEncoder.Controls.Add(this.label13);
+            this.tabEncoder.Controls.Add(this.numericUpDownEncoderTicks);
+            this.tabEncoder.Controls.Add(this.label12);
+            this.tabEncoder.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabEncoder.Location = new System.Drawing.Point(4, 34);
+            this.tabEncoder.Name = "tabEncoder";
+            this.tabEncoder.Size = new System.Drawing.Size(517, 496);
+            this.tabEncoder.TabIndex = 2;
+            this.tabEncoder.Text = "Encoder";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(227, 200);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(136, 16);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "per dome revolution";
             // 
             // numericUpDownEncoderRevsPerDomeRev
             // 
@@ -897,15 +821,91 @@
             0,
             65536});
             // 
-            // label17
+            // label16
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(227, 200);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(137, 16);
-            this.label17.TabIndex = 53;
-            this.label17.Text = "per dome revolution";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(27, 199);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(114, 16);
+            this.label16.TabIndex = 51;
+            this.label16.Text = "Shaft revolutions";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(227, 151);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(136, 16);
+            this.label15.TabIndex = 50;
+            this.label15.Text = "per dome revolution";
+            // 
+            // numericUpDownTicksPerDomeRev
+            // 
+            this.numericUpDownTicksPerDomeRev.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownTicksPerDomeRev.Location = new System.Drawing.Point(143, 147);
+            this.numericUpDownTicksPerDomeRev.Maximum = new decimal(new int[] {
+            30000,
+            0,
+            0,
+            0});
+            this.numericUpDownTicksPerDomeRev.Name = "numericUpDownTicksPerDomeRev";
+            this.numericUpDownTicksPerDomeRev.Size = new System.Drawing.Size(64, 22);
+            this.numericUpDownTicksPerDomeRev.TabIndex = 49;
+            this.numericUpDownTicksPerDomeRev.Value = new decimal(new int[] {
+            20700,
+            0,
+            0,
+            0});
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(27, 150);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(107, 16);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "encoder Ticks =";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(226, 91);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(131, 16);
+            this.label13.TabIndex = 47;
+            this.label13.Text = "Per shaft revolution";
+            // 
+            // numericUpDownEncoderTicks
+            // 
+            this.numericUpDownEncoderTicks.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownEncoderTicks.Location = new System.Drawing.Point(143, 87);
+            this.numericUpDownEncoderTicks.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.numericUpDownEncoderTicks.Name = "numericUpDownEncoderTicks";
+            this.numericUpDownEncoderTicks.Size = new System.Drawing.Size(64, 22);
+            this.numericUpDownEncoderTicks.TabIndex = 46;
+            this.numericUpDownEncoderTicks.Value = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(27, 89);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(107, 16);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "encoder Ticks =";
             // 
             // ArduinoMonitor
             // 
@@ -934,14 +934,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPark)).EndInit();
             this.tabMotor.ResumeLayout(false);
             this.tabMotor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMotorShaftRevsPerDomeRev)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownControllerDIP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabEncoder.ResumeLayout(false);
             this.tabEncoder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownControllerDIP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMotorShaftRevsPerDomeRev)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderTicks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTicksPerDomeRev)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderRevsPerDomeRev)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTicksPerDomeRev)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEncoderTicks)).EndInit();
             this.ResumeLayout(false);
 
         }
