@@ -27,9 +27,7 @@ namespace Monitoring
         public ArduinoMonitor()
         {
             InitializeComponent();
-           
-          //  cmbPickStepperPort.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());   //todo this line also appears in arduinomonitor_load
-            
+                 
             
           //  BTNCamoff.Enabled = false;    // these work ...
             BTNCameraSwitch.Enabled = false;
@@ -51,10 +49,11 @@ namespace Monitoring
         private void ArduinoMonitor_Load(object sender, System.EventArgs e)
         {
             //       populate the combo box with port names
-            
+
             // string[] ports = SerialPort.GetPortNames();
             //MessageBox.Show("Test" + ports[0]);
-           
+            string version = System.Windows.Forms.Application.ProductVersion;
+            label2.Text = String.Format("MCU Monitoring Version {0}", version);
         }
 
        
