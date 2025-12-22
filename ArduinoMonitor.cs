@@ -260,6 +260,30 @@ namespace Monitoring
         {
             if ((control_box != null) & control_box.Connected)
             {
+                //new cancel option
+
+                // Ask the user if they really want to disconnect
+                var confirm = MessageBox.Show(
+                    "Are you sure you want to disconnect?",
+                    "Confirm Disconnect",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Cancel)
+                {
+                    // User clicked CANCEL → abort everything
+                    return;
+                }
+
+                if (confirm == DialogResult.No)
+                {
+                    // User clicked NO → do not disconnect
+                    return;
+                }
+
+                // If we reach here, user clicked YES → continue with disconnect logic
+
+                //end new cancel option
 
                 // is the camera power still on? give the user a choice to turn it off before exit
                 if (BTNCameraSwitch.Text == "Turn Off")   // if this condition is true, the power is on
