@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpboxStepper = new System.Windows.Forms.GroupBox();
+            this.rbtnConnect = new Monitoring.RoundButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbldataTick = new System.Windows.Forms.Label();
             this.lblDomeAzimuth = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@
             this.btnactivate = new System.Windows.Forms.Button();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDome = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelHomePark = new System.Windows.Forms.Panel();
             this.btnGet = new System.Windows.Forms.Button();
@@ -70,6 +72,7 @@
             this.lblPark = new System.Windows.Forms.Label();
             this.btnSet = new System.Windows.Forms.Button();
             this.tabMotor = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
@@ -96,9 +99,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.rbtnConnect = new Monitoring.RoundButton();
             this.gpboxStepper.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -144,6 +144,22 @@
             this.gpboxStepper.TabIndex = 0;
             this.gpboxStepper.TabStop = false;
             this.gpboxStepper.Text = "Monitoring Data";
+            // 
+            // rbtnConnect
+            // 
+            this.rbtnConnect.AutoEllipsis = true;
+            this.rbtnConnect.BackColor = System.Drawing.Color.YellowGreen;
+            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
+            this.rbtnConnect.Name = "rbtnConnect";
+            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
+            this.rbtnConnect.TabIndex = 20;
+            this.rbtnConnect.Text = "Connect";
+            this.rbtnConnect.UseVisualStyleBackColor = false;
+            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // label1
             // 
@@ -315,7 +331,7 @@
             // 
             // tmrControloxRequests
             // 
-            this.tmrControloxRequests.Interval = 1500;
+            this.tmrControloxRequests.Interval = 2000;
             this.tmrControloxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
             // 
             // toolTipPK
@@ -457,6 +473,15 @@
             this.tabDome.Size = new System.Drawing.Size(517, 496);
             this.tabDome.TabIndex = 0;
             this.tabDome.Text = "Dome";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(337, 414);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 57);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "label2";
             // 
             // label4
             // 
@@ -609,6 +634,17 @@
             this.tabMotor.Size = new System.Drawing.Size(517, 496);
             this.tabMotor.TabIndex = 1;
             this.tabMotor.Text = "Motor";
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(23, 111);
+            this.label21.Name = "label21";
+            this.label21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label21.Size = new System.Drawing.Size(140, 32);
+            this.label21.TabIndex = 49;
+            this.label21.Text = "Controller DIP settings for one shaft rotation";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label19
             // 
@@ -929,42 +965,6 @@
             this.label12.Size = new System.Drawing.Size(107, 16);
             this.label12.TabIndex = 45;
             this.label12.Text = "encoder Ticks =";
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(337, 414);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 57);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "label2";
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(23, 111);
-            this.label21.Name = "label21";
-            this.label21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label21.Size = new System.Drawing.Size(140, 32);
-            this.label21.TabIndex = 49;
-            this.label21.Text = "Controller DIP settings for one shaft rotation";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // rbtnConnect
-            // 
-            this.rbtnConnect.AutoEllipsis = true;
-            this.rbtnConnect.BackColor = System.Drawing.Color.YellowGreen;
-            this.rbtnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.rbtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.rbtnConnect.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnConnect.Location = new System.Drawing.Point(341, 21);
-            this.rbtnConnect.Name = "rbtnConnect";
-            this.rbtnConnect.Size = new System.Drawing.Size(92, 66);
-            this.rbtnConnect.TabIndex = 20;
-            this.rbtnConnect.Text = "Connect";
-            this.rbtnConnect.UseVisualStyleBackColor = false;
-            this.rbtnConnect.Click += new System.EventHandler(this.rbtnConnect_Click);
             // 
             // ArduinoMonitor
             // 
