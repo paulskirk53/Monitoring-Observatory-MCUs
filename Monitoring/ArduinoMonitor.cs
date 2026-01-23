@@ -41,8 +41,8 @@ namespace Monitoring
            // label2.Text = "Ver " + displayableVersion.ToString();
         }
 
-       
-        ASCOM.Utilities.Serial control_box = new ASCOM.Utilities.Serial();  // new serial port for control box, replaces stepper and encoder ports
+
+        SerialPort control_box = new SerialPort(); // new serial port for control box, replaces stepper and encoder ports
 
         DateTime Now = DateTime.Now;                                       // guess what - this is the system date and time
 
@@ -75,19 +75,19 @@ namespace Monitoring
             
 
             // THE TIMEOUT IS IMPORTANT IF it's too short, the system throws an unhandled exception whilst waiting for the MCU to respond
-            control_box.ReceiveTimeout = 10;
+            control_box.ReadTimeout = 5000;
             //todo need a try - catch here
            
             try
             {
-                control_box.Transmit("dataRequest#");             // get the data packet from the MCU
-                dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+                control_box.Write("dataRequest#");             // get the data packet from the MCU
+                dataPacket = control_box.ReadTo("$"); // note new data terminator $
             }
             catch (InvalidOperationException)
             {
                 tmrControloxRequests.Enabled = false;  //stop the data packet requests
 
-                MessageBox.Show("Transmit failure - the port is closed - probably bad connection - fix and restart ");
+                MessageBox.Show("Write failure - the port is closed - probably bad connection - fix and restart ");
                 Environment.Exit(0);    // close the application   // close the application
             }
             catch (TimeoutException)
@@ -185,18 +185,18 @@ namespace Monitoring
 
         private void CameraPowerSwitch()   //toggle the power state
         {
-            if (control_box.Connected)     // the control box Serial port needs to be connected before these commands can work
+            if (control_box.IsOpen)     // the control box Serial port needs to be connected before these commands can work
             {
                 if (BTNCameraSwitch.Text == "Turn On")
                 {
-                    control_box.Transmit("CAMON#");
+                    control_box.Write("CAMON#");
                     BTNCameraSwitch.Text = "Turn Off";
                     
                 }
                 else
                 {
                     // switch power off
-                    control_box.Transmit("CAMOFF#");
+                    control_box.Write("CAMOFF#");
                     BTNCameraSwitch.Text = "Turn On";
                     
                 }
@@ -212,7 +212,7 @@ namespace Monitoring
             //perhaps a the best approcah here is to just send the action and then in the encoder mcu code monitor a status flag and return data into the encoder timer
             //section in this code
             
-          //  control_box.Transmit("CAMOFF#");
+          //  control_box.Write("CAMOFF#");
           //  BTNCamoff.Enabled = false;
           //  BTNCamon.Enabled = true;
 
@@ -258,7 +258,7 @@ namespace Monitoring
 
         private void control_boxDisconnect()
         {
-            if ((control_box != null) & control_box.Connected)
+            if ((control_box != null) & control_box.IsOpen)
             {
                 //new cancel option
 
@@ -313,12 +313,12 @@ namespace Monitoring
                 // If the No (don't preserve current azimuth button was pressed ...
                 if (resetResult == DialogResult.No)
                 {
-                    control_box.Transmit("nokeepaz#");
+                    control_box.Write("nokeepaz#");
                 }
                 //if the yes button is presssed, preserve the current azimuth in eeprom
                 if (resetResult == DialogResult.Yes)
                 {
-                    control_box.Transmit("keepaz#");
+                    control_box.Write("keepaz#");
                 }
                 
 
@@ -328,15 +328,17 @@ namespace Monitoring
 
                 rbtnConnect.Enabled = true;
 
-                control_box.Connected = false;     // disconnect the port
-
+                if (control_box.IsOpen)     // disconnect the port
+                { 
+                    control_box.Close();
+                }
                 rbtnConnect.Text = "Connect";
                 lblsync.Text = "No data";
 
             }
         }
 
-        private string portFinder(ASCOM.Utilities.Serial testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
+        private string portFinder(SerialPort testPort, string mcuName)  //mcuName will be e.g "encoder" or "stepper"
         {
             /*
              * This routine uses a test port to cycle through the portnames (COM1, COM3 etc), checking each port 
@@ -352,66 +354,115 @@ namespace Monitoring
                 if (found)
                 {
                     
-                    testPort.Connected = false;                    //disconnect the port
+                    if(testPort.IsOpen)
+                    {
+                        testPort.Close();
+                    }//disconnect the port
                     return portName;
                     
                 }
 
                
             }
-            return null;                // if no ports respond to queries (e.g. perhaps mcus are not connected), the nukk return is picked by the try - catch exception
+            return null;                // if no ports respond to queries (e.g. perhaps mcus are not IsOpen), the nukk return is picked by the try - catch exception
                                         // of encoder connect or stepper connect
         }
 
-        private bool checkforMCU(ASCOM.Utilities.Serial testPort, string portName, string MCUDescription)
+        private bool checkforMCU(SerialPort testPort, string portName, string MCUDescription)
         {
            
             testPort.PortName = portName;  //                      
-            testPort.Connected = true;
+            testPort.Open() ;
 
             //now send data and see what comes back
             try
             {
-               
-                testPort.Transmit(MCUDescription);            // transmits monitorencoder# or monitorstepper# depending upon where called
-                string response = testPort.ReceiveTerminated("#");   // not all ports respond to a query and those which don't respond will timeout
+                testPort.ReadTimeout = 5000;
+                testPort.Write(MCUDescription);            // Writes monitorencoder# or monitorstepper# depending upon where called
+                string response = testPort.ReadTo("#");   // not all ports respond to a query and those which don't respond will timeout
+                
+               // MessageBox.Show("testing Port  " + portName + " MCU Description " + MCUDescription + " response from mcu " + response);
 
-                            
-                if (response == MCUDescription)
+                if (MCUDescription.Contains( response))   // deals with the '#' in the MCUDescription
                 {
                 
                     return true;            //mcu response match
                 }
 
-                testPort.Connected = false;
+                if (testPort.IsOpen)
+                {
+                    testPort.Close();
+                }//disconnect the port
                 return false;              // if there was a response it was not the right MCU
             }
             catch (Exception e)     //TimeoutException
             {
-               
-                testPort.Connected = false;    // no response
+                if (testPort.IsOpen)
+                {
+                    testPort.Close();
+                }//disconnect the port
+                 // no response
                
             }
             
             return false;
         }
-        private void setupThePort(ASCOM.Utilities.Serial testPort)
+        private void setupThePort(System.IO.Ports.SerialPort testPort)
         {
-            //set all the port propereties
+            // Set port properties
+            testPort.DtrEnable = false;
+            testPort.RtsEnable = false;
 
-            testPort.DTREnable = false;
-            testPort.RTSEnable = false;
-            testPort.ReceiveTimeout = 5;
+            // Timeout in milliseconds (5 ms is extremely short, but matches your ASCOM code)
+            testPort.ReadTimeout = 5000;
 
-            testPort.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+            // Replace ASCOM Speed with SerialPort BaudRate
+            testPort.BaudRate = 19200;
 
-
-
+            // You may also want to explicitly set these:
+            testPort.Parity = Parity.None;
+            testPort.DataBits = 8;
+            testPort.StopBits = StopBits.One;
         }
 
+        
+
+private string[] GetUnusedSerialPorts()
+    {
+        var ports = new List<string>(SerialPort.GetPortNames());
+        var busyPorts = new List<string>();
+
+        foreach (var port in ports)
+        {
+              //  MessageBox.Show("Port name " + port);
+                try
+            {
+                using (var sp = new SerialPort(port))
+                {
+                    sp.Open();     // If this fails, the port is busy
+                    sp.Close();
+                }
+            }
+            catch
+            {
+                // Port is in use or cannot be opened
+                busyPorts.Add(port);
+            }
+        }
+
+        // Remove busy ports
+        foreach (var busy in busyPorts)
+        {
+            ports.Remove(busy);
+           //     MessageBox.Show("busy " + busy);
+            }
+
+        return ports.ToArray();
+    }
 
 
-        private string[] GetUnusedSerialPorts()                     //string[] is a string array
+        /*
+    private string[] oldGetUnusedSerialPorts()                     //string[] is a string array
         {
             using (ASCOM.Utilities.Serial temp = new ASCOM.Utilities.Serial())
             {
@@ -424,8 +475,8 @@ namespace Monitoring
                     {
                         temp.PortName = port;
 
-                        temp.Connected = true;
-                        temp.Connected = false;
+                        temp.Open = true;
+                        temp.IsOpen = false;
                     }
                     catch (Exception)
                     {
@@ -446,6 +497,7 @@ namespace Monitoring
                 return ports.ToArray();               // I think this returns a clean sequential list - no gaps  
             }
         }
+        */
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
@@ -464,9 +516,9 @@ namespace Monitoring
         {
             String dataPacket = "";
 
-            control_box.Transmit("dataRequest#"); //get the data packet from the MCU
+            control_box.Write("dataRequest#"); //get the data packet from the MCU
 
-            dataPacket = control_box.ReceiveTerminated("$"); // note new data terminator $
+            dataPacket = control_box.ReadTo("$"); // note new data terminator $
             dataPacket = dataPacket.Remove('$');
         
 
@@ -482,14 +534,19 @@ namespace Monitoring
 
         private void btnresetControlBox_Click(object sender, EventArgs e)
         {
-            if (control_box.Connected)
+            if (control_box.IsOpen)
             {
                 MessageBox.Show("Azimuth value is preserved on reset");
                 tmrControloxRequests.Enabled = false;            // stop the requests to the encoder MCU
-                control_box.Transmit("reset");         // request the reset
-                control_box.Connected = false;         // disconnect from the Port
+                control_box.Write("reset");         // request the reset
+                if (control_box.IsOpen)
+                {
+                    control_box.Close();
+                }
+
+                // old version control_box.IsOpen = false;         // disconnect from the Port
                 rbtnConnect.Text = "Connect";
-                lblControlBox.Text = "Disconnected";
+                lblControlBox.Text = "Disconnect";
                 lblControlBox.BackColor = Color.Black;
 
             }
@@ -518,15 +575,15 @@ namespace Monitoring
                     string portName = portFinder(control_box, "monitorcontrol#");
 
                     control_box.PortName = portName;
-                    control_box.DTREnable = false;
-                    control_box.RTSEnable = false;
-                    control_box.ReceiveTimeout = 5;
-                    control_box.Speed = ASCOM.Utilities.SerialSpeed.ps19200;
+                    control_box.DtrEnable = false;
+                    control_box.RtsEnable = false;
+                    control_box.ReadTimeout = 5000;
+                    control_box.BaudRate = 19200;
 
-                    control_box.Connected = true;
+                    control_box.Open();  // open port
 
                     lblControlBox.Text = "Connected on " + control_box.PortName;
-                    control_box.ClearBuffers();
+                   // todo check equivalent of this line control_box.ClearBuffers();
 
                     btnpowerActivate.Enabled = true;   // enable the camera power toggle button
                     rbtnConnect.Text = "Disconnect";
@@ -580,11 +637,11 @@ namespace Monitoring
             string parkMessage = "SP" + parkValue.ToString() + "#";    //send the park azimuth to the MCU for storage in eeprom
 
             // Send via serial port
-            if (control_box.Connected)
+            if (control_box.IsOpen)
             {
-                control_box.Transmit(homeMessage);
+                control_box.Write(homeMessage);
                 await Task.Delay(500); // non-blocking pause
-                control_box.Transmit(parkMessage);
+                control_box.Write(parkMessage);
             }
             else
             {
@@ -596,26 +653,28 @@ namespace Monitoring
         {
             try
             {
-                if (!control_box.Connected)
+                if (!control_box.IsOpen)
                 {
                     MessageBox.Show("Serial port is not connected.");
                     return;
                 }
 
                 // --- Step 1: Send GH# ---
-                control_box.Transmit("GH#");
+                control_box.Write("GH#");
+                control_box.ReadTimeout = 5000;
 
                 // --- Step 2: Await response until '#' ---
-                string homeResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                string homeResponse = control_box.ReadTo("#");
                 homeResponse = homeResponse.TrimEnd('#');
                 int homeAzimuth = int.Parse(homeResponse);
                 lblHomeValue.Text = homeAzimuth.ToString();
 
                 // --- Step 3: Send GP# ---
-                control_box.Transmit("GP#");
+                control_box.Write("GP#");
 
                 // --- Step 4: Await response until '#' ---
-                string parkResponse = await Task.Run(() => control_box.ReceiveTerminated("#"));
+                
+                string parkResponse = control_box.ReadTo("#");
                 parkResponse = parkResponse.TrimEnd('#');   // remove # mark
                 int parkAzimuth = int.Parse(parkResponse);
                 lblParkValue.Text = parkAzimuth.ToString();
