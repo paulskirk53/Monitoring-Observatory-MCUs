@@ -373,11 +373,12 @@ namespace Monitoring
            
             testPort.PortName = portName;  //                      
             testPort.Open() ;
+            testPort.ReadTimeout = 5000;
 
             //now send data and see what comes back
             try
             {
-                testPort.ReadTimeout = 5000;
+                
                 testPort.Write(MCUDescription);            // Writes monitorencoder# or monitorstepper# depending upon where called
                 string response = testPort.ReadTo("#");   // not all ports respond to a query and those which don't respond will timeout
                 
@@ -461,43 +462,7 @@ private string[] GetUnusedSerialPorts()
     }
 
 
-        /*
-    private string[] oldGetUnusedSerialPorts()                     //string[] is a string array
-        {
-            using (ASCOM.Utilities.Serial temp = new ASCOM.Utilities.Serial())
-            {
-                var ports = new List<string>(temp.AvailableCOMPorts); // List<T> class constructor is used to create a List object of type T. So in this case, available comports
-                var busyPorts = new List<string>();
-
-                foreach (var port in ports)
-                {
-                    try
-                    {
-                        temp.PortName = port;
-
-                        temp.Open = true;
-                        temp.IsOpen = false;
-                    }
-                    catch (Exception)
-                    {
-
-                        // If we get here then the current port is currently in use so add it to the busy ports list.
-
-                        busyPorts.Add(port);
-                    }
-                }
-
-                // Remove the busy ports from the return list.
-
-                foreach (var busyPort in busyPorts)
-                {
-                    ports.Remove(busyPort);
-                }
-
-                return ports.ToArray();               // I think this returns a clean sequential list - no gaps  
-            }
-        }
-        */
+      
 
         
 
@@ -506,25 +471,7 @@ private string[] GetUnusedSerialPorts()
 
         }
 
-        private void button1_Click(object sender, EventArgs e)    // just for test purposes can now be deleted.
-        {
-            String dataPacket = "";
-
-            control_box.Write("dataRequest#"); //get the data packet from the MCU
-
-            dataPacket = control_box.ReadTo("$"); // note new data terminator $
-            dataPacket = dataPacket.Remove('$');
-        
-
-            string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator 
-
-            foreach (string item in values)
-            {
-                
-                MessageBox.Show(" string content is " + item);
-            }
-
-        }
+       
 
         private void btnresetControlBox_Click(object sender, EventArgs e)
         {
@@ -575,6 +522,9 @@ private string[] GetUnusedSerialPorts()
                     control_box.BaudRate = 19200;
 
                     control_box.Open();  // open port
+                    //todo implement this control_box.DataReceived += control_box_DataReceived;   // activate the serial event handler -
+                                                                            // it can be deactivated by control_box.DataReceived -= control_box_DataReceived;
+
 
                     lblControlBox.Text = "Connected on " + control_box.PortName;
                    // todo check equivalent of this line control_box.ClearBuffers();
@@ -613,13 +563,9 @@ private string[] GetUnusedSerialPorts()
         private void btnHome_Click(object sender, EventArgs e)
         {
             
-        
-        
-        
+        }
 
-    }
-
-        private async void btnSet_Click(object sender, EventArgs e)
+        private void btnSet_Click(object sender, EventArgs e)
         {
             // Get the numeric value
             int homeValue = (int)numericUpDownHome.Value;
@@ -634,7 +580,7 @@ private string[] GetUnusedSerialPorts()
             if (control_box.IsOpen)
             {
                 control_box.Write(homeMessage);
-                await Task.Delay(500); // non-blocking pause
+                
                 control_box.Write(parkMessage);
             }
             else
@@ -643,8 +589,10 @@ private string[] GetUnusedSerialPorts()
             }
         }
 
-        private async void btnGet_Click(object sender, EventArgs e)
+        private void btnGet_Click(object sender, EventArgs e)
         {
+            control_box.ReadTimeout = 5000;
+
             try
             {
                 if (!control_box.IsOpen)
@@ -655,7 +603,7 @@ private string[] GetUnusedSerialPorts()
 
                 // --- Step 1: Send GH# ---
                 control_box.Write("GH#");
-                control_box.ReadTimeout = 5000;
+                
 
                 // --- Step 2: Await response until '#' ---
                 string homeResponse = control_box.ReadTo("#");
@@ -680,6 +628,22 @@ private string[] GetUnusedSerialPorts()
             {
                 MessageBox.Show("catch Error: " + ex.Message);
             }
+        }
+        private void control_box_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                string message = control_box.ReadTo("#");   // or your chosen terminator
+                RouteMessage(message);                      // your router logic
+            }
+            catch
+            {
+                // handle partial messages or timeouts if needed
+            }
+        }
+        private void RouteMessage(string message)
+        {
+
         }
 
 
