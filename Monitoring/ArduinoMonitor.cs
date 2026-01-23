@@ -499,13 +499,7 @@ private string[] GetUnusedSerialPorts()
         }
         */
 
-        private void roundButton1_Click(object sender, EventArgs e)
-        {
-            foreach (string s in GetUnusedSerialPorts() )
-            {
-                MessageBox.Show("Port name " + s);
-            }
-        }
+        
 
         private void toolTipPK_Popup(object sender, PopupEventArgs e)
         {
