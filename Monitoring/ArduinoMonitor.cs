@@ -7,14 +7,15 @@
  */
 
 using System;
-using System.IO.Ports;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -274,7 +275,8 @@ namespace Monitoring
             setupThePort(testPort);            //set the parameters for testport - baud etc
             bool found = false;
             foreach (string portName in GetUnusedSerialPorts())     // GetUnusedSerialPorts forms a list of COM ports which are available
-            {                                      
+            {
+               // MessageBox.Show("checking port " + portName);
                 found = checkforMCU(testPort, portName, mcuName);     // this checks if the current portName responds to mcuName (monitorstepper# / monitoremcoder#)
                 if (found)
                 {
@@ -305,9 +307,11 @@ namespace Monitoring
             {
                 
                 testPort.Write(MCUDescription);            // Writes monitorencoder# or monitorstepper# depending upon where called
+                //MessageBox.Show("writing mcu description to port " + portName);
+
                 string response = testPort.ReadTo("#");   // not all ports respond to a query and those which don't respond will timeout
                 
-               // MessageBox.Show("testing Port  " + portName + " MCU Description " + MCUDescription + " response from mcu " + response);
+                //MessageBox.Show("testing Port  " + portName + " MCU Description " + MCUDescription + " response from mcu " + response);
 
                 if (MCUDescription.Contains( response))   // deals with the '#' in the MCUDescription
                 {
@@ -404,7 +408,7 @@ private string[] GetUnusedSerialPorts()
             {
                 MessageBox.Show("Azimuth value is preserved on reset");
                 tmrControlBoxRequests.Enabled = false;            // stop the requests to the encoder MCU
-                control_box.Write("reset");         // request the reset
+                control_box.Write("reset#");         // request the reset
                 if (control_box.IsOpen)
                 {
                     control_box.Close();
@@ -506,8 +510,9 @@ private string[] GetUnusedSerialPorts()
             if (control_box.IsOpen)
             {
                 control_box.Write(homeMessage);
-                
+                Thread.Sleep(100);
                 control_box.Write(parkMessage);
+               // MessageBox.Show(" messages are "+ homeMessage + " " + parkMessage);
             }
             else
             {
@@ -656,7 +661,7 @@ private string[] GetUnusedSerialPorts()
                 }
                 else if (payload.Equals("slew-end", StringComparison.OrdinalIgnoreCase))
                 {
-                    tmrControlBoxRequests.Interval = 20000;
+                    tmrControlBoxRequests.Interval = 5000;
                 }
             }));
         }

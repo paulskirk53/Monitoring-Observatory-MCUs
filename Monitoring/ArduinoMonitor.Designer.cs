@@ -331,7 +331,7 @@
             // 
             // tmrControlBoxRequests
             // 
-            this.tmrControlBoxRequests.Interval = 2000;
+            this.tmrControlBoxRequests.Interval = 5000;
             this.tmrControlBoxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
             // 
             // toolTipPK
