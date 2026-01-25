@@ -56,116 +56,40 @@ namespace Monitoring
             label2.Text = String.Format("MCU Monitoring Version {0}", version);
         }
 
-       
 
-       
+
+
 
 
 
         private void tmrControlBoxRequests_Tick(object sender, EventArgs e)
-        {                                             
-            //THE TIMER INTERVAL is CRITICAL to the MCU performance.
-            //If the interval is set lower than 2 seconds, the MCU gets choked and buggered - it slows down so much dealing with available() requests
-            // that stepper.run() execution frequency is too low and stepping takes a long time (about 30 seconds to reach an ASCOM Target Azimuth
-
-            // send the interrogation protocol....there are six pices of data to be received from the stepper MCU, each terminated with #
-            
-            
-            String dataPacket = "";
-            
-
-            // THE TIMEOUT IS IMPORTANT IF it's too short, the system throws an unhandled exception whilst waiting for the MCU to respond
-            control_box.ReadTimeout = 5000;
-            //todo need a try - catch here
-           
+        {
             try
             {
-                control_box.Write("dataRequest#");             // get the data packet from the MCU
-                dataPacket = control_box.ReadTo("$"); // note new data terminator $
+                control_box.ReadTimeout = 5000;
+                control_box.Write("dataRequest#");
             }
             catch (InvalidOperationException)
             {
-                tmrControloxRequests.Enabled = false;  //stop the data packet requests
-
-                MessageBox.Show("Write failure - the port is closed - probably bad connection - fix and restart ");
-                Environment.Exit(0);    // close the application   // close the application
+                tmrControlBoxRequests.Enabled = false;
+                MessageBox.Show("Port is closed. Fix connection and restart.");
+                Environment.Exit(0);
             }
             catch (TimeoutException)
             {
-                tmrControloxRequests.Enabled = false;  //stop the data packet requests
-                MessageBox.Show("The port request timed out - trying disconnect and reconnect - check the cable ");
-
+                tmrControlBoxRequests.Enabled = false;
+                MessageBox.Show("Timeout. Try reconnecting the cable.");
                 control_boxDisconnect();
                 Connect();
             }
-            
-            catch ( Exception exc)
+            catch (Exception ex)
             {
-                tmrControloxRequests.Enabled = false;  //stop the data packet requests
-                MessageBox.Show(" An exception occurred, will have to restart " + exc.Message );
-                
-                Environment.Exit(0);    // close the application
+                tmrControlBoxRequests.Enabled = false;
+                MessageBox.Show("Unexpected error: " + ex.Message);
+                Environment.Exit(0);
             }
-          
-           
-            // dataPacket = dataPacket.Remove('$');   // this line caused a problem with parsing the string
-            //  MessageBox.Show(dataPacket );
-            //note new string terminator $
-            // todo now unpack the data packet - adjust and remove the lines below once tested
-            // the operation of the code below is awkward as experimenting (new temp button on UI) shows that if the last item includes a final # one 'extra' array item is generated
-            // the problem needs a fix at the time of testing - which may just be not to  process the last item 
-
-            // example  dataPacket = "string1#string 2#end string#another string#$";
-            // remember c# strings are 0 indexed so we can refer to the values array as values[0], values[1] etc
-
-            string[] values = dataPacket.Split('#');   //# is the data item delimiter, $is the string terminator
-
-            /* there are eight string items arranged in the following order when they arrive from the MCU
-            dome azimuth,  target azimuth,  movementstate,  querydir,  targetmessage,  cdarray[currentazimut]  ,  camerapowerstate,  syncCount
-
-            
-           */
-            //todo setup the individual items below - I think they can all be text for the purposes of the monitor program
-            // There are seven items in the string 0 to 6
-            // etc
-            lblDomeAzimuth.Text = values[0];   // current (dome az)
-            lblTarget.Text = values[1];        // Target Az
-            lblMoving.Text = values[2];        // movementstate
-            lblDirection.Text = values[3];     // querydir - clock or anti clock
-            lbltargetStatus.Text = values[4];  // target message
-            lbldegreesToTarget.Text = values[5]; // degrees to target
-            
-
-        
-            if (values[6] == "1")    //  values[6] is the imaging camera power status
-            {
-                // set label text to on
-                lblCamerapowerstatus.Text = "Power On";
-            }
-            else
-            {
-                //set the label text to OFF
-                lblCamerapowerstatus.Text = "Power Off";
-            }
-            if (lbldataTick.Text == "Pull")
-            {
-                lbldataTick.Text = "    ";
-                lbldataTick.BackColor = Color.DarkRed;
-                lbldataTick.ForeColor = Color.Khaki;
-            }
-            else
-            {
-
-                lbldataTick.Text = "Pull";
-                lbldataTick.BackColor = Color.Khaki;
-                lbldataTick.ForeColor = Color.Black;
-
-            }
-
-            lblsync.Text = values[7];      // values[7] is the west synchronisation counter
-
         }
-    
+
 
         private void ArduinoMonitor_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -284,6 +208,7 @@ namespace Monitoring
                 // If we reach here, user clicked YES → continue with disconnect logic
 
                 //end new cancel option
+                control_box.DataReceived -= control_box_DataReceived;
 
                 // is the camera power still on? give the user a choice to turn it off before exit
                 if (BTNCameraSwitch.Text == "Turn Off")   // if this condition is true, the power is on
@@ -324,7 +249,7 @@ namespace Monitoring
 
 
                 lblControlBox.BackColor = Color.Black;
-                lblControlBox.Text = "Not connected " + control_box.PortName;
+                lblControlBox.Text = "last seen on port " + control_box.PortName;
 
                 rbtnConnect.Enabled = true;
 
@@ -478,7 +403,7 @@ private string[] GetUnusedSerialPorts()
             if (control_box.IsOpen)
             {
                 MessageBox.Show("Azimuth value is preserved on reset");
-                tmrControloxRequests.Enabled = false;            // stop the requests to the encoder MCU
+                tmrControlBoxRequests.Enabled = false;            // stop the requests to the encoder MCU
                 control_box.Write("reset");         // request the reset
                 if (control_box.IsOpen)
                 {
@@ -522,7 +447,8 @@ private string[] GetUnusedSerialPorts()
                     control_box.BaudRate = 19200;
 
                     control_box.Open();  // open port
-                    //todo implement this control_box.DataReceived += control_box_DataReceived;   // activate the serial event handler -
+                    //todo uncomment the line below to activate event driven serial
+                    control_box.DataReceived += control_box_DataReceived;   // activate the serial event handler -
                                                                             // it can be deactivated by control_box.DataReceived -= control_box_DataReceived;
 
 
@@ -532,7 +458,7 @@ private string[] GetUnusedSerialPorts()
                     btnpowerActivate.Enabled = true;   // enable the camera power toggle button
                     rbtnConnect.Text = "Disconnect";
                     lblControlBox.BackColor = Color.Green;
-                    tmrControloxRequests.Enabled = true;  // start the timer which requests the data packet from the MCU
+                    tmrControlBoxRequests.Enabled = true;  // start the timer which requests the data packet from the MCU
                     btnactivate.Enabled = true;    // enable the button to facilitate MCU reset
                 }
                 catch (Exception ex)
@@ -555,7 +481,7 @@ private string[] GetUnusedSerialPorts()
                 btnactivate.Enabled = false;      // disable the reset toggle button
 
 
-                tmrControloxRequests.Enabled = false;
+                tmrControlBoxRequests.Enabled = false;
                 control_boxDisconnect();
             }
         }
@@ -606,20 +532,20 @@ private string[] GetUnusedSerialPorts()
                 
 
                 // --- Step 2: Await response until '#' ---
-                string homeResponse = control_box.ReadTo("#");
-                homeResponse = homeResponse.TrimEnd('#');
-                int homeAzimuth = int.Parse(homeResponse);
-                lblHomeValue.Text = homeAzimuth.ToString();
+              //  string homeResponse = control_box.ReadTo("#");
+              //  homeResponse = homeResponse.TrimEnd('#');
+              //  int homeAzimuth = int.Parse(homeResponse);
+              //  lblHomeValue.Text = homeAzimuth.ToString();
 
                 // --- Step 3: Send GP# ---
                 control_box.Write("GP#");
 
                 // --- Step 4: Await response until '#' ---
                 
-                string parkResponse = control_box.ReadTo("#");
-                parkResponse = parkResponse.TrimEnd('#');   // remove # mark
-                int parkAzimuth = int.Parse(parkResponse);
-                lblParkValue.Text = parkAzimuth.ToString();
+              //  string parkResponse = control_box.ReadTo("#");
+              //  parkResponse = parkResponse.TrimEnd('#');   // remove # mark
+              //  int parkAzimuth = int.Parse(parkResponse);
+              //  lblParkValue.Text = parkAzimuth.ToString();
 
                 // Show results
               //  MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
@@ -633,18 +559,150 @@ private string[] GetUnusedSerialPorts()
         {
             try
             {
-                string message = control_box.ReadTo("#");   // or your chosen terminator
-                RouteMessage(message);                      // your router logic
+                string raw = control_box.ReadTo("#");   // read up to terminator
+                RouteMessage(raw);
             }
-            catch
+            catch (TimeoutException)
             {
-                // handle partial messages or timeouts if needed
+                // optional: log or ignore
+            }
+            catch (Exception ex)
+            {
+                // optional: log
             }
         }
         private void RouteMessage(string message)
         {
+            if (string.IsNullOrWhiteSpace(message))
+                return;
 
+            int idx = message.IndexOf(':');
+            if (idx < 0)
+                return;
+
+            string prefix = message.Substring(0, idx);
+            string payload = message.Substring(idx + 1);
+
+            switch (prefix)
+            {
+                case "DP":
+                    HandleDataPacket(payload);
+                    break;
+
+                case "HOME":
+                    HandleHome(payload);
+                    break;
+
+                case "PARK":
+                    HandlePark(payload);
+                    break;
+
+                case "SLEW":
+                    HandleSlew(payload);
+                    break;
+
+                default:
+                    // Unknown prefix
+                    break;
+            }
         }
+
+
+        private void HandleHome(string payload)
+        {
+            if (int.TryParse(payload, out int homeAzimuth) &&
+                homeAzimuth >= 0 && homeAzimuth <= 360)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblHomeValue.Text = homeAzimuth.ToString();
+                }));
+            }
+            else
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblHomeValue.Text = "Error";
+                }));
+            }
+        }
+
+        private void HandlePark(string payload)
+        {
+            if (int.TryParse(payload, out int parkAzimuth) &&
+                parkAzimuth >= 0 && parkAzimuth <= 360)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblParkValue.Text = parkAzimuth.ToString();
+                }));
+            }
+            else
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblParkValue.Text = "Error";
+                }));
+            }
+        }
+
+        private void HandleSlew(string payload)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                if (payload.Equals("slew-start", StringComparison.OrdinalIgnoreCase))
+                {
+                    tmrControlBoxRequests.Interval = 1500;
+                }
+                else if (payload.Equals("slew-end", StringComparison.OrdinalIgnoreCase))
+                {
+                    tmrControlBoxRequests.Interval = 20000;
+                }
+            }));
+        }
+
+
+
+        private void HandleDataPacket(string payload)
+        {
+            // split by comma
+            string[] v = payload.Split(',');
+
+            if (v.Length < 8)
+                return; // malformed packet
+
+            // UI updates must be marshalled to UI thread
+            BeginInvoke(new Action(() =>
+            {
+                lblDomeAzimuth.Text     = v[0];
+                lblTarget.Text          = v[1];
+                lblMoving.Text          = v[2];
+                lblDirection.Text       = v[3];
+                lbltargetStatus.Text    = v[4];
+                lbldegreesToTarget.Text = v[5];
+
+                lblCamerapowerstatus.Text = (v[6] == "1" || v[6].Equals("ON", StringComparison.OrdinalIgnoreCase))
+                                            ? "Power On"
+                                            : "Power Off";
+
+                lblsync.Text = v[7];
+
+                // your tick indicator
+                if (lbldataTick.Text == "Pull")
+                {
+                    lbldataTick.Text = "    ";
+                    lbldataTick.BackColor = Color.DarkRed;
+                    lbldataTick.ForeColor = Color.Khaki;
+                }
+                else
+                {
+                    lbldataTick.Text = "Pull";
+                    lbldataTick.BackColor = Color.Khaki;
+                    lbldataTick.ForeColor = Color.Black;
+                }
+            }));
+        }
+
 
 
     }

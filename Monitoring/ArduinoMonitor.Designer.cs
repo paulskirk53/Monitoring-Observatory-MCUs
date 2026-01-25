@@ -47,7 +47,7 @@
             this.lbl3 = new System.Windows.Forms.Label();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lblTargetDescription = new System.Windows.Forms.Label();
-            this.tmrControloxRequests = new System.Windows.Forms.Timer(this.components);
+            this.tmrControlBoxRequests = new System.Windows.Forms.Timer(this.components);
             this.toolTipPK = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblsync = new System.Windows.Forms.Label();
@@ -329,10 +329,10 @@
             this.lblTargetDescription.TabIndex = 0;
             this.lblTargetDescription.Text = "ASCOM Target";
             // 
-            // tmrControloxRequests
+            // tmrControlBoxRequests
             // 
-            this.tmrControloxRequests.Interval = 2000;
-            this.tmrControloxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
+            this.tmrControlBoxRequests.Interval = 2000;
+            this.tmrControlBoxRequests.Tick += new System.EventHandler(this.tmrControlBoxRequests_Tick);
             // 
             // toolTipPK
             // 
@@ -347,14 +347,14 @@
             this.groupBox3.Size = new System.Drawing.Size(104, 50);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Dome Sync";
+            this.groupBox3.Text = "Dome Sync:";
             this.toolTipPK.SetToolTip(this.groupBox3, "Has the Dome Azimuth sync\'d ");
             // 
             // lblsync
             // 
             this.lblsync.AutoSize = true;
             this.lblsync.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsync.Location = new System.Drawing.Point(11, 34);
+            this.lblsync.Location = new System.Drawing.Point(11, 22);
             this.lblsync.Name = "lblsync";
             this.lblsync.Size = new System.Drawing.Size(56, 16);
             this.lblsync.TabIndex = 19;
@@ -1019,7 +1019,7 @@
         private System.Windows.Forms.Label lbltargetStatus;
         private System.Windows.Forms.Label lblMoving;
         private System.Windows.Forms.Label lblTarget;
-        private System.Windows.Forms.Timer tmrControloxRequests;
+        private System.Windows.Forms.Timer tmrControlBoxRequests;
         private System.Windows.Forms.ToolTip toolTipPK;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
