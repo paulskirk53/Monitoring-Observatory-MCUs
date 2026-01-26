@@ -534,26 +534,13 @@ private string[] GetUnusedSerialPorts()
 
                 // --- Step 1: Send GH# ---
                 control_box.Write("GH#");
-                
 
-                // --- Step 2: Await response until '#' ---
-              //  string homeResponse = control_box.ReadTo("#");
-              //  homeResponse = homeResponse.TrimEnd('#');
-              //  int homeAzimuth = int.Parse(homeResponse);
-              //  lblHomeValue.Text = homeAzimuth.ToString();
-
-                // --- Step 3: Send GP# ---
+                Thread.Sleep(100);
+              
+                // --- Step 2: Send GP# ---
                 control_box.Write("GP#");
 
-                // --- Step 4: Await response until '#' ---
-                
-              //  string parkResponse = control_box.ReadTo("#");
-              //  parkResponse = parkResponse.TrimEnd('#');   // remove # mark
-              //  int parkAzimuth = int.Parse(parkResponse);
-              //  lblParkValue.Text = parkAzimuth.ToString();
-
-                // Show results
-              //  MessageBox.Show($"Home Azimuth: {homeAzimuth}\nPark Azimuth: {parkAzimuth}");
+              
             }
             catch (Exception ex)
             {
@@ -585,8 +572,8 @@ private string[] GetUnusedSerialPorts()
             if (idx < 0)
                 return;
 
-            string prefix = message.Substring(0, idx);
-            string payload = message.Substring(idx + 1);
+            string prefix = message.Substring(0, idx);   //extract the data prefix
+            string payload = message.Substring(idx + 1); // extract the remainder of the string
 
             switch (prefix)
             {
