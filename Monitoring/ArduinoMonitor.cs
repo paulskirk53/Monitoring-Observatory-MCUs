@@ -679,19 +679,19 @@ private string[] GetUnusedSerialPorts()
 
             lblsync.Text = v[7];
 
-            // your tick indicator
+            // The tick indicator
             if (lbldataTick.Text.Contains("Secs"))
             {
                 lbldataTick.Text = "    ";
-                    lbldataTick.BackColor = Color.Transparent;
+                lbldataTick.BackColor = Color.Transparent;
                 lbldataTick.ForeColor = Color.Khaki;
             }
             else
             {
                 lbldataTick.Text = (tmrControlBoxRequests.Interval / 1000).ToString() + " Secs";
                     //lbldataTick.Text = "Pull";
-                    lbldataTick.BackColor = Color.Khaki;
-                    lbldataTick.ForeColor = Color.Black;
+                 lbldataTick.BackColor = Color.Khaki;
+                 lbldataTick.ForeColor = Color.Black;
                 }
             }));
         }
