@@ -666,11 +666,11 @@ private string[] GetUnusedSerialPorts()
             // UI updates must be marshalled to UI thread
             BeginInvoke(new Action(() =>
             {
-            lblDomeAzimuth.Text = v[0];
-            lblTarget.Text = v[1];
-            lblMoving.Text = v[2];
-            lblDirection.Text = v[3];
-            lbltargetStatus.Text = v[4];
+            lblDomeAzimuth.Text     = v[0];
+            lblTarget.Text          = v[1];
+            lblMoving.Text          = v[2];
+            lblDirection.Text       = v[3];
+            lbltargetStatus.Text    = v[4];
             lbldegreesToTarget.Text = v[5];
 
             lblCamerapowerstatus.Text = (v[6] == "1" || v[6].Equals("ON", StringComparison.OrdinalIgnoreCase))
