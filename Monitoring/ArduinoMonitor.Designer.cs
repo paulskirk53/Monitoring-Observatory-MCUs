@@ -99,6 +99,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.numericUpDownEncoderTicks = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.tmrHAL = new System.Windows.Forms.Timer(this.components);
             this.gpboxStepper.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -166,14 +167,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(241, 165);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 16);
+            this.label1.Size = new System.Drawing.Size(143, 16);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Data Request indicator";
+            this.label1.Text = "Data Request interval";
             // 
             // lbldataTick
             // 
             this.lbldataTick.AutoSize = true;
-            this.lbldataTick.Location = new System.Drawing.Point(408, 166);
+            this.lbldataTick.Location = new System.Drawing.Point(392, 166);
             this.lbldataTick.Name = "lbldataTick";
             this.lbldataTick.Size = new System.Drawing.Size(32, 16);
             this.lbldataTick.TabIndex = 16;
@@ -966,6 +967,12 @@
             this.label12.TabIndex = 45;
             this.label12.Text = "encoder Ticks =";
             // 
+            // tmrHAL
+            // 
+            this.tmrHAL.Enabled = true;
+            this.tmrHAL.Interval = 5000;
+            this.tmrHAL.Tick += new System.EventHandler(this.tmrHAL_Tick);
+            // 
             // ArduinoMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1077,6 +1084,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Timer tmrHAL;
     }
 }
 

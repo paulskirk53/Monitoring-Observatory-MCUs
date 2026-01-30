@@ -666,37 +666,47 @@ private string[] GetUnusedSerialPorts()
             // UI updates must be marshalled to UI thread
             BeginInvoke(new Action(() =>
             {
-                lblDomeAzimuth.Text     = v[0];
-                lblTarget.Text          = v[1];
-                lblMoving.Text          = v[2];
-                lblDirection.Text       = v[3];
-                lbltargetStatus.Text    = v[4];
-                lbldegreesToTarget.Text = v[5];
+            lblDomeAzimuth.Text = v[0];
+            lblTarget.Text = v[1];
+            lblMoving.Text = v[2];
+            lblDirection.Text = v[3];
+            lbltargetStatus.Text = v[4];
+            lbldegreesToTarget.Text = v[5];
 
-                lblCamerapowerstatus.Text = (v[6] == "1" || v[6].Equals("ON", StringComparison.OrdinalIgnoreCase))
-                                            ? "Power On"
-                                            : "Power Off";
+            lblCamerapowerstatus.Text = (v[6] == "1" || v[6].Equals("ON", StringComparison.OrdinalIgnoreCase))
+                                        ? "Power On"
+                                        : "Power Off";
 
-                lblsync.Text = v[7];
+            lblsync.Text = v[7];
 
-                // your tick indicator
-                if (lbldataTick.Text == "Pull")
-                {
-                    lbldataTick.Text = "    ";
-                    lbldataTick.BackColor = Color.DarkRed;
-                    lbldataTick.ForeColor = Color.Khaki;
-                }
-                else
-                {
-                    lbldataTick.Text = "Pull";
+            // your tick indicator
+            if (lbldataTick.Text.Contains("Secs"))
+            {
+                lbldataTick.Text = "    ";
+                    lbldataTick.BackColor = Color.Transparent;
+                lbldataTick.ForeColor = Color.Khaki;
+            }
+            else
+            {
+                lbldataTick.Text = (tmrControlBoxRequests.Interval / 1000).ToString() + " Secs";
+                    //lbldataTick.Text = "Pull";
                     lbldataTick.BackColor = Color.Khaki;
                     lbldataTick.ForeColor = Color.Black;
                 }
             }));
         }
 
-
-
+        private void tmrHAL_Tick(object sender, EventArgs e)
+        {
+            if (label2.Text == "Open the airlock HAL")
+            { 
+                label2.Text = "I can't do that Dave";
+            }
+            else 
+            {
+                label2.Text = "Open the airlock HAL"; ;
+            }
+        }
     }
 
 
